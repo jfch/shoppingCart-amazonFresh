@@ -1,0 +1,2875 @@
+<style type="text/css">
+			
+@CHARSET "UTF-8";
+
+#refreshCart {
+    border: 1px solid #e0ddd6;
+    border-right: none;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    padding: 12px;
+    width: 264px;
+}
+
+#earliestDeliveryMessage {
+    background-color: #690;
+    color: #fff;
+    font-size: 13px;
+    margin: -12px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+}
+
+.inlineCartHeader {
+    height: 30px;
+}
+
+#totalsLine {
+    font-size: 16px;
+    height: 20px;
+    margin-top:15px;
+    margin-bottom: 10px;
+}
+
+#totalsLine.cartElement.showCoupons {
+    height: 26px;
+}
+
+#totalsLine .cartSubtotal {
+    color: #669900;
+    float: left;
+    text-align: left;
+}
+
+#totalsLine .cartQuantity {
+    float: right;
+    text-align: right;
+}
+
+#totalsLine .couponTotalsLine {
+    font-size: 12px;
+    clear: both;
+    color: #363636;
+}
+
+#refreshCart .smallEditButton {
+    display: block;
+    margin: .5em auto;
+    padding: 0 3px;
+    width: 16em;
+}
+
+#refreshCart .cartElement,
+#refreshCart .sectionTitle,
+#refreshCart .cartText,
+#refreshCart .ucMessageContent {
+    border-bottom: 1px dashed #e0ddd6;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+#refreshCart .sectionTitle,
+#refreshCart .cartText,
+#refreshCart .ucMessageContent {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#refreshCart .sectionTitle {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+#refreshCart .cartText {
+    margin-top: 10px;
+}
+
+#refreshCart .clearCartLink {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#bigRadishStatus {
+    font-size: 12px;
+}
+
+#bigRadishStatus .radishIcon {
+    float: left;
+    height: 50px;
+    margin-right: 5px;
+}
+
+#bigRadishStatus .hasBigRadish {
+    color: #690;
+}
+
+#bigRadishStatus .noBigRadish {
+    color: #f00;
+}
+
+#bigRadishStatus a {
+    border-bottom: 1px solid #000;
+    color: black;
+    text-decoration: none;
+}
+
+.bigRadishWarning {
+    background-color: #f7e971;
+    padding: 4px;
+}
+
+/* ------------- CART ITEM ------------- */
+#refreshCart .item {
+    border-bottom: 1px dashed #e0ddd6;
+    clear: both;
+    float: none !important; /* not to confuse mobile-cart css which wants to float .item divs */
+    font-size: 11px;
+    min-height: 60px;
+}
+
+#refreshCart .item .mainContent.showCoupons {
+    height: 66px;
+}
+
+#refreshCart .item .mainContent {
+    height: 52px;
+    padding: 4px 0;
+}
+
+#refreshCart .item .changeQuantityBox,
+#refreshCart .item .imageBox,
+#refreshCart .item .detailsBox,
+#refreshCart .item .removeButtonBox {
+    float: left;
+}
+
+#refreshCart .item .changeQuantityBox {
+    margin: 5px;
+    margin-left: 4px;
+    height: 42px;
+    min-width: 65px;    
+}
+
+#refreshCart .item .changeQuantityBox .quantity {
+    background-color: white;
+    border: 1px solid #888;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    
+    float: left;
+    width: 31px;
+}
+
+#refreshCart .processing .changeQuantityBox .quantity {
+    border: none;
+}
+
+#refreshCart .item .changeQuantityBox .quantityValue {
+    color: gray;
+    font-size: 18px;
+    text-align: center;
+    
+    height: 18px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+#refreshCart .item .changeQuantityBox .buttons {
+    background-color: gray;    
+    border: 1px solid #888;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    
+    float: left;
+    width: 32px;
+}
+
+#refreshCart .item .changeQuantityBox .plusButton,
+#refreshCart .item .changeQuantityBox .minusButton {
+    float: left;
+    overflow: hidden;
+    height: 20px;
+}
+
+#refreshCart .item .changeQuantityBox input[type='submit'] {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/cart-qty-sprite64._V144713442_.png);
+    background-repeat: no-repeat;
+    border: 0px solid #ffffff;
+    cursor: pointer;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    width: 32px;
+    -webkit-appearance: none;
+}
+
+#refreshCart .item .changeQuantityBox .plusButton input[type='submit'] {
+    background-position: top right;
+}
+
+#refreshCart .item .changeQuantityBox .plusButton input[disabled='disabled'] {
+    background-position: top left;
+    cursor: default;
+}
+
+#refreshCart .item .changeQuantityBox .minusButton input[type='submit'] {
+    background-position: bottom right;
+}
+
+#refreshCart .item .changeQuantityBox .minusButton input[disabled='disabled'] {
+    background-position: bottom left;
+    cursor: default;
+}
+
+#refreshCart .item .imageBox {
+    margin-right: 6px;
+}
+
+#refreshCart .item .detailsBox {
+    margin-right: 4px;
+    width: 110px;
+}
+
+#refreshCart .item .detailsBox .itemTitle {
+    margin-bottom: 4px;
+    max-height: 28px;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+#refreshCart .item .detailsBox .itemTitlePreview {
+    margin-bottom: 4px;
+    max-height: 31px;
+    overflow: hidden;
+}
+
+#refreshCart .item .detailsBox .priceBox {
+    font-weight: bold;
+    height: 16px;
+}
+
+#refreshCart .item .detailsBox .salePrice {
+    color:#E51837;
+}
+
+#refreshCart .item .detailsBox .basePrice {
+    font-weight: normal;
+    text-decoration:line-through;
+}
+
+#refreshCart .item .detailsBox {
+    margin: 4px 0 2px 0;
+    color: #999999;
+    font-size: 11px;
+}
+
+.voiceTranscription {
+    height: 17px;
+    margin: 3px 0px 0px 5px;
+    padding: 3px 0px 0px 25px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    color: #0066C0;
+    background-image: url("http://g-ec2.images-amazon.com/images/G/01/omaha/rio/play-icon-cart-2._V306765165_.png");
+    cursor: pointer;
+}
+
+.dashVoiceText {
+    color: #999999;
+    margin-left: 30px;
+}
+
+.dashContent {
+    clear: both;
+    margin-bottom: 3px;
+}
+
+.fadedDashContent {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.transcriptionNoAudio {
+    color: #555555;
+    cursor: default;
+}
+
+.dashBarcodeText {
+    height: 17px;
+    margin: 3px 0px 0px 5px;
+    padding: 3px 0px 0px 25px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    color: #999999;
+    background-image: url("http://g-ec2.images-amazon.com/images/G/01/omaha/rio/barcode-icon-cart-2._V306762389_.png");
+}
+
+#refreshCart .item .removeButtonBox {
+    margin: 17px 0;
+    width: 19px;
+}
+
+#refreshCart .item .extraContent {
+    clear: both;
+    font-size: 12px;
+}
+
+#refreshCart .item .extraContent > div {
+    margin-bottom: 4px;
+    padding: 0 4px;
+}
+
+#refreshCart .item .minQty {
+    font-size: 10px;
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+
+#refreshCart .info { background-color:#EBFFAD; }
+#refreshCart .hilight { background-color:#99CC33; }
+#refreshCart .warning { background-color:#EBEBEB; }
+#refershCart .warning .messaging {
+    font-weight:bold;
+}
+
+#refreshCart .messaging .confirmation { 
+    background-color:#FFF;
+    color: #000;
+    padding-bottom: 0.33em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.33em; 
+}
+
+#refreshCart .item .modifiedInNewOrder .changeQuantityBox,
+#refreshCart .item .modifiedInNewOrder .imageBox,
+#refreshCart .item .modifiedInNewOrder .removeButtonBox {
+    display: none;
+}
+
+#refreshCart .item .modifiedInNewOrder .detailsBox {
+    margin-left: 6px;
+    width: 100%;    
+}
+
+#refreshCart .item .modifiedInNewOrder .itemTitle a,
+#refreshCart .item .modifiedInNewOrder .priceBox {
+    text-decoration:line-through;
+}
+
+#refreshCart .item .contextualTip {
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.cartBody #refreshCart .cartTitle {
+    border-bottom: 1px solid #e0ddd6;
+    font-size: 16px;
+    padding: 4px;
+    padding-bottom: 8px;
+}
+
+.cartBody #refreshCart {
+    border: none;
+    width: 98%;
+}
+
+.cartBody #refreshCart .item {
+    font-size: 10pt;
+}
+
+.cartBody #refreshCart .item .detailsBox {
+    width: 490px;
+}
+
+.cartBody #refreshCart .item .imageBox {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cartBody #refreshCart .item .messaging .soldByMerchant {
+    color: #333;
+    font-size: 11px;
+}
+
+.reviewOrder .items {
+    padding-top: 0px;
+}
+
+#viewCartAddress {
+    margin-bottom: 10px;
+    font-size: 9pt;
+}
+
+#viewCartAddress.needExtraSpacing {
+    margin-bottom: 25px;
+}
+
+#viewCartAddress #linkForChange {
+    margin-top: 2px;
+    font-size: 8pt;
+}
+
+#viewCartAddress a {
+    color: #464646;
+}
+
+#viewCartAddress span#fulladdress {
+    font-weight: bold;
+    font-size: 8pt;
+}
+
+#viewCartAddressResponse {
+    background-color: #F2F0E8;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+#viewCartAddressResponse div {
+    margin-bottom: 5px;
+}
+
+#viewCartAddressResponse #changeTo #text {
+    color: #669900;
+    font-weight: bold;
+}
+
+#viewCartAddressResponse #changeTo #cancel:hover {
+    cursor:pointer;
+}
+
+#viewCartAddressResponse select {
+    width: 252px;
+}
+
+#viewCartAddressResponse #clearSlotMessage span {
+    font-size: 11px;
+}
+
+#viewCartAddressResponse #conflictMessage span {
+    color: #DF2C42;
+    font-size: 11px;
+}
+
+#viewCartAddressResponse #conflictMessage div#options {
+    margin: 5px 0px;
+}
+
+#viewCartAddressResponse .left {
+    float: left;
+}
+
+#viewCartAddressResponse .right {
+    float: right;
+}
+
+#viewCartAddressResponse input[type=radio] {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#orderThresholdMssg {
+    text-align:center;
+    font-size: 12.5px;
+    color: #707070;
+    padding-top: 3px;
+}
+
+	</style>
+	<meta name="verify-v1" content="lutKQKzTRD4Thc7dLxJZfCfpu/8crumpkdr/y2u32Kk=" />
+	<meta name="description" content="Next-day and early morning delivery of fresh grocery, everyday essentials, neighborhood products, and Amazon.com items." />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="google-site-verification" content="9vpzZueNucS8hPqoGpZ5r10Nr2_sLMRG3AnDtNlucc4" />
+	<title>Review Order and Check Out | AmazonFresh</title>
+	<link rel="stylesheet" type="text/css" href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/css/jqueryAutocomplete-1.2._V260835473_.css" />
+	<link href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/css/default._V1455922598_.css" type="text/css" rel="stylesheet" />
+	<link href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/css/myAccount._V1388696013_.css" type="text/css" rel="stylesheet" />
+	<link href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/css/orderReview2._V1428023234_.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/javascripts/lib/jquery/jquery-1.3.2.min._V244049497_.js"></script>
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/javascripts/lib/jquery/jquery-ui-1.8.11.full.min.js"></script>
+	<script>
+				(function($){
+				$.widget("custom.autoCompleteBold", $.ui.autocomplete, {
+				_renderItem: function(ul, item) {
+				var term = $.trim(this.term);
+				//match input term to each result and apply strong tag
+				var boldedHTMLResults = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + term.replace(/([\^$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\$1") + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+				return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.addClass(this.options.liClass || "")
+				.append( $( "<a></a>" ).html( boldedHTMLResults ) )
+				.appendTo( ul );
+				}
+				});
+				}(jQuery));
+		</script>
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/javascript/jqueryAutocomplete-1-1-custom._V400505187_.js"></script>
+	<script type="text/javascript">jQuery.noConflict();</script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/js/html5shiv._V1378307129_.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+				function setCookie(c_name,value,expiredays)
+				{
+				var exdate=new Date();
+				exdate.setDate(exdate.getDate()+expiredays);
+				document.cookie=c_name+ "=" +escape(value)+
+				((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+				}
+				function getCookie(c_name)
+				{
+				if (document.cookie.length>0)
+				{
+				c_start=document.cookie.indexOf(c_name + "=");
+				if (c_start!=-1)
+				{
+				c_start=c_start + c_name.length+1;
+				c_end=document.cookie.indexOf(";",c_start);
+				if (c_end==-1) c_end=document.cookie.length;
+				return unescape(document.cookie.substring(c_start,c_end));
+				}
+				}
+				return "";
+				}
+				function deleteCookie ( cookie_name )
+				{
+				var cookie_date = new Date ( );  // current date & time
+				cookie_date.setTime ( cookie_date.getTime() - 1 );
+				document.cookie = cookie_name += "=; expires=" + cookie_date.toGMTString();
+				}
+		</script>
+	<link href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/css/shoveler._V1397624657_.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript">
+				function FreshShoveler(shovelerId) {
+					this.id = shovelerId;
+					this.shoveler = jQuery("#"+shovelerId);
+				this.type = FreshShovelerMeta.ShovelerTypes[getParam(this.shoveler, "type")];
+				if(null != this.type) {
+					this.header = getParam(this.shoveler, "header");
+					this.footer = getParam(this.shoveler, "footer");
+					this.footerTarget = getParam(this.shoveler, "footerTarget");
+					this.isMinDisplay = getParam(this.shoveler, "isMinDisplay");
+					this.displayType = getParam(this.shoveler, "displayType");
+					if (isEmpty(this.displayType)) { this.displayType = 'standard';}
+					this.items = null;
+					this.capacity = 0;
+					this.perItemMargin = 0;
+					this.currentItem = 0;
+					this.currentPage = 0;
+					this.pageCount = 0;
+					this.paginatorGutter = 50; // hero will overwrite this.
+					this.firstLoad = true;
+					// hero uses a custom load function.
+					if('function' != typeof this.type.load) {
+						this.load = FreshShovelerMeta.loadFreshShoveler;
+					} else {
+						this.load = this.type.load;
+					}
+					this.getExtraParams = this.type.getParams;
+					this.getItems = this.type.getItems;
+					this.populateItems = FreshShovelerMeta.populateItems;
+				} else {
+				this.load = function() {
+				// do something to log bad widget type? otherwise just keep empty (js makes a fuss trying to call a null function)
+				};
+				}
+				this.bindPaginationEvents = function() {
+					var s = this;
+				this.shoveler.find("div.backButton").click(function() { FreshShovelerMeta.showPrev(s); return false; });
+				this.shoveler.find("div.nextButton").click(function() { FreshShovelerMeta.showNext(s); return false; });
+				};
+				}
+				// getting in the habit of keeping namespace clean by introducing as few global vars as possible.
+				var FreshShovelerMeta = {
+					shovelerTemplate: jQuery("<h2/><div class='body'><div class='shovelerPagination'>Page <span class='currentPage'>0</span> of <span class='pageCount'>0</span></div><div class='backButton'/><div class='shovelerItems'/><div class='nextButton'/></div><div class='footer'></div>"),
+					loadingImage: jQuery("<img src='https://images-na.ssl-images-amazon.com/images/G/01/ui/loadIndicators/loading-large.gif' class='loading' alt='Loading...'/>"),
+					ShovelerTypes: {
+				// SEARCH SHOVELER takes a search query string via <input type='hidden' name='query' value='[query]' />
+					search: {
+						itemWidth: 137,
+						getParams: function() { this.query = getParam(this.shoveler, "query"); },
+						getItems: function() {
+							var s = this; // hooray js scoping!
+							var asin = getParam(this.shoveler, "asin");
+							var action = "shovelerSearch?";
+							if(asin != null) {
+							action = "shoveler?action=search&";
+							}
+							jQuery.get(action + this.query + "&source=" + s.id, function(ajax) {
+								if(jQuery.trim(ajax) == "") { // hide widget if there are no items
+								s.shoveler.hide();
+								} else {
+								s.populateItems(ajax);
+								FreshShovelerMeta.arrangeItems(s);
+								
+								jQuery(window).resize(function() { FreshShovelerMeta.arrangeItems(s); });
+								s.bindPaginationEvents();
+								FreshShovelerMeta.tagItems(s);
+								FreshShovelerMeta.checkAsins(s);
+								}
+							});
+						}
+					},
+					// LIST SHOVELER takes a list id via <input type='hidden' name='listId' value='[id]' />
+					list: {
+					itemWidth: 137,
+					getParams: function() { this.listId = getParam(this.shoveler, "listId"); },
+					getItems: function() {
+						var s = this; // hooray js scoping!
+				jQuery.get("shoveler?action=list&listId="+this.listId+"&source="+s.id, function(ajax) {
+					if(jQuery.trim(ajax) == "") { // hide widget if there are no items
+				s.shoveler.hide();
+				} else {
+					s.populateItems(ajax);
+					FreshShovelerMeta.arrangeItems(s);
+					
+					jQuery(window).resize(function() { FreshShovelerMeta.arrangeItems(s); });
+					s.bindPaginationEvents();
+								FreshShovelerMeta.tagItems(s);
+					FreshShovelerMeta.checkAsins(s);
+				}
+				});
+					}
+					},
+					// HERO WIDGET
+					hero: {
+						itemWidth: 110,
+						heroTemplate: jQuery("<h1/><div class='heroSpotContainer' /><div class='heroShoveler'><table class='heroShoveler'><tr><td class='backButton'></td><td class='shovelerItems'></td><td class='nextButton'></td></tr></table></div>"),
+						load: function() {
+							this.listId = getParam(this.shoveler, "listId");
+						this.headline = getParam(this.shoveler, "headline");
+						this.paginatorGutter = 15;
+							
+							this.shoveler.append(FreshShovelerMeta.ShovelerTypes.hero.heroTemplate.clone());
+							this.shoveler.find(".shovelerItems").append(FreshShovelerMeta.loadingImage.clone());
+							this.shoveler.find("h1").text(this.headline);
+							this.getItems();
+						},
+						getItems: function() {
+							var s = this;
+							jQuery.get("shoveler?action=hero&listId="+this.listId+"&source="+s.id, function(ajax) {
+								if(jQuery.trim(ajax) == "") { // hide widget if there are no items
+									s.shoveler.hide();
+								} else {
+									var response = jQuery(ajax);
+									var heroSpots = response.filter("table.heroSpot");
+									heroSpots.hide();
+									s.shoveler.find(".heroSpotContainer").append(heroSpots);
+									s.populateItems(response.filter("div.shovelerItem"));
+									s.items.find(".productImage").click(function(event) {
+										var asin = jQuery(event.target).parents("div.shovelerItem").find("input[name='expectedAsin']").val();
+										var targetHeroSpot = jQuery("#heroSpot_"+asin);
+										targetHeroSpot.siblings().fadeOut(300);
+										targetHeroSpot.fadeIn(300);
+									});
+									jQuery(s.items[0]).find(".productImage").click();
+									
+									FreshShovelerMeta.arrangeItems(s);
+									jQuery(window).resize(function() { FreshShovelerMeta.arrangeItems(s); });
+									s.bindPaginationEvents();
+				FreshShovelerMeta.tagItems(s);
+				FreshShovelerMeta.checkAsins(s);
+								}
+							});
+						}
+					},
+					// DID YOU FORGET SHOVELER generates items from customer's past purchases, with some bestsellers & magazines mixed in
+					didYouForget: {
+						itemWidth: 137,
+						getItems: function() {
+					var s = this;
+					jQuery.get("DidYouForgetWidget?source=shovelerjs", function(ajax) {
+						if(jQuery.trim(ajax) == "") { // hide widget if there are no items
+				s.shoveler.hide();
+				} else {
+				s.populateItems(ajax);
+				FreshShovelerMeta.arrangeItems(s);
+				
+				jQuery(window).resize(function() { FreshShovelerMeta.arrangeItems(s); });
+				s.bindPaginationEvents();
+								FreshShovelerMeta.tagItems(s);
+				FreshShovelerMeta.checkAsins(s);
+				}
+					});
+					}
+					},
+					// FREE GIFT SHOVELER takes items out of the page (loaded synchronously)
+					freeGift: {
+					itemWidth: 137,
+					getItems: function() {
+						var s = this;
+						var items = this.shoveler.find(".itemsToDisplay").children();
+						if(items.length > 0) {
+						s.populateItems(items);
+						FreshShovelerMeta.arrangeItems(s);
+						jQuery(window).resize(function() { FreshShovelerMeta.arrangeItems(s); });
+						s.bindPaginationEvents();
+							FreshShovelerMeta.tagItems(s);
+				FreshShovelerMeta.checkAsins(s);
+						}
+						}
+					},
+					zeitgeist: {
+					itemWidth: 137,
+					getParams: function() {
+				this.rankType = getParam(this.shoveler, "rankType");
+				this.listId = getParam(this.shoveler, "listId");
+				},
+					getItems: function() {
+				var s = this; // hooray js scoping!
+				var args = {
+				action: 'zeitgeist',
+				listId: this.listId,
+				rankType: this.rankType,
+				source: s.id
+				};
+				var success = function(ajax) {
+				if(jQuery.trim(ajax) == "") { // hide widget if there are no items
+				s.shoveler.hide();
+				} else {
+				s.populateItems(ajax);
+				FreshShovelerMeta.arrangeItems(s);
+				jQuery(window).resize(function() { FreshShovelerMeta.arrangeItems(s); });
+				s.bindPaginationEvents();
+				FreshShovelerMeta.tagItems(s);
+				FreshShovelerMeta.checkAsins(s);
+				}
+				};
+				jQuery.get("shoveler", args, success);
+					}
+					},
+					// ASIN LIST SHOVELER takes an arbitrary list of asins, either from the url path or from an input
+					asinList: {
+					itemWidth: 137,
+					getItems: function() {
+					var s = this;
+					if(this.isMinDisplay == null) { this.isMinDisplay = "false"; }
+					if(this.isMinDisplay) {
+						//isMinDisplay appears to never be used/
+						this.shoveler.find("img.loading").css("top", "60px");
+					this.shoveler.find("div.body").css("height", "150px");
+					this.shoveler.find("div.backButton, div.nextButton").css("top", "65px");
+					}
+					
+					var suppressProductLink = getParam(this.shoveler, "suppressProductLink");
+					if(suppressProductLink == null) { suppressProductLink = "false"; }
+					var rawParams = window.location.search.substr(1).split("&");
+					var asins = getParam(this.shoveler, "asins");
+					if(asins == null || asins == "") {
+						for(var i = 0; i < rawParams.length; i++) {
+						var pair = rawParams[i].split("=");
+						if(pair[0] == "asins") {
+							asins = pair[1];
+							break;
+						}
+						}
+					}
+				var uid = null;
+				for(var i = 0; i < rawParams.length; i++) {
+				var pair = rawParams[i].split("=");
+				if(pair[0] == "id") {
+				uid = pair[1];
+				break;
+				}
+				}
+					jQuery.get("shoveler",
+						{ action: "asinlist", isMinDisplay: this.isMinDisplay, suppressProductLink: suppressProductLink, asins: asins, uid: uid },
+						function(ajax) {
+							if(jQuery.trim(ajax) == "") { // hide widget if there are no items
+					s.shoveler.hide();
+					} else {
+					s.populateItems(ajax);
+					FreshShovelerMeta.arrangeItems(s);
+					
+					jQuery(window).resize(function() { FreshShovelerMeta.arrangeItems(s); });
+					s.bindPaginationEvents();
+									FreshShovelerMeta.tagItems(s);
+					if(!s.isMinDisplay) { FreshShovelerMeta.checkAsins(s); }
+					}
+						}
+					);
+					}
+					},
+					},
+					loadFreshShoveler: function() {
+						if(null != this.getExtraParams) { this.getExtraParams(); }
+					this.shoveler.wrap("<div class='"+ this.displayType+"'></div>");
+					// create shoveler framework
+					this.shoveler.append(FreshShovelerMeta.shovelerTemplate.clone());
+					this.shoveler.find(".shovelerPagination").hide();
+					this.shoveler.find(".shovelerItems").append(FreshShovelerMeta.loadingImage.clone());
+					this.shoveler.find("h2").text(this.header);
+					this.getItems();
+					},
+				populateItems: function(items) {
+					var s = this;
+					s.shoveler.find(".loading").remove();
+					s.shoveler.find(".shovelerItems").append(items);
+					s.items = s.shoveler.find(".shovelerItem");
+					s.items.each(function(i) {
+					jQuery(this).attr("id", s.id+"Item_"+i);
+					});
+					},
+					arrangeItems: function(s) {
+						if(s.displayType != 'underCart') {
+							var containerWidth = s.shoveler.find(".shovelerItems").width();
+						s.capacity = Math.floor(containerWidth / s.type.itemWidth) - 1;
+						var totalMargin = containerWidth - (s.capacity * s.type.itemWidth);
+						s.perItemMargin = totalMargin / (s.capacity + 1);
+					s.currentItem = 0;
+					s.currentPage = 0;
+					s.pageCount = Math.ceil(s.items.length / s.capacity);
+					
+					FreshShovelerMeta.scrollItems(s);
+						s.shoveler.find(".pageCount").empty().append(s.pageCount);
+						s.shoveler.find(".shovelerPagination").show();
+						
+				if (s.firstLoad) {
+				var bodyHeight =  s.shoveler.find(".body").height();
+				
+					if (s.shoveler.find(".pleaseSignIn").size() > 0) {
+					bodyHeight += 10;
+					}
+					
+					if (s.shoveler.find(".availabilityMessage").size() > 0) {
+					bodyHeight += 20;
+					}
+					s.shoveler.find(".body").height(bodyHeight);
+					s.firstLoad = false;
+				}
+						} else {
+							
+					s.items.each(function(i) {
+						if (i > 5) { jQuery("#" + s.id+"Item_"+i).hide(); }
+					});
+						}
+					},
+					adjustShovelerHeight: function(s) {
+						var maxShovelerItemHeight = 0;
+						s.shoveler.find("div.shovelerItem").each(function() {
+							var height = jQuery(this).height();
+							if(height > maxShovelerItemHeight) {
+								maxShovelerItemHeight = height;
+							}
+						});
+						if(s.type == FreshShovelerMeta.ShovelerTypes.hero) {
+					var heroSpotHeight = s.shoveler.find(".heroSpotContainer").height();
+					s.shoveler.css("height", heroSpotHeight + maxShovelerItemHeight + 55);
+						} else if(s.displayType != 'underCart') { // this will support all standard shovelers
+							s.shoveler.find("div.body").css("height", maxShovelerItemHeight);
+						}
+					},
+					showPrev: function(s) {
+					s.currentPage = (s.currentPage + s.pageCount - 1) % s.pageCount; // pre-emptively handle negative mod
+					FreshShovelerMeta.scrollItems(s);
+					},
+					showNext: function(s) {
+						s.currentPage = (s.currentPage + 1) % s.pageCount;
+						FreshShovelerMeta.scrollItems(s);
+					},
+					scrollItems: function(s) {
+						var autoWidthAdjust = 0;
+						if(s.type == FreshShovelerMeta.ShovelerTypes.hero) {
+							autoWidthAdjust = s.shoveler.offset().left;
+						}
+					s.items.hide();
+					var startIndex = s.currentPage * s.capacity,
+					endIndex = Math.min(s.items.length, startIndex + s.capacity),
+					position = 0;
+					for(var i = startIndex; i < endIndex; i++) {
+						jQuery(s.items[i]).css({ left: (s.type.itemWidth + s.perItemMargin) * position + s.perItemMargin + s.paginatorGutter + autoWidthAdjust}).show();
+						position++;
+					}
+					s.shoveler.find(".currentPage").empty().append(s.currentPage+1);
+					},
+					tagItems: function(s) {
+						var tag = getParam(s.shoveler, "csTag");
+						if (tag) {
+						s.shoveler.find("div.shovelerItem").each(function() {
+						var item = jQuery(this);
+							var pfref = item.attr("id");
+							item.find("a").each(function() {
+								var linkTag = jQuery(this);
+								var currentHref = linkTag.attr("href");
+								linkTag.attr("href",currentHref+tag+"&pf_ref="+pfref+"_link"+"&ref_=cs_"+pfref);
+							});
+						
+						s.shoveler.find("input.csTag").each(function() {
+							var tagItem = jQuery(this);
+									item.find("form.addToCartForm").append(jQuery("<input type='hidden' name='"+tagItem.attr("name")+"' value='" + tagItem.attr("value")+"'/>"));
+						});
+						item.find("form.addToCartForm").append(jQuery("<input type='hidden' name='pf_ref' value='" + pfref+"_cart'/>"));
+					item.find("form.addToCartForm").append(jQuery("<input type='hidden' name='ref_' value='cs_" + pfref+"'/>"));
+						});
+						}
+					},
+					checkAsins: function(s) {
+					s.shoveler.find("div.shovelerItem").each(function() {
+					var item = jQuery(this);
+					var expectedAsin = item.find("input[name='expectedAsin']").attr("value");
+					var addToCartAsin = item.find("input[name='addToCartAsin']").attr("value");
+					if(expectedAsin != addToCartAsin) {
+					jQuery.get("ping?badShovelerAsins&expected="+expectedAsin+"&actual="+addToCartAsin+"&shoveler="+s.id);
+					item.find("form.addToCartForm input[name='asin']").attr("value", expectedAsin);
+					}
+					});
+					},
+					loadAllShovelers: function() {
+						var widgets = jQuery("div.shovelerWidget, div.heroWidget");
+					if(widgets.length > 0) {
+					widgets.each(function(i) {
+					var targetId = jQuery(this).attr("id");
+					var widget = new FreshShoveler(targetId);
+					widget.load();
+					});
+					}
+					}
+				}
+				function getParam(parent, name) { return parent.find("input[name='"+name+"']").attr("value"); }
+				function isEmpty(string) { string = jQuery.trim(string); return (string == null || string == ""); }
+		</script>
+	<script type="text/javascript">
+				jQuery(document).ready(function() {
+					jQuery(".recipeWidget").each(function(index) {
+					var widget = jQuery(this);
+					var recipeIdsString = widget.html();
+						jQuery.post("recipeWidget", { recipeIds: recipeIdsString },
+						function(data) {
+						if (data.length > 0) {
+						widget.html(data);
+						widget.show();
+						truncateRecipeTitles(widget);
+						}
+						}
+					);
+					});
+				});
+				function truncateRecipeTitles(widget) {
+					widget.find(".text").each(function(index) {
+						var textDiv = jQuery(this);
+						var n = parseInt(textDiv.css("line-height"));
+						var text = textDiv.html();
+					
+					if (textDiv.height() == n) {
+						// center when one line
+						textDiv.css("margin-top", n +"px");
+					} else if (textDiv.height() > 2*n) {
+						// add ellipsis
+						text = text + "...";
+						textDiv.html(text);
+					}
+					// reduce lenght until it fits
+					while (textDiv.height() > 2*n) {
+						text = text.substr(0, text.length - 4) + "...";
+						textDiv.html(text);
+					}
+					textDiv.css("max-height", (2*n) + "px");
+					textDiv.css("overflow", "hidden");
+						});
+				}
+		</script>
+	<script language="javascript" type="text/javascript">
+				Function.prototype.bind = Function.prototype.bind || function (thisp) {
+				var fn = this;
+				return function () {
+				return fn.apply(thisp, arguments);
+				};
+				};
+				function submitOnlyOnce(theForm){
+				if (jQuery(window.parent.jQuery(".inCart")).length) {
+				var asin = jQuery(theForm.asin).val();
+				var quantity = jQuery(theForm.quantity).val();
+				if (quantity == 0) {
+				jQuery(window.parent.jQuery("." + asin + "-asin")).trigger("showPastPurchaseTag-" + asin);
+				}
+				}
+					jQuery(jQuery(theForm).find("button[type=submit], input[type=image], input[type=submit], input[type=button]").attr("disabled", "disabled"));
+				}
+				function disableLink(theLink) {
+					jQuery(theLink).click(function(e) { return false; });
+				}
+				function refreshShoppingCart() {
+					jQuery("#shopping-cart").attr("src", "ShoppingCartView");
+				}
+				var cartEventListeners = [];
+				function addCartEventListener(listener){
+					cartEventListeners.push(listener);
+				}
+				function cartReloadEvent(cartInfo){
+					for(index in cartEventListeners) {
+						cartEventListeners[index](cartInfo);
+						}
+				}
+				function truncateTitle(title) {
+				var height = title.height();
+				title.css("height", "auto");
+				title.css("max-height", 200);
+				title.css("overflow", "hidden");
+				var anchor = title.find("a"),
+				text = anchor.text();
+				while (text.length > 0 && title.height() > height) {
+				text = text.substr(0, text.length - 1);
+				anchor.html(text + "&#8230");
+				}
+				title.css("max-height", "30px");
+				}
+				var warnOfInvalidItems = true;
+				function updateAddAllToCartButton(event) {
+				var validList = "";
+				var invalidList = "";
+				
+				jQuery(".listItem").each(function(index) {
+				var item = jQuery(this);
+				var conflictInput = item.find("input[name='conflictWithSlot']");
+				if (item.find(".itemUnavailableText").size() > 0 || item.find(".discontinued").size() > 0) {
+				// Ignore unavailable and discontinued items
+				} else if (conflictInput.size() == 0 || conflictInput.val() == "false") { // skip invalid items
+				var quantity = item.find(".addToCart input[name='quantity']");
+				
+				if (quantity.size() > 0 && quantity.val() > 0) {
+				var asin = item.attr("id");
+				var merchantId = item.find(".addToCart input[name='merchantId']").val();
+				validList += asin + "|" + quantity.val() + "|" + merchantId + ",";
+				}
+				} else {
+					invalidList +="<li>" + item.find(".itemTitle a").html() + "</li>";
+				}
+				});
+				jQuery(this).find("input[name='itemDetails']").val(validList);
+				// show message if invalid items cannot be added
+				if (warnOfInvalidItems && invalidList != "") {
+				event.preventDefault();
+				var message = "These items are not available for delivery <strong>" + jQuery("#headerNav #selectday a").html() + "</strong> and will NOT be added to your cart:<ul>";
+								
+								message += invalidList;
+				message +="</ul>";
+				message += "<button id='addAllAvailableItemsToCart'>Continue without These Items</button>&nbsp;&nbsp;";
+				message += "<button class='nevermind'>Nevermind</button/>";
+				
+				showOnDemandLightboxWithContent(message, jQuery(this));
+				
+				jQuery("#addAllAvailableItemsToCart").click(function() {
+				warnOfInvalidItems = false;
+				jQuery("#addAllToCart").submit();
+				hideLightbox();
+				});
+				}
+				
+				warnOfInvalidItems = true;
+				}
+				function showAddToCartLightbox(form, message) {
+					showOnDemandLightboxWithContent(message, form, function() {
+				var lightbox = jQuery("#lightbox");
+				var atcButtons = lightbox.find("#addToCartButtons");
+				var totalWidth;
+				if (atcButtons.size() > 0) {
+					totalWidth = atcButtons.find("form[name='UseSlotAndAddToCart']").width()
+					+ atcButtons.find("form[name='ClearSlot']").width()
+					+ atcButtons.find(".nevermind").width();
+				} else {
+					totalWidth = 400;
+				}
+				lightbox.width(Math.max(300, totalWidth + 110));
+				lightbox.find(".itemTitle").width(lightbox.width() - 150);
+				});
+				}
+				function setPostAddCookie(e) {
+				document.cookie="freshPostSlotAdd=true;"
+				return true;
+				}
+				function removePostAddCookie() {
+				var cookie_date = new Date ();
+				cookie_date.setTime ( cookie_date.getTime() - 1 );
+				document.cookie = "freshPostSlotAdd=; expires=" + cookie_date.toGMTString();
+				}
+				function showLoadingSpinner(event){
+					var spinnerTextList = new Array(
+							"We're processing your order.",
+							"More items can be added after your order is placed.",
+							"Download our mobile apps to shop any time, anywhere.",
+							"Discover local favorites on your city's Spotlight page.",
+							"We offer a 100% grocery satisfaction guarantee.",
+							"Get your shopping done fast with one-click recipes.",
+							"Thank you for shopping on AmazonFresh.",
+							"Easily find your favorites in Past Purchases.",
+							"We look forward to serving you.",
+							"Your order will arrive in temperature-controlled bags.",
+							"Please leave your porch light on for our drivers.",
+							"Save time by creating Your Lists.");
+					
+					/* Using a short timeout hack to ensure that we do not encounter freezing GIF problems in IE on form post -npprabhu */
+					setTimeout(function() {
+						var isInIframe = window.location != window.parent.location;
+						var spinnyBlock;
+						if (isInIframe) {
+							spinnyBlock = jQuery("#orderProcessing", window.parent.document);
+						} else {
+							spinnyBlock = jQuery("#orderProcessing");
+						}
+						
+						spinnyBlock.show();
+						
+						var spinnyText = spinnyBlock.find("#spinnerText");
+						var txtCounter = 0;
+						setInterval(function(){
+							txtCounter++;
+							spinnyText.html(spinnerTextList[txtCounter]);
+							if(txtCounter == (spinnerTextList.length - 1)){
+								txtCounter = -1;
+							}
+						}, 5000);
+						
+						var spinnyImage = spinnyBlock.find("#greenTruck");
+						var imgCounter = 0;
+						var imgPos = parseInt(spinnyImage.css("left"));
+						setInterval(function(){
+							imgCounter++;
+							spinnyImage.css("left", imgPos + (200 * imgCounter));
+							if(imgCounter == 2) {
+								imgCounter = -1;
+							}
+						}, 1000);
+						
+					}, 50);
+				}
+				jQuery(document).ready(function() {
+				handleDeliveryNotes();
+				jQuery("#placeOrderForm, form[action='UpdateOrder']").submit(showLoadingSpinner);
+				jQuery(".buying .variationRadio").live('click',changeVariationEventHandler);
+				jQuery(".smallProduct .variationRadio ").live('click',changeVariationEventHandler);
+				jQuery(".shovelerItem .variationRadio ").live('click',changeVariationEventHandler);
+				jQuery(".mobileBody .variationRadio ").live('click',changeVariationMobileEventHandler);
+				
+				jQuery(document).ajaxError(function(event, request, settings, exception) {
+				if (401 === request.status) {
+				window.location.href = "/Authenticate?signInSuccessUrl=" + encodeURIComponent(location.pathname);
+				return true;
+				}
+				return false;
+				});
+				});
+				function handleDeliveryNotes() {
+				jQuery("#editDeliveryInstructions").click(function() {
+				var content = jQuery("#deliveryInstructionsLightboxWrapper");
+				showOnDemandLightboxWithContent(content.html());
+				attachCustomerDeliveryNotesClipHandler();
+				});
+				attachCustomerDeliveryNotesClipHandler();
+				}
+				//Limit customer delivery notes input to 255 characters, as we claim.
+				function attachCustomerDeliveryNotesClipHandler() {
+				var clipCustomerDeliveryNotes = function(event) {
+				var textArea = jQuery('.customerDeliveryNotesInput');
+				var textValue =  textArea.val();
+				if (textValue.length > 255) {
+				textValue = textValue.slice(0, 255);
+				textArea.val(textValue);
+				textArea.scrollTop(textArea[0].scrollHeight);
+				}
+				};
+				jQuery('.customerDeliveryNotesInput').keydown(clipCustomerDeliveryNotes);
+				jQuery('.customerDeliveryNotesInput').keyup(clipCustomerDeliveryNotes);
+				jQuery('.customerDeliveryNotesInput').change(clipCustomerDeliveryNotes);
+				}
+				function changeVariationEventHandler(event) {
+				if(event.isPropagationStopped()) return;
+				event.stopPropagation();
+				$this = jQuery(this);
+				var asin_id = $this.attr("value");
+				var asin = asin_id.split("_")[0];
+				var showItemId = jQuery(this).parent(".variationSelection").parent().find(".var_".concat(asin_id));
+				var showItem = jQuery(this).parent(".variationSelection").parent().find(".var_".concat(asin));
+				jQuery(this).closest(".variationSelection").parent().find(".variation").hide();
+				showItemId.show();
+				showItem.show();
+				}
+				function changeVariationMobileEventHandler(event) {
+				if(event.isPropagationStopped()) return;
+				event.stopPropagation();
+				$this = jQuery(this);
+				var asin = jQuery(this).attr("value");
+				var showItem = jQuery(this).parents(".variationSelection").parent().find(".var_".concat(asin));
+				$this.closest(".variationSelection").parent().find(".variation").hide();
+				showItem.show();
+				}
+		</script>
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/js/searchResultsWidget._V1410555730_.js"></script>
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/js/advertWidget._V1426107391_.js"></script>
+	<script type="text/javascript">
+				var SingleBuyWidget = {
+				loadingImage: jQuery("<img src='https://images-na.ssl-images-amazon.com/images/G/01/ui/loadIndicators/loading-large.gif' class='loading' alt='Loading...'/>"),
+				addToCartIfAvailableHandler: function(event) {
+				var button = event.target;
+				var form = jQuery(button).parents("form");
+				event.preventDefault();
+				var asin = form.find("input[name='asin']").val();
+				var quantity = 1; //The quantity is hardcoded for the SingleBuyWidget
+				var ajaxAttrs = {"asin": asin, "quantity": quantity, "addCartRefer": document.URL};
+				jQuery(".singleBuyWidget").each(function(index) {
+				var widget = jQuery(this);
+				var button = widget.find("button[type='submit']");
+				button.addClass("singleBuyWaiting");
+				button.attr("disabled", "disabled");
+				});
+				jQuery.ajax({
+				type: "post",
+				url: "/AvailableForAddToCart?",
+				data: ajaxAttrs,
+				success: function(data, text) {
+				SingleBuyWidget.addToCartEventHandler(event);
+				},
+				error: function(request, status, error) {
+				//TODO What to do?
+				jQuery(".singleBuyWidget").each(function(index) {
+				var widget = jQuery(this);
+				var button = widget.find("button[type='submit']");
+				button.removeAttr("disabled");
+				button.removeClass("singleBuyWaiting");
+				});
+				}
+				});
+				},
+				addToCartEventHandler: function (event) {
+				event.preventDefault();
+				var form = jQuery(event.target).parents("form");
+				SingleBuyWidget.addToCartByForm(form);
+				},
+				addToCartByForm: function (form) {
+				var params = ["quantity", "asin", "refId", "qid", "rank"];
+				var values = {};
+				for(var i = 0; i < params.length; i++) {
+				var param = params[i];
+				values[param] = form.find("input[name='"+param+"']").val();
+				}
+				SingleBuyWidget.addToCart(form, values);
+				},
+				addToCart: function (form, values) {
+				jQuery.get("/CartAPI",
+				{'action':'addItem', 'quantity':values['quantity'],'asin':values['asin'],'refId':values['refId'],'qid':values['qid'],'rank':values['rank'],'sr':'1-'+values['rank']},
+				function(data, textStatus){
+				var quantityInCart = parseInt(form.find("input[name='quantityInCart']").val(), 10);
+				if(isNaN(quantityInCart)) {
+				quantityInCart = 0;
+				}
+				quantityInCart += 1;
+				jQuery(".singleBuyWidget").each(function(index) {
+				var widget = jQuery(this);
+				var proceedButton = widget.find(".singleBuyProceedButton");
+				proceedButton.show();
+				proceedButton.find(".singleBuyQuantity").text(quantityInCart + " added to cart");
+				var button = proceedButton.find("button[type='submit']");
+				button.removeAttr("disabled");
+				button.removeClass("singleBuyWaiting");
+				var singleBuyAddToCart = widget.find(".singleBuyAddToCart");
+				singleBuyAddToCart.hide();
+				});
+				},
+				'html');
+				},
+				loadAllSingleBuyWidgets: function() {
+				jQuery(".singleBuyWidget").each(function(index) {
+				var widget = jQuery(this);
+				//widget.append(SingleBuyWidget.loadingImage.clone());
+				var asin = widget.find("input[name='asin']").attr("value").trim();
+				var buttonClass = widget.find("input[name='buttonClass']").attr("value").trim();
+				jQuery.get("/singleBuyWidget", { asin: asin, buttonClass: buttonClass },
+				function(sbwidget) {
+				if(jQuery.trim(sbwidget) == "") {
+				widget.hide();
+				} else {
+				//widget.find(".loading").remove();
+				widget.append(sbwidget);
+				widget.find("form.singleBuyAddToCartForm button[type='submit']").live('click', SingleBuyWidget.addToCartIfAvailableHandler);
+				widget.find("a.singleBuyDisabled").css('cursor', 'pointer');
+				}
+				});
+				});
+				}
+				}
+				jQuery(document).ready(SingleBuyWidget.loadAllSingleBuyWidgets);
+		</script>
+	<script type="text/javascript">
+				var DashBuyWidget = {
+				loadingImage: jQuery("<img src='https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/loading-large-transparent.gif' class='loading' alt='Loading...'/>"),
+				addToCartEventHandler: function (event) {
+				var form = jQuery(event.target);
+				DashBuyWidget.addToCartByForm(form);
+				event.preventDefault();
+				},
+				addToCartByForm: function (form) {
+				var $form = jQuery(form);
+				var request = {};
+				jQuery.each($form.find("input[type=hidden]"), function(i, field) {
+				$field = jQuery(field);
+				request[$field.attr("name")] = $field.val();
+				});
+				$button = $form.find("button");
+				
+				$button.hide();
+				$form.append(DashBuyWidget.loadingImage.clone());
+				jQuery.ajax({
+				url: "/CartAPI",
+				type: "POST",
+				data: request,
+				success: function(data, textStatus) {
+					$div = $button.parent().closest("div");
+					$div.empty();
+					jQuery("#alreadyOrderedWrapper").show();
+				},
+				complete: function(){
+				$form.find("img").remove();
+				$button.show();
+				}
+				})
+				},
+				loadAllDashBuyWidgets: function() {
+				jQuery(".dashBuyWidget").each(function(index) {
+				var widget = jQuery(this);
+				widget.append(DashBuyWidget.loadingImage.clone());
+				var asin = widget.find("input[name='asin']").attr("value").trim();
+				var buttonClass = widget.find("input[name='buttonClass']").attr("value").trim();
+				jQuery.get("/dash/dashBuyWidget", { asin: asin, buttonClass: buttonClass },
+				function(sbwidget) {
+				if(jQuery.trim(sbwidget) == "") {
+				widget.hide();
+				} else {
+				widget.find(".loading").remove();
+				widget.append(sbwidget);
+				widget.find("form.dashBuyAddToCartForm").live('submit', DashBuyWidget.addToCartEventHandler);
+				widget.find("a.dashBuyDisabled").css('cursor', 'pointer');
+				DashBuyWidget.attachMPSelectEventHandlers();
+				}
+				});
+				});
+				},
+				
+				getUrlWithoutBrowseMPParameter: function() {
+					var url = parent.location.href;
+				var splitURL = url.split("browseMP=");
+				
+				if (splitURL.length > 1) {
+				var splitParams = splitURL[1].split("&");
+				url = splitURL[0];
+				if (splitParams.length > 1) {
+				url +=splitParams[1];
+				}
+				}
+				
+				return url;
+				},
+				
+				attachMPSelectEventHandlers: function() {
+					jQuery("#dashMpSelect a").click(function(event) {
+						event.preventDefault();
+						jQuery("#dashMpSelect select").toggle();
+					});
+					
+				jQuery("#dashMpSelect").change(function() {
+				var url = DashBuyWidget.getUrlWithoutBrowseMPParameter();
+				url += (url.indexOf('?') > -1) ? "&" : "?";
+				url += "browseMP=" + jQuery(this).find("select").val();
+				parent.location.href = url;
+				});
+				}
+				}
+				jQuery(document).ready(DashBuyWidget.loadAllDashBuyWidgets);
+		</script>
+	<script type="text/javascript">
+				function isGateway() {
+					var path = window.location.pathname;
+				return (path.substr(path.length-8, path.length) == "/Gateway") || (path == "/") || (path == "/str/");
+				}
+		</script>
+	<script type="text/javascript">
+				// Fix anything marked with id="dialogBox" or the centeredPopover class to the center of the window
+				function centerPopover() {
+				var $win = jQuery(window);
+				var $popover = jQuery("#dialogBox,.centeredPopover");
+				$popover.css({
+				'left': ($win.width() - $popover.width()) / 2 + $win.scrollLeft(),
+				'top': ($win.height() - $popover.height()) / 2 + $win.scrollTop()
+				});
+				}
+				jQuery(window).scroll(centerPopover);
+				jQuery(window).resize(centerPopover);
+				jQuery("#dialogBox,.centeredPopover").ready(centerPopover);
+				// replace the "hover" menus with "tap" menus for iPads and such
+				if ('ontouchstart' in window) {
+					jQuery(function($) {
+						$("#stripeMenu li:has('.stripeHover') a").click(function() {
+							this.parent.toggleClass("expanded");
+							return false;
+						});
+					});
+				}
+				// now bestsellers tab
+				var nowBestsellers = {
+					box: null,
+					items: null,
+					waitInterval: 3000,
+					currItem: 0
+				};
+				jQuery(function() {
+				FreshShovelerMeta.loadAllShovelers();
+				});
+				jQuery(document).ready(function() {
+				var $search = jQuery("#topNav").find("input#search, input#searchAutocomplete");
+				if (!('placeholder' in document.createElement('input'))) {
+				// placeholder is not supported in this browser
+					if ('' == $search.val() && !($search.get(0) == document.activeElement)) {
+						$search.val('Search');
+					}
+				$search.focus(searchFieldFocus)
+				.blur(searchFieldBlur);
+				}
+				attachPlaceholders();
+				bindQuantityButtonListeners();
+				});
+				function bindQuantityButtonListeners() {
+				jQuery(".quantityButtonInner").live('click',openQuantityPopover);
+				jQuery(".quantityDropDownItem").live('click',closeQuantityPopover);
+				var hoverTimeout;
+				jQuery(".quantityPopoverWrapper").hover(function() {
+				clearTimeout(hoverTimeout);
+				}, function() {
+				var popover = jQuery(this);
+				hoverTimeout = setTimeout(resetQuantityBoxes, 5000);
+				});
+				jQuery(document).click(resetQuantityBoxes);
+				jQuery(window).resize(resetQuantityBoxes);
+				}
+				function searchFieldFocus(event) {
+				var field = jQuery(event.target);
+				if (field.val() == "Search") {
+				field.val("")
+				.css("color", "black");
+				}
+				}
+				function searchFieldBlur(event) {
+				var field = jQuery(event.target);
+				if (field.val() == "") {
+				field.val("Search")
+				.css("color", "#999999");
+				}
+				}
+				jQuery.fn.simplePopover = function(options) {
+				var $ = jQuery;
+					var defaults = {
+							success: function() {},
+							cancel: function() {}
+					}
+					if (!options) { options = {}};
+					var settings = $.extend({}, defaults, options);
+					var $alpha = $('#alphaLayer');
+					$alpha.addClass('disablePage');
+					var $popover = $('<div class="simplePopoverWrapper"><div class="simplePopover">' + this.html() + '</div></div>').appendTo('body');
+					var $form = $popover.find("form");
+					var closePopover = function() {
+				$alpha.removeClass('disablePage');
+				$popover.remove();
+					}
+					var cancel = function() {
+						closePopover();
+						settings.cancel();
+						return false;
+					}
+					$popover.find(".closeWindow").click(cancel);
+					$form.submit(function() {
+						var url = $form.attr("action");
+						var extraParams = settings.extraParams;
+						$.post(url, $form.serialize() + extraParams, function(data, textStatus, xhr) {
+							closePopover();
+							settings.success(data, textStatus, xhr);
+						});
+						return false;
+					});
+					$form.find(":reset").click(cancel);
+					return $popover;
+				};
+				function appendOrReplaceResultsPerPage(link, resultCount) {
+				var resultsPerPage = "resultsPerPage";
+				var href = link.attr("href");
+				var hasResultsPerPage = href.indexOf(resultsPerPage) >= 0;
+				if (!hasResultsPerPage){
+				var delimiter = (href.indexOf("?") < 0) ? "?" : "&";
+				link.attr("href", href + delimiter + resultsPerPage + "=" + resultCount);
+				} else {
+				link.attr("href", href.replace(/resultsPerPage=\d*/g, resultsPerPage + "=" + resultCount));
+				}
+				};
+				function calculateSearchResultCount() {
+				var resultSpaceWidth = jQuery(window).width() - 30 - 288;
+				var searchItemWidth = 162;
+				var resultsPerRow = Math.floor(resultSpaceWidth / searchItemWidth);
+				var searchResultCount = resultsPerRow * 6;
+				return searchResultCount;
+				}
+				function calculatePPResultCount() {
+				var resultSpaceWidth = jQuery(window).width() - 30 - 288;
+				var ppItemWidth = 96,
+					ppResultsPerRow = Math.floor(resultSpaceWidth / ppItemWidth),
+						ppResultCount = ppResultsPerRow * 4;
+				return ppResultCount;
+				}
+				jQuery(document).ready(function() {
+				var resultCountInput = jQuery("form#freshSearchForm").find("input[name=resultsPerPage]");
+				
+				if (resultCountInput.length == 0)
+				return;
+				var searchResultCount = calculateSearchResultCount();
+				resultCountInput.val(searchResultCount);
+				var ppResultCount = calculatePPResultCount();
+				// any links that go to Search pages, Past Purchases or CouponDetails should have a resultsPerPage parameter
+				jQuery("a[href*='/Search']").each(function() {
+				appendOrReplaceResultsPerPage(jQuery(this), searchResultCount);
+				});
+				jQuery("a[href*='Favorites']").each(function() {
+					appendOrReplaceResultsPerPage(jQuery(this), ppResultCount);
+				});
+				
+				jQuery("a[href*='/CouponDetails']").each(function() {
+				appendOrReplaceResultsPerPage(jQuery(this), ppResultCount);
+				});
+				
+				setResultCountForPastPurchases(ppResultCount);
+				
+				setupWelcomeMessage();
+				});
+				function setupWelcomeMessage() {
+				jQuery("#refreshwelcome").focus().blur(function() {
+				dismissWelcomeMessage();
+				});
+				}
+				function dismissWelcomeMessage() {
+				jQuery('#refreshwelcomecontainer').hide();
+				jQuery('#refreshwelcomeboxblockout').hide();
+				}
+				function setResultCountForPastPurchases(resultCount) {
+					var anchors = [],
+						ppLink = jQuery("#lnk-tab-lists");
+					if (ppLink.length > 0) {
+						anchors.push(ppLink);
+					}
+					var ppForm = jQuery("#pastPurchases form#pastPurchasesSearch");
+					if (ppForm.length > 0) {
+						ppForm.find("input[name=resultsPerPage]").val(resultCount);
+					}
+					
+									var	aisles = jQuery("#pastPurchases div#filterByAisle");
+					if (aisles.length > 0) {
+						aisles.find("a").each(function(index) {
+							anchors.push(jQuery(this));
+						});
+					}
+					
+					if (document.location.pathname.indexOf("/MyList") < 0 && document.location.pathname.indexOf("/ViewList") < 0) {
+						var pagination = jQuery("#pastPurchases div.pagination");
+						if (pagination.length > 0) {
+							pagination.find("a").each(function(index) {
+								anchors.push(jQuery(this));
+							});
+						}
+					}
+				var breadcrumb = jQuery("#breadcrumb");
+					if (breadcrumb.length > 0) {
+						// remove the first one, as it will be "Amazon Fresh", which doesn't need it.
+						breadcrumb.find("a").slice(1).each(function(index) {
+					anchors.push(jQuery(this));
+					});
+					}
+					
+					for (var i = 0; i < anchors.length; i++) {
+				var link = jQuery(anchors[i]),
+					href = link.attr("href");
+				if (href.indexOf("?") >= 0) {
+					link.attr("href", href + "&resultsPerPage=" + resultCount);
+				} else {
+					link.attr("href", href + "?resultsPerPage=" + resultCount);
+				}
+					}
+				}
+				function buildCallOnLoadParameter(functionName, arguments) {
+					var parameter = 'callOnLoad=' + functionName;
+					for (var i = 0; i < arguments.length; i++) {
+						parameter += '-' + arguments[i];
+					}
+					return parameter;
+				}
+				function redirectToSecureWithCall(functionName, arguments) {
+					var port = location.port ? location.port : '';
+					var autoCallParameter = buildCallOnLoadParameter(functionName, arguments);
+					var search = (location.search ? location.search + '&' : '?') + autoCallParameter;
+					
+				if (port == '80') {
+				port = '443';
+				} else if (port == '8989') {
+				port = '8443';
+				}
+				
+				window.location = 'https://' + location.hostname + (port ? ':' + port : '') + location.pathname + search;
+				}
+				function openQuantityPopover(event) {
+				event.stopPropagation();
+				var popover = jQuery(this).siblings(".quantityPopoverWrapper");
+				jQuery(".quantityPopoverWrapper").removeAttr("style");
+				jQuery(".quantityPopoverWrapper").each(function() {
+				if (jQuery(this) !== popover) {
+				jQuery(this).hide();
+				}
+				});
+				popover.show();
+				if (popover.offset().top + popover.height() > jQuery(window).scrollTop() + jQuery(window).height() && popover.offset().top - popover.height() < jQuery(window).scrollTop()) {
+				popover.css("height", jQuery(window).scrollTop() + jQuery(window).height() - popover.offset().top);
+				popover.css("overflow-y", "scroll");
+				}
+				else if (popover.offset().top + popover.height() > jQuery(window).scrollTop() + jQuery(window).height()) {
+				popover.css("bottom", "-1px");
+				popover.css("top", "auto");
+				}
+				}
+				function closeQuantityPopover(event) {
+				event.stopPropagation();
+				event.preventDefault();
+				var newValue = jQuery(this).find("a").text();
+				var popover = jQuery(this).parents(".quantityPopoverWrapper");
+				popover.find(".quantityDropDownItem").removeClass("selected");
+				jQuery(this).addClass("selected");
+				var quantityWrapper = popover.parents(".addToCartQuantityWrapper");
+				quantityWrapper.find(".quantityButtonPrompt").text(newValue);
+				var addToCartForm = quantityWrapper.siblings(".addToCartForm");
+				addToCartForm.find(".addToCartQuantity").val(newValue);
+				popover.removeAttr("style");
+				popover.hide();
+				}
+				function resetQuantityBoxes(event) {
+				if(event.isPropagationStopped()) return;
+				jQuery(".quantityPopoverWrapper").removeAttr("style");
+				jQuery(".quantityPopoverWrapper").hide();
+				}
+				function showNewExperienceAddToCart(){
+				if(jQuery("#lb-ondemand").children().length == 0) {
+				jQuery.get("newShoppingExperience?currentPage=AddToCart", function(data) {
+				if(jQuery.trim(data).length>0){
+				var target = "target";
+				if(data.indexOf(target) == -1 ){
+				showOnDemandLightboxWithContent(data);
+				jQuery("#lightbox").css("width", 650);
+				jQuery("#lightbox").css("border-radius", 10);
+				jQuery("#lb-cancel").hide();
+				jQuery("#editMultipleButton").click(function() {
+				jQuery.get("chooseExperience?legacy=EditOrder", function(data) {
+				location.href = "AllOrders";
+				});
+				});
+				jQuery("#completeOrder").click(function() {
+				jQuery.get("chooseExperience?legacy=CompleteOrder", function(data) {
+				hideLightbox();
+				});
+				});
+				jQuery("#legacyLink").click(function() {
+				jQuery.get("chooseExperience?legacy=ShopAcrossRegion", function(data) {
+				location.href = "splashDelivery";
+				});
+				});
+				}
+				}
+				});
+				}
+				}
+				function transitToOrderDetail() {
+				jQuery.get("chooseExperience?legacy=EditOrder", function(data) {
+				jQuery("#orderDetailForm").submit();
+				});
+				}
+				function transitToOrderDetailFromLink() {
+				jQuery.get("chooseExperience?legacy=EditOrderLink", function(data) {
+				jQuery("#orderDetailForm").submit();
+				});
+				}
+				function transitToAllOrders() {
+				jQuery.get("chooseExperience?legacy=EditOrderLink", function(data) {
+				location.href = "AllOrders";
+				});
+				}
+				function setChosenExperienceAndGoToAmazon(ref) {
+				var url = 'chooseExperience?legacy=ShopOnAmazon';
+				jQuery.get(url, function(data) {
+				location.href = ref;
+				});
+				}
+				function goToAmazonFromLink(ref) {
+				var url = 'chooseExperience?legacy=ShopOnAmazonLink';
+				jQuery.get(url, function(data) {
+				location.href = ref;
+				});
+				}
+				// Start AddToCartIfAvailable specific functions
+				function addToCartAvailable(button) {
+				showNewExperienceAddToCart();
+					return addToCartAvailableAjax(jQuery(button).parent());
+				}
+				function addToCartAvailableAjax(form) {
+				var asin = form.find("input[name='asin']").val();
+					var quantity = form.find("input[name='quantity']").val();
+					if (quantity == null) quantity = 1;
+					
+					var ajaxAttrs = {"asin": asin, "quantity": quantity, "addCartRefer": document.URL};
+					
+					jQuery.ajax({
+						type: "post",
+						url: "/AvailableForAddToCart?",
+						data: ajaxAttrs,
+						success: function(data, text) {
+							if (data.indexOf('id="addToCartLightbox"') >= 0) {
+								showAddToCartLightbox(form, data);
+							} else {
+								form.submit();
+							}
+						},
+						error: function(request, status, error) {
+							form.submit();
+						}
+					});
+					
+					return false;
+				};
+				//End AddToCartIfAvailable specific function
+				// For browsers (such as IE8 and IE9) that do not support HTML5's placeholder feature
+				function attachPlaceholders() {
+				if ('placeholder' in document.createElement('input')) {
+				return;
+				}
+				
+						jQuery("#welcome input").each(function() {
+					var input = jQuery(this);
+					var placeholder = input.attr("placeholder");
+					
+					if (typeof placeholder == 'undefined' || placeholder == false) {
+					return;
+					}
+					
+					input.parent().css("position", "relative");
+					input.parent().append("<div class='placeholderLabel'>" + placeholder + "</div>");
+					var label = input.parent().find(".placeholderLabel");
+					
+					if (input.val() == "") {
+						label.show();
+					}
+					
+					input.keyup(function() {
+						label.toggle(input.val() == ""); // show label when input is empty
+				
+				// because browsers will often fill in a password when the user types an email
+				// we need to also update the password field's label
+				var passwordField = jQuery(input.parents("form").find("input[type='password']")[0]);
+				var passwordLabel = passwordField.parent().find(".placeholderLabel");
+				passwordLabel.toggle(passwordField.val() == "");
+				});
+					
+					jQuery(".placeholderLabel").click(function() {
+						var label = jQuery(this);
+						label.parent().find("input").focus();
+					});
+					});
+				}
+				jQuery(document).ready(function() {
+					var $ = jQuery;
+				var RioTopNav = {};
+				
+				RioTopNav.updateItemCount = function(count) {
+				var $countDisplay = $(".rioItemCountDisplay");
+				if ($countDisplay.length == 0) {
+				return;
+				}
+				if (count === 0 || count) {
+				$countDisplay.find(".rioItemCountNumber").html(count);
+				}
+				if (count && count > 0) {
+				$countDisplay.show();
+				} else {
+				$countDisplay.hide();
+				}
+				};
+				
+				RioTopNav.pollForItemCount = function() {
+				$.ajax({
+				url: "/dash/list/count",
+				success: function (data){
+					RioTopNav.updateItemCount(data);
+				},
+				complete : function() {
+					RioTopNav.queuePollForItemCount()
+				}
+				});
+				}
+				
+				RioTopNav.queuePollForItemCount = function() {
+				if (!window.DashNotifications || !DashNotifications.enabled) {
+				setTimeout(RioTopNav.pollForItemCount, 30000);
+				}
+				};
+				
+				if ($(".rioItemCountDisplay").length > 0) {
+				RioTopNav.queuePollForItemCount();
+				}
+				window.RioTopNav = RioTopNav;
+				if (window.DashNotifications && DashNotifications.enabled) {
+				DashNotifications.addListener(function(eventName, eventData){
+				if (eventName == "Rio.ListItem.ItemProcessed"
+				|| eventName == "Rio.ListItem.ItemDeleted"
+				|| eventName == "Rio.ListItem.ItemRestored") {
+				RioTopNav.pollForItemCount();
+				}
+				});
+				}
+				});
+		</script>
+	<script language="javascript" type="text/javascript">
+				Function.prototype.bind = Function.prototype.bind || function (thisp) {
+				var fn = this;
+				return function () {
+				return fn.apply(thisp, arguments);
+				};
+				};
+				function submitOnlyOnce(theForm){
+				if (jQuery(window.parent.jQuery(".inCart")).length) {
+				var asin = jQuery(theForm.asin).val();
+				var quantity = jQuery(theForm.quantity).val();
+				if (quantity == 0) {
+				jQuery(window.parent.jQuery("." + asin + "-asin")).trigger("showPastPurchaseTag-" + asin);
+				}
+				}
+					jQuery(jQuery(theForm).find("button[type=submit], input[type=image], input[type=submit], input[type=button]").attr("disabled", "disabled"));
+				}
+				function disableLink(theLink) {
+					jQuery(theLink).click(function(e) { return false; });
+				}
+				function refreshShoppingCart() {
+					jQuery("#shopping-cart").attr("src", "ShoppingCartView");
+				}
+				var cartEventListeners = [];
+				function addCartEventListener(listener){
+					cartEventListeners.push(listener);
+				}
+				function cartReloadEvent(cartInfo){
+					for(index in cartEventListeners) {
+						cartEventListeners[index](cartInfo);
+						}
+				}
+				function truncateTitle(title) {
+				var height = title.height();
+				title.css("height", "auto");
+				title.css("max-height", 200);
+				title.css("overflow", "hidden");
+				var anchor = title.find("a"),
+				text = anchor.text();
+				while (text.length > 0 && title.height() > height) {
+				text = text.substr(0, text.length - 1);
+				anchor.html(text + "&#8230");
+				}
+				title.css("max-height", "30px");
+				}
+				var warnOfInvalidItems = true;
+				function updateAddAllToCartButton(event) {
+				var validList = "";
+				var invalidList = "";
+				
+				jQuery(".listItem").each(function(index) {
+				var item = jQuery(this);
+				var conflictInput = item.find("input[name='conflictWithSlot']");
+				if (item.find(".itemUnavailableText").size() > 0 || item.find(".discontinued").size() > 0) {
+				// Ignore unavailable and discontinued items
+				} else if (conflictInput.size() == 0 || conflictInput.val() == "false") { // skip invalid items
+				var quantity = item.find(".addToCart input[name='quantity']");
+				
+				if (quantity.size() > 0 && quantity.val() > 0) {
+				var asin = item.attr("id");
+				var merchantId = item.find(".addToCart input[name='merchantId']").val();
+				validList += asin + "|" + quantity.val() + "|" + merchantId + ",";
+				}
+				} else {
+					invalidList +="<li>" + item.find(".itemTitle a").html() + "</li>";
+				}
+				});
+				jQuery(this).find("input[name='itemDetails']").val(validList);
+				// show message if invalid items cannot be added
+				if (warnOfInvalidItems && invalidList != "") {
+				event.preventDefault();
+				var message = "These items are not available for delivery <strong>" + jQuery("#headerNav #selectday a").html() + "</strong> and will NOT be added to your cart:<ul>";
+								
+								message += invalidList;
+				message +="</ul>";
+				message += "<button id='addAllAvailableItemsToCart'>Continue without These Items</button>&nbsp;&nbsp;";
+				message += "<button class='nevermind'>Nevermind</button/>";
+				
+				showOnDemandLightboxWithContent(message, jQuery(this));
+				
+				jQuery("#addAllAvailableItemsToCart").click(function() {
+				warnOfInvalidItems = false;
+				jQuery("#addAllToCart").submit();
+				hideLightbox();
+				});
+				}
+				
+				warnOfInvalidItems = true;
+				}
+				function showAddToCartLightbox(form, message) {
+					showOnDemandLightboxWithContent(message, form, function() {
+				var lightbox = jQuery("#lightbox");
+				var atcButtons = lightbox.find("#addToCartButtons");
+				var totalWidth;
+				if (atcButtons.size() > 0) {
+					totalWidth = atcButtons.find("form[name='UseSlotAndAddToCart']").width()
+					+ atcButtons.find("form[name='ClearSlot']").width()
+					+ atcButtons.find(".nevermind").width();
+				} else {
+					totalWidth = 400;
+				}
+				lightbox.width(Math.max(300, totalWidth + 110));
+				lightbox.find(".itemTitle").width(lightbox.width() - 150);
+				});
+				}
+				function setPostAddCookie(e) {
+				document.cookie="freshPostSlotAdd=true;"
+				return true;
+				}
+				function removePostAddCookie() {
+				var cookie_date = new Date ();
+				cookie_date.setTime ( cookie_date.getTime() - 1 );
+				document.cookie = "freshPostSlotAdd=; expires=" + cookie_date.toGMTString();
+				}
+				function showLoadingSpinner(event){
+					var spinnerTextList = new Array(
+							"We're processing your order.",
+							"More items can be added after your order is placed.",
+							"Download our mobile apps to shop any time, anywhere.",
+							"Discover local favorites on your city's Spotlight page.",
+							"We offer a 100% grocery satisfaction guarantee.",
+							"Get your shopping done fast with one-click recipes.",
+							"Thank you for shopping on AmazonFresh.",
+							"Easily find your favorites in Past Purchases.",
+							"We look forward to serving you.",
+							"Your order will arrive in temperature-controlled bags.",
+							"Please leave your porch light on for our drivers.",
+							"Save time by creating Your Lists.");
+					
+					/* Using a short timeout hack to ensure that we do not encounter freezing GIF problems in IE on form post -npprabhu */
+					setTimeout(function() {
+						var isInIframe = window.location != window.parent.location;
+						var spinnyBlock;
+						if (isInIframe) {
+							spinnyBlock = jQuery("#orderProcessing", window.parent.document);
+						} else {
+							spinnyBlock = jQuery("#orderProcessing");
+						}
+						
+						spinnyBlock.show();
+						
+						var spinnyText = spinnyBlock.find("#spinnerText");
+						var txtCounter = 0;
+						setInterval(function(){
+							txtCounter++;
+							spinnyText.html(spinnerTextList[txtCounter]);
+							if(txtCounter == (spinnerTextList.length - 1)){
+								txtCounter = -1;
+							}
+						}, 5000);
+						
+						var spinnyImage = spinnyBlock.find("#greenTruck");
+						var imgCounter = 0;
+						var imgPos = parseInt(spinnyImage.css("left"));
+						setInterval(function(){
+							imgCounter++;
+							spinnyImage.css("left", imgPos + (200 * imgCounter));
+							if(imgCounter == 2) {
+								imgCounter = -1;
+							}
+						}, 1000);
+						
+					}, 50);
+				}
+				jQuery(document).ready(function() {
+				handleDeliveryNotes();
+				jQuery("#placeOrderForm, form[action='UpdateOrder']").submit(showLoadingSpinner);
+				jQuery(".buying .variationRadio").live('click',changeVariationEventHandler);
+				jQuery(".smallProduct .variationRadio ").live('click',changeVariationEventHandler);
+				jQuery(".shovelerItem .variationRadio ").live('click',changeVariationEventHandler);
+				jQuery(".mobileBody .variationRadio ").live('click',changeVariationMobileEventHandler);
+				
+				jQuery(document).ajaxError(function(event, request, settings, exception) {
+				if (401 === request.status) {
+				window.location.href = "/Authenticate?signInSuccessUrl=" + encodeURIComponent(location.pathname);
+				return true;
+				}
+				return false;
+				});
+				});
+				function handleDeliveryNotes() {
+				jQuery("#editDeliveryInstructions").click(function() {
+				var content = jQuery("#deliveryInstructionsLightboxWrapper");
+				showOnDemandLightboxWithContent(content.html());
+				attachCustomerDeliveryNotesClipHandler();
+				});
+				attachCustomerDeliveryNotesClipHandler();
+				}
+				//Limit customer delivery notes input to 255 characters, as we claim.
+				function attachCustomerDeliveryNotesClipHandler() {
+				var clipCustomerDeliveryNotes = function(event) {
+				var textArea = jQuery('.customerDeliveryNotesInput');
+				var textValue =  textArea.val();
+				if (textValue.length > 255) {
+				textValue = textValue.slice(0, 255);
+				textArea.val(textValue);
+				textArea.scrollTop(textArea[0].scrollHeight);
+				}
+				};
+				jQuery('.customerDeliveryNotesInput').keydown(clipCustomerDeliveryNotes);
+				jQuery('.customerDeliveryNotesInput').keyup(clipCustomerDeliveryNotes);
+				jQuery('.customerDeliveryNotesInput').change(clipCustomerDeliveryNotes);
+				}
+				function changeVariationEventHandler(event) {
+				if(event.isPropagationStopped()) return;
+				event.stopPropagation();
+				$this = jQuery(this);
+				var asin_id = $this.attr("value");
+				var asin = asin_id.split("_")[0];
+				var showItemId = jQuery(this).parent(".variationSelection").parent().find(".var_".concat(asin_id));
+				var showItem = jQuery(this).parent(".variationSelection").parent().find(".var_".concat(asin));
+				jQuery(this).closest(".variationSelection").parent().find(".variation").hide();
+				showItemId.show();
+				showItem.show();
+				}
+				function changeVariationMobileEventHandler(event) {
+				if(event.isPropagationStopped()) return;
+				event.stopPropagation();
+				$this = jQuery(this);
+				var asin = jQuery(this).attr("value");
+				var showItem = jQuery(this).parents(".variationSelection").parent().find(".var_".concat(asin));
+				$this.closest(".variationSelection").parent().find(".variation").hide();
+				showItem.show();
+				}
+		</script>
+	<script type="text/javascript">
+				jQuery(function($) {
+					function selectSuggestion(suggestion) {
+					document.getElementById('predictiveSearchFlag').value = "true";
+					jQuery('#freshSearchForm').submit();
+					}
+					
+					var $autocomplete = $('#searchAutocomplete').autocomplete("SearchSuggestions", {
+					delay:200,
+					cacheLength:10,
+					matchSubset:0,
+					selectFirst:false,
+					selectOnly:false
+					}).result(function(event, selected, formatted) {
+						//chrome's shinny html5 search box likes triggering this when the user
+						//clicks the X to clear the text in the box
+							if (selected != undefined && selected.length > 0) {
+							selectSuggestion(selected);
+							}
+				});
+					var $autofocus = $('input[autofocus]');
+					
+					// helper functions
+					var isAlphaNumeric = function(code) {
+					return (code >= 48 && code < 58) ||  //digits
+					(code >= 65 && code < 91) ||   // uppercase
+					(code >= 97 && code < 123);    //lowercase
+					};
+					var isInput = function(target) {
+					return ('INPUT' === target.tagName)
+					|| ('TEXTAREA' === target.tagName)
+					|| ('SELECT' === target.tagName)
+					|| ('true' === target.contentEditable);
+					};
+					
+					var isMeta = function(e) {
+						return e.altKey || e.ctrlKey || e.metaKey;
+					};
+					var searchSpaceAvailable = function() {
+					var $stripeMenu = $("#stripeMenu");
+					if (!$stripeMenu.size()) {
+					return 0;
+					}
+					var $cartInfo = $("#cartInfo");
+					if ($cartInfo.size()) {
+					return $cartInfo.offset().left - ($stripeMenu.offset().left + $stripeMenu.width());
+					} else {
+					return $("topNav").width() - ($stripeMenu.position().left + $stripeMenu.width());
+					}
+					};
+					
+				// instrument keydown mapping
+					$(document).keydown(function(e) {
+					if (!isInput(e.target) && isAlphaNumeric(e.which) && !isMeta(e)) {
+					$autocomplete.focus();
+					}
+					});
+					if (!("autofocus" in document.createElement("input"))) {
+						// HTML5 autofocus is not natively supported
+					$('input:text').each(function() {
+						if (this.getAttribute('autofocus') != null) {
+							this.focus();
+						}
+					});
+					}
+				});
+		</script>
+	<link href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/css/shoveler._V1397624657_.css" type="text/css" rel="stylesheet" />
+	<script>
+				var forgetWidgetFirstItemId,
+					forgetWidgetCurPageNo,
+					forgetWidgetItemsPerPage,
+					forgetWidgetPageCnt,
+					forgetWidgetItemsCnt,
+					minWindowWidthFor4ForgetWidgetItems = 1185,
+					widgetVisible = false,
+					widgetResponse = {},
+					widget;
+				var WidgetTypes = {
+					didYouForgetWidget: {
+						id: "#upsellWidget",
+						action: "DidYouForgetWidget",
+						sources: ["pp"],
+						itemsPerPageInBigWindow: 6,
+						itemsPerPageInSmallWindow: 6,
+						maxItems: 24,
+						container : "upsellWidgetBody"
+					}
+				};
+				jQuery(document).ready(function() {
+					if(jQuery(WidgetTypes.didYouForgetWidget.id).length > 0) {
+						widget = WidgetTypes.didYouForgetWidget;
+						populateForgetWidgetItems();
+						jQuery(window).resize(arrangeItemsForCurrentWindowSize);
+					}
+				});
+				function logEvent(event) {
+					jQuery.post(widget.action + "?event=" + event);
+				}
+				function populateForgetWidgetItems() {
+					var responses = 0, actions = widget.sources;
+					jQuery.each(actions, function(i, action) {
+						jQuery.get(widget.action+"?action=" + action + getExternalOrderIdParam(), function(ajax) {
+							responses++;
+							widgetResponse[action] = ajax;
+							if (responses == actions.length) {
+								populateForgetWidgetItemsFromResponses();
+							}
+						});
+					});
+				}
+				function getExternalOrderIdParam() {
+					var input = jQuery("input[name='externalOrderId']");
+					if (input.size() > 0) {
+						return "&externalOrderId=" + input.val();
+					} else {
+						return "";
+					}
+				}
+					function updateFormsForCreateNewOrder() {
+					var orderId = jQuery("input[name=externalOrderId]").attr("value");
+					var shouldCreateNewOrder = jQuery("input[name=upsellCreateNewOrder]").attr("value");
+					if (shouldCreateNewOrder == 'true') {
+					jQuery("input[name='orderId']").attr("value", orderId);
+					jQuery("input[name='addCartRefer']").attr("value", "ThankYouUpsell");
+					jQuery("form.upsell").attr("action", "AddItemToOrder");
+					jQuery("form.upsell").attr("onsubmit", "submitOnlyOnce(this)");
+					}
+				}
+				function hideHoverView() {
+				jQuery(WidgetTypes.didYouForgetWidget.id + " .hoverOver").hide();
+				}
+				function populateForgetWidgetItemsFromResponses() {
+					switch(widget) {
+					case WidgetTypes.didYouForgetWidget:
+							attachShovelerWithItems(widgetResponse["pp"]);
+							updateFormsForCreateNewOrder();
+							break;
+					}
+					addIdToItemsAndTrim();
+					arrangeItemsForCurrentWindowSize();
+				}
+				function addIdToItemsAndTrim() {
+					var items = jQuery(widget.id+" li.forgetWidgetItem"),
+						itemCnt = Math.min(widget.maxItems, items.length),
+						i;
+					for (i = 0; i < itemCnt; i++) {
+						jQuery(items.get(i)).attr("id", "forgetWidgetItem_" + i);
+					}
+					for (var j = i; j < items.length; j++) {
+						jQuery(items.get(j)).remove();
+					}
+				}
+				function attachItemsOnly(ajax) {
+					var existingItems = jQuery(widget.id+" div.shoveler-content ul"),
+					newItems = jQuery(ajax).find("li.forgetWidgetItem");
+					existingItems.append(newItems);
+				}
+				function attachShovelerWithItems(ajax) {
+					var widgetObject = jQuery(widget.id),
+						box = widgetObject.find("div." + widget.container);
+					box.empty();
+					box.css("text-align", "left");
+					box.append(ajax);
+					bindEvents(widgetObject);
+				}
+				function bindEvents(widgetObject) {
+					widgetObject.find("div.back-button a").click(showPrev);
+					widgetObject.find("div.next-button a").click(showNext);
+				}
+				function arrangeItemsForCurrentWindowSize() {
+					forgetWidgetFirstItemId = 0;
+					forgetWidgetCurPageNo = 0;
+					forgetWidgetItemsCnt = jQuery(widget.id+" div.shoveler-cell").length;
+					setDisplayAttrsForCurrentWindowSize();
+					hideOverflowingItems();
+					centerItems();
+				}
+				function setDisplayAttrsForCurrentWindowSize() {
+					if (jQuery(window).width() < minWindowWidthFor4ForgetWidgetItems) {
+						forgetWidgetItemsPerPage = widget.itemsPerPageInSmallWindow;
+					} else {
+						forgetWidgetItemsPerPage = widget.itemsPerPageInBigWindow;
+					}
+						
+					forgetWidgetPageCnt = parseInt(Math.ceil(forgetWidgetItemsCnt / forgetWidgetItemsPerPage));
+					jQuery(widget.id+" span.pageCnt").empty().append(forgetWidgetPageCnt);
+					jQuery(widget.id+" span.currentPage").empty().append(forgetWidgetCurPageNo + 1);
+				}
+				function centerItems() {
+					if(widget == WidgetTypes.didYouForgetWidget) {
+						var containerWidth = jQuery(widget.id+" .shoveler-content").width()-100;
+						var cellWidth = jQuery(widget.id+" .shoveler-cell:first").width();
+						var emptySpace = containerWidth - (cellWidth * forgetWidgetItemsPerPage);
+						var spacing = emptySpace / (forgetWidgetItemsPerPage - 1);
+						for(var i = 0; i < forgetWidgetItemsCnt; i++) {
+							var hIndex = i % forgetWidgetItemsPerPage;
+							var left = hIndex * (cellWidth + spacing) + 50;
+							jQuery("#forgetWidgetItem_" + i).css("left", left+"px");
+						}
+					}
+				}
+				function hideOverflowingItems() {
+					jQuery("li.forgetWidgetItem").show();
+					for (var i = forgetWidgetFirstItemId + forgetWidgetItemsPerPage; i < forgetWidgetItemsCnt; i++)
+						jQuery("#forgetWidgetItem_" + i).hide();
+				}
+				function showPrev() {
+					forgetWidgetCurPageNo += -1 + forgetWidgetPageCnt;
+					forgetWidgetCurPageNo %= forgetWidgetPageCnt;
+					scrollWidgetContents();
+				}
+				function showNext() {
+					forgetWidgetCurPageNo++;
+					forgetWidgetCurPageNo %= forgetWidgetPageCnt;
+					scrollWidgetContents();
+				}
+				function scrollWidgetContents() {
+					for (var i = forgetWidgetFirstItemId; i < forgetWidgetFirstItemId + forgetWidgetItemsPerPage; i++) {
+						jQuery("#forgetWidgetItem_" + i).hide();
+					}
+					jQuery(widget.id+" span.currentPage").empty().append(forgetWidgetCurPageNo + 1);
+					forgetWidgetFirstItemId = forgetWidgetCurPageNo * forgetWidgetItemsPerPage;
+					for (var i = forgetWidgetFirstItemId; i < forgetWidgetFirstItemId + forgetWidgetItemsPerPage; i++) {
+						jQuery("#forgetWidgetItem_" + i).show();
+					}
+				}
+		</script>
+	<script><!--
+				jQuery(document).ready(function() {
+				var orderSummary = jQuery("#orderSummaryV2");
+				// creditCards
+					jQuery(orderSummary).find("select#paymentInstrumentId").change(updateCC);
+					
+					// giftCards
+				jQuery(orderSummary).find("div.giftCardEntry .redeemGCBttn").click(claimGiftCard);
+				jQuery(orderSummary).find("input.applyGCBalanceBttn").click(applyGCBalanceButDontDefault);
+				jQuery(orderSummary).find("input.removeGCBttn").click(removeGCBalance);
+				jQuery(orderSummary).find("input#giftCardCode")
+				.focus(gcCodeFieldFocus)
+				.blur(gcCodeFieldBlur);
+				jQuery(orderSummary).find(".gcLearnMore").click(openGCHelp);
+				
+				// promos
+				jQuery(orderSummary).find("input.redeemPromoBttn").click(claimPromo);
+				
+				// prevent the form from accidentally submitting after filling out the gift card
+				jQuery(orderSummary).find("input[name='giftCardCode']").keypress(function (e) {
+				if (e.keyCode == jQuery.ui.keyCode.ENTER) {
+				e.preventDefault();
+				claimGiftCard(e);
+				}
+				});
+				});
+				function updateCC(event) {
+					event.preventDefault();
+					showUpdatePreviewSpinner(event);
+					
+					var ccArea = jQuery("#orderSummaryV2" + " div.ccEntry");
+					var ccSelected = jQuery(ccArea).find("#paymentInstrumentId :selected").val();
+					var ccOriginal = jQuery("#originalPaymentInstrumentId").val();
+					var orderId = jQuery("input[name=orderId]").val();
+					if (ccSelected == ccOriginal) {
+					return; //Do nothing
+					}
+				
+				jQuery.get("UpdateCC",
+				{paymentInstrumentId: ccSelected,
+				externalOrderId: orderId},
+				function () {
+					window.location.href = "PreviewOrder";
+				});
+				}
+				function claimPromo(event) {
+					event.preventDefault();
+					var promoArea = jQuery("#orderSummaryV2" + " div.promoEntry");
+					var promoCode = jQuery(promoArea).find("input[name='promotionCode']").val();
+					if (promoCode == "enter code") {
+						return;  //Do nothing.
+					}
+					var orderId = jQuery("input[name=orderId]").val();
+					var purchaseId = jQuery("input[name=purchaseId]").val();
+					jQuery.get("ClaimPromo",
+						{promotionCode: promoCode,
+						purchaseId: purchaseId,
+						externalOrderId: orderId},
+				function (ajax) {
+					if (ajax != null) {
+						var response = ajax.split("|"),
+				isOK = (response[0].replace(/^\s+|\s+$/g, '') == "success"),
+				params = response[1].replace(/&amp;/g, '&');
+						errorMsg = response[4];
+						
+						if (isOK) {
+				jQuery(promoArea).find("#promoApplied").show();
+				jQuery(promoArea).find("#promoFailed").hide();
+				top.location.href = top.location.href;
+				} else if (errorMsg != null) { //TODO: handle different types of promos
+					jQuery(promoArea).find("#promoApplied").hide();
+					jQuery(promoArea).find("#promoFailed").show();
+				} else {
+				window.location.href = "PreviewOrder?"+params;
+				promoArea.addClass("warning");
+				}
+					}
+				});
+				}
+				function openGCHelp(event) {
+				event.preventDefault();
+				jQuery.get("GiftCardHelpPopover",
+				function(ajax){
+				var page = parent.jQuery(parent.document);
+				page.find("div:first").addClass("disablePage");
+				var popover = jQuery("<div/>").css("position", "relative").css("z-index", "200").append(ajax);
+								page.find("body").prepend(popover);
+								var popoverBox = popover.find("#gcHelpPopover"),
+								leftColumn = page.find("#orderSummaryV2"),
+								left = parent.jQuery(parent.window).width() - leftColumn.width() - popoverBox.width();
+									left = (parent.jQuery(parent.window).width() - popoverBox.width()) /2;
+								popoverBox.css("left", left);
+								popoverBox.find("div.closeWindow")
+								.click(closeGCHelp);
+								}
+									);
+								}
+								function closeGCHelp(event) {
+								event.preventDefault();
+								jQuery(event.target).parents("body").find("div.disablePage").removeClass("disablePage");
+								jQuery(event.target).parents("#gcHelpPopover").parent().remove();
+								}
+								function gcCodeFieldFocus(event) {
+									var field = jQuery(event.target);
+									if (field.val() == "enter code here" || field.val() == "enter codes here, one at a time") {
+									field.val("")
+									.css("color", "black");
+									}
+								}
+								function gcCodeFieldBlur(event) {
+									var field = jQuery(event.target);
+								if (field.val() == "") {
+								field.val("enter code here")
+								.css("color", "#999999");
+								}
+								}
+								function claimGiftCard(event) {
+									event.preventDefault();
+									var gcArea = jQuery("#orderSummaryV2" + " div.giftCardEntry");
+									var gcCode = jQuery(gcArea).find("input[name='giftCardCode']").val();
+								var orderId = jQuery("input[name=orderId]").val();
+								jQuery.get(
+								"ClaimGiftCard",
+								{promotionCode: gcCode,
+								externalOrderId: orderId},
+								function (ajax) {
+								if (ajax != "") {
+								var response = ajax.split("|"),
+								isOK = (response[0].replace(/^\s+|\s+$/g, '') == "success"),
+								code = response[1],
+								enterGCCodeBox = jQuery(gcArea).find("div.enterGCCode");
+								jQuery(jQuery(enterGCCodeBox).find("div.msg")).remove();
+								if (isOK) {
+									gcArea.removeClass("warning");
+									//gcArea.find(".noGCBalance").hide();
+									//gcArea.find(".hasGCBalance").show();
+								var balanceSpan = jQuery(gcArea).find("#giftCardBalance");
+								jQuery(balanceSpan).empty();
+								jQuery(balanceSpan).append(response[2]);
+								applyGCBalance();
+								} else {
+								gcArea.addClass("warning");
+								var message = jQuery("<div/>").html(response[2]).text();
+												enterGCCodeBox.append("<div class='msg'>" + message + "</div>");
+												}
+												jQuery(gcArea).find("input[name='giftCardCode']").val("");
+												}
+												});
+												}
+												function removeGCBalance() {
+												var orderId = jQuery("input[name=orderId]").val();
+												jQuery.get(
+												"RemoveGiftCard",
+												{externalOrderId: orderId},
+												function (ajax) {
+												if (ajax != "") {
+												var response = ajax.split("|"),
+												isOK = (response[0].replace(/^\s+|\s+$/g, '') == "success");
+												if (isOK) {
+												var orderSummary = jQuery("#orderSummaryV2"),
+												gcEntry = jQuery("div.giftCardEntry"),
+												totalRow = jQuery(orderSummary).find("tr.total"),
+												giftCardRow = jQuery(orderSummary).find("#giftCardRow"),
+												currentTotal = jQuery(totalRow).find("td").text(),
+												grandTotalSpan = jQuery(orderSummary).find("#grandTotal");
+													jQuery(totalRow).find("th").empty().append("Total:");
+												// hide GC line
+												jQuery(giftCardRow).find("td").empty();
+												// update total in banner
+												grandTotalSpan.empty().append(currentTotal);
+												jQuery(orderSummary)
+												.find(".giftCardApplied").addClass("hidden");
+												
+												jQuery(gcEntry)
+												.find(".giftCardNotApplied").filter(":not(.noGCBalance)")
+												.removeClass("hidden");
+												
+												window.location.href = "PreviewOrder";
+												}
+												}
+												}
+												);
+												}
+												function applyGCBalanceButDontDefault(event) {
+													event.preventDefault();
+													applyGCBalance();
+												}
+												function applyGCBalance() {
+													var orderId = jQuery("input[name=orderId]").val();
+												jQuery.get(
+												"ApplyGiftCard",
+												{externalOrderId: orderId},
+												function (ajax) {
+												if (ajax != "") {
+												var response = ajax.split("|");
+												var isOK = (response[0].replace(/^\s+|\s+$/g, '') == "success");
+												if (isOK) {
+												var balance = parseFloat(response[1]);
+												var applied = parseFloat(response[2]);
+												var unapplied = parseFloat(response[3]);
+												var remaining = balance - applied;
+												
+												var orderSummary = jQuery("#orderSummaryV2");
+												var gcEntry = jQuery("div.giftCardEntry");
+												var giftCardAppliedDiv = orderSummary.find(".giftCardApplied");
+												var giftCardNotAppliedDiv = gcEntry.find(".giftCardNotApplied");
+												var remainingBalanceDiv = gcEntry.find(".hasRemainingGCBalance");
+												var totalRow = orderSummary.find("tr.total");
+												var giftCardRow = orderSummary.find("#giftCardRow");
+												totalRow.find("th").empty().append("Current Total:");
+												giftCardAppliedDiv.removeClass("hidden");
+												giftCardNotAppliedDiv.addClass("hidden");
+												giftCardAppliedDiv.find(".gcAmount").empty().append("$" + displayCents(applied));
+												giftCardRow.find(".gcAmount").prepend("-");
+												// update remainingBalance
+												if (remaining > 0) {
+													remainingBalanceDiv.removeClass("hidden");
+													remainingBalanceDiv.find("#remainingGCBalance").empty().append("$" + displayCents(remaining));
+												}
+												window.location.href = "PreviewOrder";
+												if (unapplied > 0) {
+													gcEntry.find("#gcUnappliedNotice").removeClass("hidden");
+												}
+												}
+												}
+												}
+												);
+												}
+												function displayCents(amount) {
+													var a = parseInt((amount + .005) * 100);
+												a /= 100;
+												s = new String(a);
+												var whereIsDot = s.indexOf('.');
+												if (whereIsDot < 0) {
+												s += '.00';
+												} else if (whereIsDot == (s.length - 2)) {
+												s += '0';
+												}
+												return s;
+												}
+				--></script>
+	<script type="text/javascript">
+										jQuery(function($) {
+										var updateTipInOrderSummary = function(tipAmount) {
+										var $displayTip = $('#displayTipAmount');
+										var $orderTotal = $('#orderTotalAmount');
+										var oldTipAmount = parseFloat($displayTip.html().replace('$', ''));
+										var oldTotal = parseFloat($orderTotal.html().replace(/,/g,'').replace('$', ''));
+										$displayTip.html('$' + new Number(tipAmount).toFixed(2));
+										$orderTotal.html('$'
+										+ new Number(oldTotal - oldTipAmount + tipAmount).toFixed(2).replace(/\B(?=(?:\d{3})+(?!\d))/g, ","));
+										};
+										var applyTip = function(event) {
+										event.preventDefault();
+										var tipAmount = $(event.target)
+										.parents("div.tipForm")
+										.find("input[name='tipAmount']").val();
+										var orderId = $("input#orderId").val();
+										
+										var setDefault = $("input#saveTipDefault").is(":checked");
+										
+										// if they weren't typing numbers, error!
+										if (isNaN(parseFloat(tipAmount))) {
+											var $tipping = $("div.tipping");
+										$tipping.find(".error").find(".message").html("Please enter a number.").end().show();
+										
+										// if they try to tip the same tip again, that's silly
+										} else if (tipAmount == parseFloat($('#displayTipAmount').html().replace('$', '')) && !setDefault) {
+											var $tipping = $("div.tipping");
+											$tipping.find(".error").hide();
+										} else {
+											$.post("ApplyTip",
+											{"tipAmount" : tipAmount,
+												"reTip" : setDefault,
+												"externalOrderId" : orderId},
+											function(ajax) {
+											var response = $.trim(ajax);
+											var $tipping = $("div.tipping");
+											if ("true" === response) {
+											updateTipInOrderSummary(parseFloat(tipAmount));
+											var buttonTitle = $tipping.find("#applyTipBtn").attr('value');
+											if (buttonTitle === "Save changes") {
+																$tipping.find(".tipAmountText").html(new Number(tipAmount).toFixed(2));
+											$tipping.find(".changeTipAmount").hide();
+											$tipping.find(".changeDefault").show();
+												
+											} else {
+											$tipping.find(".tipEnterText").html("Selected tip: $");
+											$tipping.find("#applyTipBtn").attr('value', 'Update tip');
+												$tipping.find(".error").hide();
+											}
+											} else {
+											$tipping.find(".error").find(".message").html(response).end().show();
+											}
+											}
+											);
+										}
+										};
+										$("#applyTipBtn").click(applyTip);
+										
+										$("#tipping .learnMore").click(function(event) {
+										event.preventDefault();
+										jQuery.get("TippingLearnMore", { }, showPopUp);
+										});
+										
+										$("#tipping .changeDefault").click(function(event) {
+											event.preventDefault();
+											var $tipping = $("div.tipping");
+											$tipping.find(".changeTipAmount").show();
+											$tipping.find(".changeDefault").hide();
+											$tipping.find(".tipEnterText").html("Current tip: $");
+											$tipping.find("#applyTipBtn").attr('value', 'Save changes');
+										});
+										
+										var clipToDollarAmount = function(event) {
+										// @TODO Prevent customer from ever inputing non-numerals -waltonbw
+										var tipping = $('div.tipping');
+										var tipInput = tipping.find("input[name='tipAmount']");
+										var tipAmount = tipInput.val();
+										var decimalIdx = tipAmount.indexOf('.');
+										// Checking the length of the tipAmount to prevent Chrome from overriding selection/input
+										if (decimalIdx != -1 && tipAmount.length > decimalIdx + 3) {
+										// Clip any input beyond the hundredth decimal place
+										tipAmount = tipAmount.slice(0, decimalIdx + 3);
+										tipInput.val(tipAmount);
+										}
+										};
+										$('#tipping').keydown(clipToDollarAmount);
+										$('#tipping').keyup(clipToDollarAmount);
+										$('#tipping').change(clipToDollarAmount);
+										// On enter, apply tip
+										$('#tipping').find("input[name='tipAmount']").keypress(function (e) {
+										if (e.keyCode == jQuery.ui.keyCode.ENTER) {
+										applyTip(e);
+										}
+										});
+										});
+										function showPopUp(data) {
+										// reduce opacity of the background
+										jQuery("body").children().addClass("disablePage");
+										
+										var popUp = document.createElement("div");
+										popUp.id = "dialogBox";
+										popUp.innerHTML = data;
+										jQuery(popUp).find("span.changeTipPeriod").val(jQuery("#tipping input[name='changeTipPeriod']").val());
+										jQuery(popUp).css("top", jQuery(window).scrollTop() + 100 + "px");
+										jQuery(popUp).css("height", "250px");
+										jQuery("body").append(popUp);
+										jQuery(".closeWindow").click(function(event) {
+										event.preventDefault();
+										jQuery("#dialogBox").remove();
+										jQuery("body").children().removeClass("disablePage");
+										});
+										}
+				</script>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<script>
+										function showConflictMessage() {
+											var conflictMessage = jQuery("#viewOrderAddressResponse #conflictMessage");
+										conflictMessage.find("input:radio[name=changeOption]")[0].checked = true;
+										conflictMessage.show();
+										jQuery("#viewOrderAddressResponse #addAddressMsg").hide();
+										}
+										function hideConflictMessage() {
+											jQuery("#viewOrderAddressResponse #conflictMessage").hide();
+										jQuery("#viewOrderAddressResponse #addAddressMsg").show();
+										}
+										function onAddressSelected(select) {
+											var index = select.selectedIndex;
+											var externalAddressId = select.options[index].value;
+											if(externalAddressId=="see more addresses"){
+												jQuery("#changeOrderAddressForm").children("input[name=seeMoreAddresses]").val(true);
+												jQuery("#changeOrderAddressForm").children("input[name=displayWarningMessageForAddressChange]").val(true);
+												jQuery("#changeOrderAddressForm").submit();
+											} else {
+												jQuery("#changeOrderAddressForm").children("input[name=seeMoreAddresses]").val(false);
+												jQuery("#changeOrderAddressForm").children("input[name=displayWarningMessageForAddressChange]").val(false);
+											}
+											
+											
+											hideConflictMessage();
+											
+											jQuery("#changeOrderAddressForm").children("input[name=externalAddressId]").val(externalAddressId);
+											jQuery("#changeOrderAddressForm").children("input[name=addressId]").val(externalAddressId);
+											
+										}
+										function closeChangeOrderAddress() {
+											var box = jQuery("#viewOrderAddressResponse");
+											box.hide();
+											if (boxToShowAfterClose != null) {
+												boxToShowAfterClose.show();
+											}
+										}
+										function setBoxToShowAfterClose(box) {
+											boxToShowAfterClose = box;
+										}
+										var boxToShowAfterClose;
+										jQuery(document).ready(function() {
+											
+										jQuery("#viewOrderAddressResponse #conflictMessage").hide();
+										});
+										function setBoxToShowAfterClose(box) {
+											boxToShowAfterClose = box;
+										}
+				</script>
+	<script>
+										jQuery(document).ready(function() {
+											
+											// bagging
+										jQuery(".baggingOptions input[type='radio']").click(updateBagging);
+										// tote pickup
+										jQuery(".totePickupOptions input[type='radio']").click(updateTotePickup);
+										// payment instrument
+										var orderSummary = jQuery("#orderSummaryV2");
+										jQuery(orderSummary).find("div.totePickup .smallEditButton").click(totePickupOptions);
+										
+										// prevent the form from accidentally submitting after filling out the promotion code
+										jQuery(orderSummary).find("input[name='promotionCode']").keypress(function (e) {
+											if (e.keyCode == jQuery.ui.keyCode.ENTER) {
+										e.preventDefault();
+										}
+										});
+										
+										//added for viewOrderAddress
+										jQuery("#viewOrderAddress #linkForChangeOrderAddress").click(function (event) {
+										var pathname = window.top.location.pathname;
+										var search = window.top.location.search;
+										var referer = encodeURIComponent(pathname + search);
+											var externalOrderId="AF4-1968459-0297888"
+										var url = "/ViewOrderAddress?referer="+referer+"&"+"externalOrderId="+externalOrderId;
+										jQuery.get(url, function(html) {viewAddressSelectionFormForOrder(html);});
+										});
+										
+										jQuery(orderSummary).find("input#promotionCode")
+										.focus(promoCodeFieldFocus)
+										.blur(promoCodeFieldBlur);
+										
+										fbafSellersLinks = jQuery(orderSummary).find("a.fbafSellersLink");
+										
+										fbafSellersLinks.click(function(e) {
+											var merchantNames = jQuery("span#merchantNames").html();
+											showOnDemandLightboxWithContent(merchantNames);
+											return false;
+										});
+										showPreloadedLightboxWithId("bigRadishFee");
+										
+										closeWindowHandler();
+										});
+										function closeWindowHandler() {
+											jQuery(".closeWindow").click(function(event) {
+										event.preventDefault();
+										jQuery("#dialogBox").remove();
+										jQuery(".disablePage").removeClass("disablePage");
+										});
+										}
+										function promoCodeFieldFocus(event) {
+										var field = jQuery(event.target);
+										if (field.val() == "enter code here" || field.val() == "enter code") {
+										field.val("").css("color", "black");
+										}
+										}
+										function promoCodeFieldBlur(event) {
+										var field = jQuery(event.target);
+										if (field.val() == "") {
+										field.val("enter code").css("color", "#999999");
+										}
+										}
+										function cleanPromoCodeField() {
+											var promoField = jQuery("input#promotionCode");
+											if (promoField.val() == "enter code") {
+												promoField.val("");
+											}
+										}
+										function totePickupOptions(event) {
+											event.preventDefault();
+										
+										// reduce opacity of the background
+										jQuery("body").children().addClass("disablePage");
+										
+										var box = jQuery("#orderSummaryV2" + " div.totePickupPopUp");
+										
+										var nextOrder = box.find("#nextOrder").is(":checked");
+										var early = box.find("#early").is(":checked");
+										
+										var popUp = document.createElement("div");
+										popUp.id = "dialogBox";
+										popUp.className = "totePickup"
+										moveTotePickupContent(box, jQuery(popUp));
+										box.html("");
+										
+										jQuery(popUp).css("top", jQuery(window).scrollTop() + 100 + "px");
+										jQuery(popUp).css("height", "360px");
+										jQuery("body").append(popUp);
+										jQuery(".closeWindow").click(function(event) {
+										event.preventDefault();
+										box.html(jQuery(popUp).html());
+										jQuery("#dialogBox").remove();
+										jQuery("body").children().removeClass("disablePage");
+										restoreCheckedState(box, nextOrder, early);
+										});
+										
+										jQuery(".updateAndClose").click(function(event) {
+										event.preventDefault();
+										
+										var totePickup = "";
+										if (jQuery(popUp).find("#nextOrder").is(":checked"))
+											totePickup = "order";
+										else if (jQuery(popUp).find("#early").is(":checked"))
+											totePickup = "day";
+										
+										if (totePickup != "") {
+											var allowNextDayPickup = jQuery("#allowNextDayPickup").attr("value");
+											jQuery.post("TotePickupPreferenceUpdate?pref=" + totePickup + "&asapEnabled=" + allowNextDayPickup);
+										}
+											
+										moveTotePickupContent(jQuery(popUp), box);
+										
+										jQuery("#dialogBox").remove();
+										jQuery("body").children().removeClass("disablePage");
+										});
+										}
+										function moveTotePickupContent(from, to) {
+										var nextOrder = from.find("#nextOrder").is(":checked");
+										var early = from.find("#early").is(":checked");
+										var allowNextDayPickup = from.find("#allowNextDayPickup").is(":checked");
+										
+										to.html(from.html());
+										
+										restoreCheckedState(to, nextOrder, early);
+										}
+										function restoreCheckedState(box, nextOrder, early, allowNextDayPickup) {
+										setCheckedState(box.find("#nextOrder"), nextOrder);
+											setCheckedState(box.find("#early"), early);
+										}
+											function setCheckedState(element, checked) {
+										if (checked) {
+										element.attr("checked", checked);
+										} else {
+										element.removeAttr("checked");
+										}
+										}
+										function updateBagging(event) {
+											var baggingOption = jQuery(event.target).attr("value");
+											jQuery.post("BaggingPreferenceUpdate?pref=" + baggingOption);
+										}
+										function updateTotePickup(event) {
+											var totePickup = jQuery(event.target).attr("value");
+											var allowNextDayPickup = jQuery("#allowNextDayPickup").attr("value");
+											jQuery.post("TotePickupPreferenceUpdate?pref=" + totePickup + "&asapEnabled=" + allowNextDayPickup);
+										}
+										function onSubmitConfirmOrder(form) {
+											cleanPromoCodeField();
+											submitOnlyOnce(form);
+										}
+										function viewAddressSelectionFormForOrder(html) {
+											
+											linkToHide = jQuery("#viewOrderAddress #linkForChangeOrderAddress");
+											linkToHide.hide();
+										
+										form = jQuery("#viewOrderAddress #addressChangeBlock");
+										form.html(html);
+										setBoxToShowAfterClose(linkToHide);
+											form.show();
+										}
+										function showUpdatePreviewSpinner(event) {
+											var spinnerText = "We're updating your payment information.";
+											setTimeout(function() {
+												var spinnyBlock = jQuery("#orderProcessing");
+												spinnyBlock.show();
+												
+												var spinnyText = spinnyBlock.find("#spinnerText");
+												spinnyText.html(spinnerText);
+												var spinnyImg = spinnyBlock.find("#spinnerImg");
+												spinnyImg.hide();
+											}, 50);
+										}
+				</script>
+	<link href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/css/refresh._V1432677347_.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/js/lightbox._V1396384790_.js"></script>
+	<script type="text/javascript" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/js/refreshToolbar._V1376527512_.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/MyFontsWebfontsKit.css" />
+	<link rel="shortcut icon" href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/favicon.ico" type="image/vnd.microsoft.icon"/>
+	<link rel="icon" href="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/favicon.ico" type="image/vnd.microsoft.icon"/>
+	<style id="antiClickjack">body{display:none !important;}</style>
+	<script type="text/javascript">
+										if (self === top) {
+										var antiClickjack = document.getElementById("antiClickjack");
+										antiClickjack.parentNode.removeChild(antiClickjack);
+										}  else {
+										top.location = self.location;
+										}
+				</script>

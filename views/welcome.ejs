@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<%- include('head/welcome')%>
+</head>
+
+<body id="welcome" class="">
+	<div id="alphaLayer">
+
+		<div>
+
+			<!-- BEGIN header -->
+			 
+              <%- include('head/header') %>
+               
+			<!-- END header -->
+			<div id=welcomePageWrapper>
+
+				<div id="pageContent">
+
+					<!-- HTML for the new Welcome ZIP Entry -->
+					<script type="text/javascript" >
+							jQuery.fn.on = jQuery.fn.on ||  function(){return this;};
+							jQuery.fn.off =  jQuery.fn.off  || function(){return this;};
+							</script>
+					<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+					<div class="row welPanel welImage">
+						<div class="col-xs-10 col-xs-push-1">
+							<div class="slidebox">
+								<div class="inner">
+									<div id="mainhead">AmazonFresh Delivers Groceries and More to Your Door</div>
+									<br/>
+									<table>
+										<tr>
+											<td>
+												<div class="rightborder">
+													<div id="iconbox">
+														<div id="icontext">
+															<img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/email/basket_thumb_11039._V349774176_SY100_SX600_.png" id="selecticon">Grocery</div>
+														<div id="icontext">
+															<img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/email/Now_thumb_11040._V349775504_SY100_SX600_.png" id="selecticon">
+															Amazon.com
+															<br/>
+															Items
+														</div>
+														<div id="icontext">
+															<img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/email/r3._V351542732_SY100_SX600_.png" id="selecticon">Neighborhood Shops & Restaurants</div>
+													</div>
+
+													<div id="introprops">
+														<ul>
+															<li>Next-day and early morning delivery</li>
+															<li>Huge selection, from milk to electronics</li>
+															<li>Discover products from neighborhood shops and restaurants</li>
+														</ul>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="zipbox"> <font style="font-weight: 500;">Check your zip code to see if we
+														<br/>
+														deliver to your area:</font> 
+
+													<div id="zipentry" class="zipentry">
+														<form method="post" action="zipEntrySubmit" name="zipEntryForm">
+															<input type="hidden" name="referer" value="Category%3Fcat%3Dlocalfarmersmarket%26ref_%3DFr_Gr_AMG_Farm" />
+															<input type="text" name="zip" value="" maxlength="10" class="form-control" placeholder="Enter your zipcode"/>
+															<input type="submit" value="Check"/>
+
+														</form>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- close optional disable page div -->
+	</div>
+
+	<%- include('head/footer')%>
+</body>
+
+</html>

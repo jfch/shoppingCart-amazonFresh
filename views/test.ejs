@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Navigation functions (heading)</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <style>
+    html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+    #map {
+    
+    }
+    #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+    }
+    </style>
+</head>
+<body>
+  <div id="map" style="height: 250px;
+    width:500px;"></div>
+  
+  <script>
+    // This example requires the Geometry library. Include the libraries=geometry
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
+
+    function initMap() {
+  
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: {lat: 37.369, lng: -121.8629}
+    
+
+
+    });
+    function xxx(address){
+       // var address = arr[i];
+       var geocoder = new google.maps.Geocoder();
+    var af= address.addressFrom;
+    geocoder.geocode({'address': af}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+         var from= results[0].geometry.location;
+        // alert(from.lat());
+        // for (var attr in from) {
+        //     alert(attr+":"+from[attr]);
+        // };
+         //alert(from);
+        // alert(address);
+        
+          var at =address.addressTo;
+         // alert(at);
+         geocoder.geocode({'address': at}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    var to =results[0].geometry.location;
+                    //alert(to);
+                   if(from.lat()<to.lat()){ fromTo(to,from);} else{
+                     fromTo(from,to);
+                 }
+                   }
+        });
+    
+        
+       
+    
+    
+   // fromTo(44,10);
+   
+    } else {
+    alert('Geocode was not successful for the following reason: ' + status);
+    }
+    });
+    }
+
+    mapping([{addressFrom:"1886 pine hollow san jose ca",addressTo: "Mountain View, California"},{addressTo:"Menlo Park, CA",addressFrom: "Seattle, WA"}]);
+    function mapping(arr){
+
+         
+     for (var i =0; i <arr.length; i++) {
+        //alert(i);
+        //alert(i);
+        xxx(arr[i]);
+
+    
+    }
+
+    }
+    
+   
+    function fromTo(x,y){  
+     var marker1 = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    position:  x
+    });
+
+     var marker2 = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    position: y
+    });
+    var bounds = new google.maps.LatLngBounds(
+    marker1.getPosition(), marker2.getPosition());
+    map.fitBounds(bounds);
+    google.maps.event.addListener(marker1, 'position_changed', update);
+    google.maps.event.addListener(marker2, 'position_changed', update);
+    
+   var geodesicPoly = new google.maps.Polyline({
+    strokeColor: '#CC0099',
+    strokeOpacity: 1.0,
+    strokeWeight: 3,
+    geodesic: true,
+    map: map
+    });
+    update(marker1,marker2,geodesicPoly);}
+  
+    }
+    function update(marker1,marker2,geodesicPoly) {
+    var path = [marker1.getPosition(), marker2.getPosition()];
+    
+    geodesicPoly.setPath(path);
+    var heading = google.maps.geometry.spherical.computeHeading(path[0], path[1]);
+   
+    }
+    </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV9OL8ROrqhszxoFjaezxwbORtO4xY6pQ&libraries=geometry&callback=initMap"
+    async defer></script>
+</body>
+</html>

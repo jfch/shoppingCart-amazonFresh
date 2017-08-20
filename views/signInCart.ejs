@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<%- include('head/signInCart')%>
+
+</head>
+<body id="refreshCartBody">
+	<div id="welcome">
+		<div id="mpSelect">
+			You are browsing
+			<span>
+				<a href="#">Northern California</a>
+			</span>
+			<select title="Select City">
+				<option disabled selected>Select City</option>
+
+				<option  value="AAQGHLA879ZIN">New York/New England</option>
+
+				<option  value="A241IQ0793UAL2">Southern California</option>
+
+				<option selected value="A3FX2TOAMS7SFL">Northern California</option>
+
+				<option  value="A83PXQN2224PA">Pacific Northwest</option>
+
+				<option  value="A1X3MYVEUOQKVL">Mid-Atlantic</option>
+
+			</select>
+
+		</div>
+
+		<div id="checkedAddressSuccessMessaging">
+			<h2 id="titleMessage"> <strong>Great news, we deliver to your area.</strong>
+			</h2>
+		</div>
+
+		<div id="membershipSignInArea">
+
+			<p>
+				AmazonFresh is available exclusively to Prime Fresh members in eligible zip codes.
+			</p>
+
+			<form method="post" action="Authenticate" name="signInButton" target="_top">
+				<input type="hidden" name="signIn"value="true" />
+				<input type="hidden" name="signInSuccessUrl"value="/Category?cat=localfarmersmarket&ref_=Fr_Gr_AMG_Farm" />
+				<input type="hidden" name="externalOrderId" value="" />
+				<input type="hidden" name="orderId" value="" />
+				<input type="hidden" name="referer" value="/Category?cat=localfarmersmarket&ref_=Fr_Gr_AMG_Farm" />
+				<input type="hidden" name="checkPrime" value="true" />
+				<div>
+					<input type="submit" class="inCart" value="Sign in with Amazon account" tabindex="3" />
+				</div>
+			</form>
+		</div>
+
+		<div id ="learnMoreCart">
+			Not a Prime Fresh member?
+			<a href="/FreshMembership" target="_top">Start your 30-day FREE trial today</a>
+			.
+		</div>
+
+	</div>
+
+	<script>
+			(function (d, e) {
+			e = d.createElement('script');
+			e.src = '//www.amazon.com/aan/2009-09-09/ad/amazonexternal.us/GetAanAd?pt=Fresh_US_Gateway_Unrecognized&pt2=SF&pid=SF&slot=UNGW_ATF&prid=' + (new Date).getTime();
+			e.async = !0;
+			e.type = 'text/javascript';
+			d.getElementsByTagName('head')[0].appendChild(e);
+			})(document);
+			</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('head/previewOrder') %>
+</head>
+
+<body id="orderReview" class="" ng-app="whateverApp" ng-controller="whateverController">
+<%- include('head/angularTemplate') %>
+<script>
+    function toDo($scope, $http) {
+        $scope.cart = JSON.parse('<%- JSON.stringify(cart) %>');
+        log('cart = ', $scope.cart);
+        $scope.removeItem = function (item) {
+            log('item = ', item);
+            $http.post('/shoppingCartView/remove', {item: item}).then(function (res) {
+                location.reload();
+            });
+        }
+    }
+</script>
+<div id="alphaLayer">
+    <div>
+        <!-- BEGIN header -->
+        <%- include('head/header') %>
+        <!-- END header -->
+        <div id=pageWrapper>
+            <%- include('head/shopBar') %>
+            <div id="pageContent">
+                <!-- BEGIN breadcrumb -->
+                <div id="breadcrumb">
+                    &lsaquo;
+                    <a href="https://fresh.amazon.com/">Return to previous page</a>
+                </div>
+                <!-- END breadcrumb -->
+                <div id="topstripe"></div>
+                <div class="addItemsReminder">
+                    Review your order and
+                    <a href="/Search?et=opaddmore">add any last-minute items</a>
+                    you want.
+
+                    You can also add more items after you place this order.
+                </div>
+
+                <div class="reviewOrder">
+                    <div id="orderSummaryV2" style="width: 785px;">
+
+                        <input id="sourceField" type="hidden" name="source" value="PreviewOrder"/>
+                        <input type="hidden" name="purchaseId" value="106-9874095-4529849"/>
+                        <input type="hidden" name="orderId" value=""/>
+
+                        <div
+
+
+                                class="checkoutArrowWithoutTips"
+
+
+                        >
+                            <table>
+                                <tr>
+                                    <td style="padding-left: 30px;">
+                                        <div class="checkout2bin">
+                                            <div class="bin0">
+                                                <div class="smallEditLink">
+                                                    <a href="https://fresh.amazon.com/Delivery?externalOrderId=AF4-1968459-0297888&slotReferer=PreviewOrder">edit</a>
+                                                </div>
+                                                <h4>Delivery Time</h4>
+                                                Time:
+                                                <select style="margin:3px;">
+
+                                                    <option>8am</option>
+                                                </select>
+                                                <br>
+
+                                                Date:
+                                                <select style="margin:3px;">
+
+                                                    <option>may-1-2016</option>
+                                                </select>
+                                            </div>
+                                            <div id="deliveryAddressSection" class="bin1">
+                                                <div class="smallEditLink">
+                                                    <a href="https://fresh.amazon.com/SetDeliveryAddress?externalOrderId=AF4-1968459-0297888&slotReferer=PreviewOrder&actionToForwardTo=Delivery">edit</a>
+                                                </div>
+                                                <h4>Delivery Address</h4>
+                                                <div id="deliveryAddressLine1">1886 PINE HOLLOW CIR</div>
+                                                <div id="deliveryAddressLine2"></div>
+                                                <div id="deliveryAddressLine3"></div>
+                                                <div id="deliveryAddressLine4">
+                                                    <span id="deliveryAddressCity">SAN JOSE</span>
+                                                    <span id="deliveryAddressState">CALIFORNIA</span>
+                                                    <span id="deliveryAddressZip">95133-1729</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkout2bin">
+                                            <div class="bin0">
+                                                <div class="ccEntry">
+                                                    <select name="paymentInstrumentId" id="paymentInstrumentId">
+                                                        <option value="0h_PU_CUS_f5cce35a-68f4-40a6-aa9f-b24e407dc0b6"
+                                                                id="paymentOption-1"
+                                                                selected>Visa: ***-2657 (xinleiyang)
+                                                        </option>
+                                                    </select>
+                                                    <input type="hidden" id="orderId" value="106-9874095-4529849"/>
+                                                    <input type="hidden" id="originalPaymentInstrumentId"
+                                                           value="0h_PU_CUS_f5cce35a-68f4-40a6-aa9f-b24e407dc0b6"/>
+                                                    <br/>
+                                                    <a href="https://fresh.amazon.com/payment?externalAddressId=LLBPSJVWIG7C74GMPBIQG12FJ64BSVOBBA3HBBOVSB46JFTPXTQ2EIA2OXISC2P5&referer=PreviewOrder">Add
+                                                        a new credit card</a>
+                                                </div>
+
+
+                                                <hr/>
+                                                <!-- BEGIN payment info -->
+
+                                                <!-- END payment info -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="display: none;">
+                                        <div class="checkout2bin">
+                                            <div class="bin0">
+                                                <div class="deliveryInfo tipping tipForm" id="tipping">
+                                                    <div class="changeTipAmount">
+                                                        <div class="etipsenter">
+                                                            <span class="tipEnterText">Suggested tip: $</span>
+                                                            <input type="text" name="tipAmount" size="5" value="4.00"/>
+                                                            <a href="https://fresh.amazon.com/help" class="learnMore">
+                                                                <img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/btn-help-questionmark.png"
+                                                                     alt="learnMore"/>
+                                                            </a>
+                                                        </div>
+                                                        <div class="info">
+                                                            <div class="error">
+                                                                <span class="message"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="futuretable">
+                                                            <div class="futurecell" style="display: inline">
+                                                                <input id="saveTipDefault" type="checkbox"
+                                                                       name="saveTipDefault" value="true"></div>
+                                                            <div class="futurecell" style="display: inline">
+                                                                <label class="futuretipapply" for="saveTipDefault">Apply
+                                                                    this to each future delivery</label>
+                                                            </div>
+                                                        </div>
+                                                        <input type="button" id="applyTipBtn" name="applyTipBtn"
+                                                               value="Add tip to order"/>
+                                                        <input type="hidden" id="orderId" value="106-9874095-4529849"/>
+                                                        <input type="hidden" name="changeTipPeriod" value="48"/>
+                                                    </div>
+                                                    <div class="changeDefault" style="display: none">
+                                                        <a href="https://fresh.amazon.com/Account">change this</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="padding-left: 15px;">
+                                        <div class="checkout2bin placeOrderColumn">
+                                            <div class="bin5">
+                                                <div class="placeOrder">
+                                                    <div class="placeOrder">
+                                                        <form action="/confirmOrder" method="post">
+                                                            <input type="image" align="absmiddle" title="Place Order"
+                                                                   alt="Place Order"
+                                                                   src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/buttons/btn-placeorder-shiny2._V141936804_.png"
+                                                                   value="submit"/>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="bin7">
+                                                <table class="summary">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="row" align="right">Item Subtotal:</th>
+                                                        <td id="displaySubTotal" align="left">${{cart.total}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row" align="right">Delivery Charge:</th>
+                                                        <td id="displayFee1" align="left">$0.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row" align="right">Estimated Tax*:</th>
+                                                        <td id="displayEstimatedTax" align="left">$0.00</td>
+                                                    </tr>
+                                                    <tr class="total separated">
+                                                        <th scope="row" align="right">Total:</th>
+                                                        <td align="left" id="orderTotalAmount">${{cart.total}}</td>
+                                                    </tr>
+                                                    <tr id="giftCardRow" class="giftCardApplied hidden">
+                                                        <th scope="row" align="right">Gift Card:</th>
+                                                        <td align="left" class="gcAmount">-</td>
+                                                    </tr>
+                                                    <tr class="footnote giftCardApplied gcMoreInfo hidden">
+                                                        <td align="left" colspan="2" style="padding-bottom: 0;">
+                                                            <span class="gcAmount"></span>
+                                                            in gift card balance was applied to this order. (
+                                                            <a href="https://fresh.amazon.com/help" class="gcLearnMore">Learn
+                                                                more</a>
+                                                            )
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="footnote giftCardApplied hidden" id="gcRemoveFromOrder">
+                                                        <td align="left" colspan="2">
+                                                            <div class="action">
+                                                                <div class="primary">
+                                                                    <input type="button" class="button removeGCBttn"
+                                                                           value="Remove gift card from this order"/>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" colspan="2">
+                                                            <div class="taxesNote">
+                                                                * Your taxes are based on applicable state and local
+                                                                rates. We&#039;ll pay any additional RTA tax due on your
+                                                                order.
+                                                            </div>
+                                                            <div class="legalNote">
+                                                                By placing your order, you agree to the AmazonFresh
+                                                                <a href="https://fresh.amazon.com/Conditions">conditions
+                                                                    of use</a>
+                                                                and
+                                                                <a href="https://fresh.amazon.com/Privacy">privacy
+                                                                    notice</a>
+                                                                .
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- end bin4 -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div id="deliveryInstructionsLightboxWrapper">
+                        <div id="deliveryInstructionsLightbox">
+                            <h2>Delivery Instructions</h2>
+                            <div>Enter special delivery instructions for us below.</div>
+                            <div>
+                                <form action="saveCustomerDeliveryNotes" method="post">
+                                    <input type="hidden" name="addressId" value="4655285"/>
+                                    <input name="referer" value="PreviewOrder" type="hidden">
+                                    <input name="actionToForwardTo" value="PreviewOrder" type="hidden">
+                                    <input name="externalOrderId" value="AF4-1968459-0297888" type="hidden">
+                                    <div>
+                                        <textarea class="customerDeliveryNotesInput" cols="55" rows="3"
+                                                  placeholder="Examples: access code, specific location, doorman instructions (if we can leave it with them)."
+                                                  name="customerDeliveryNotes"></textarea>
+                                    </div>
+                                    <div class="small"><em>(limit 255 characters)</em>
+                                    </div>
+                                    <div class="primary">
+                                        <input class="button" type="submit" value="Continue  &rsaquo;"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="items">
+                        <!-- BEGIN list of items -->
+                        <div class="cartBody">
+                            <link href="css/refreshCart.css" rel="stylesheet" type="text/css"/>
+                            <div id="refreshCart">
+                                <div class="cartTitle">Your Cart</div>
+                                <%- include('cartSection') %>
+                            </div>
+                        </div>
+                        <!-- END list of items -->
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- close optional disable page div -->
+</div>
+<%- include('head/footer') %></body>
+</html>

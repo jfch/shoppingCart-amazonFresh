@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('head/orderDetails') %>
+    <%- include('head/angularTemplate') %>
+    <script>
+        function toDo($scope, $http) {
+            apiRequest('/api/res/order/id/' + req.query.orderID, 'order', $scope, $http);
+        }
+    </script>
+    <script>
+        // This example requires the Geometry library. Include the libraries=geometry
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
+
+        var marker1, marker2;
+        var poly, geodesicPoly;
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: {lat: 34, lng: -40.605}
+            });
+
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+                    document.getElementById('info'));
+
+            marker1 = new google.maps.Marker({
+                map: map,
+                draggable: false,
+                position: {lat: 40.714, lng: -74.006}
+            });
+
+            marker2 = new google.maps.Marker({
+                map: map,
+                draggable: false,
+                position: {lat: 48.857, lng: 2.352}
+            });
+
+            var bounds = new google.maps.LatLngBounds(
+                    marker1.getPosition(), marker2.getPosition());
+            map.fitBounds(bounds);
+
+            google.maps.event.addListener(marker1, 'position_changed', update);
+            google.maps.event.addListener(marker2, 'position_changed', update);
+
+            poly = new google.maps.Polyline({
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 3,
+                map: map,
+            });
+
+            geodesicPoly = new google.maps.Polyline({
+                strokeColor: '#CC0099',
+                strokeOpacity: 1.0,
+                strokeWeight: 3,
+                geodesic: true,
+                map: map
+            });
+
+            update();
+        }
+
+        function update() {
+            var path = [marker1.getPosition(), marker2.getPosition()];
+            poly.setPath(path);
+            geodesicPoly.setPath(path);
+            var heading = google.maps.geometry.spherical.computeHeading(path[0], path[1]);
+            document.getElementById('heading').value = heading;
+            document.getElementById('origin').value = path[0].toString();
+            document.getElementById('destination').value = path[1].toString();
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV9OL8ROrqhszxoFjaezxwbORtO4xY6pQ&libraries=geometry&callback=initMap"
+            async defer></script>
+
+</head>
+
+<body id="orderReview" class="" ng-app="whateverApp" ng-controller="whateverController">
+<div id="alphaLayer">
+
+    <div>
+
+        <!-- BEGIN header -->
+        <%- include('head/header') %>
+        <!-- END header -->
+        <div id="pageWrapper">
+
+            <%- include('head/shopBar') %>
+
+            <div id="pageContent">
+
+                <!-- BEGIN breadcrumb -->
+                <div id="breadcrumb">
+                    <h1>
+							<span>
+								<a href="https://fresh.amazon.com/Gateway">AmazonFresh</a>
+							</span>
+                        &nbsp;/&nbsp;
+                        <span class="current">View Your Order</span>
+                    </h1>
+                </div>
+                <!-- END breadcru"OmahaStruts/EditOrderToolbar.jsp"mb -->
+
+                <h1>Order Summary 106-2642644-1469861</h1>
+
+                <div class="reviewOrder">
+                    <form action="UpdateOrder" method="post">
+                        <div class="delivery">
+
+                            <h2>Delivery Details</h2>
+                            <div class="banner">
+
+                                <div class="deliveryInfo">
+                                    <div style="vertical-align:middle;">
+                                        <img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/checkout-slot-clock-illo._V187874673_.gif"
+                                             class="clock" alt=""></div>
+                                    <div style="position: relative;">
+											<span class="orderReservedMessageSpan">
+												We've reserved your delivery slot between
+												<strong>7:00am - 8:00am, Wednesday, April 20, 2016</strong>
+												.
+											</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="width:100%;height:268px;background:grey;" id="map">map</div>
+                            <table style="table-layout: fixed">
+                                <tbody>
+                                <tr>
+                                    <td class="left">
+
+                                        <div id="viewOrderAddress">
+                                            <div>
+														<span id="fulladdress">
+															<h3>Delivery Address</h3>
+															<div>1886 PINE HOLLOW CIR      SAN JOSE CALIFORNIA 95133-1729</div>
+														</span>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                    <td class="right">
+
+                                        <div class="deliveryInfo">
+
+                                            <a href="https://fresh.amazon.com/OrderDetails?externalOrderId=106-2642644-1469861&amp;showPopover=true">
+                                                <img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/projects2008/09SpecialOrders/ReviewOrderPage/but_edit.gif"
+                                                     class="smallEditButton" alt="Edit"></a>
+
+                                            <h3>Delivery Instructions</h3>
+
+                                            <div class="customerNotes"></div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        You are editing an already placed order. Some addresses in your address book may
+                                        not be eligible.
+                                    </td>
+                                    <td class="right">
+
+                                        <div class="deliveryInfo tipping" style="display: none;">
+                                            <h3>E-Tipping</h3>
+                                            <div>
+                                                You are under no obligation to tip, but you may provide an e-tip during
+                                                checkout. Please note our drivers do not accept cash. E-tips will be
+                                                distributed among eligible drivers and/or employees who fulfill orders.
+                                                Some delivery providers don't accept tips so you may not always see the
+                                                option to tip.
+                                                <div class="tipForm">
+                                                    Enter tip amount: $
+                                                    <input type="text" name="tipAmount" size="5" value="0.00">
+
+                                                    <input type="button" id="applyTipBtn" name="applyTipBtn"
+                                                           value="Apply tip">
+                                                    <input type="hidden" id="orderId" value="106-2642644-1469861"></div>
+                                                <div class="info">
+                                                    <div class="error">
+                                                        <span class="message"></span>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                You can make changes to tip amount in Your Account within 48 hours of
+                                                receiving your delivery.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="orderSummary">
+                            <h2>Order Summary</h2>
+                            <div class="banner">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td class="total">
+                                            Total:
+                                            <span id="grandTotal">${{order.total}}</span>
+                                        </td>
+                                        <td class="placeOrder"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <th scope="row" align="right">Item Subtotal:</th>
+                                    <td align="left">${{order.total}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" align="right">Delivery Charge:</th>
+                                    <td align="left">$0.00</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" align="right">Estimated Tax*:</th>
+                                    <td align="left">$0.00</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" align="right">Tip:</th>
+                                    <td align="left" id="displayTipAmount">$0.00</td>
+                                </tr>
+                                <tr class="total">
+                                    <th scope="row" align="right">Total:</th>
+                                    <td align="left" id="orderTotalAmount">${{order.total}}</td>
+                                </tr>
+
+                                <tr id="giftCardRow" class="giftCardApplied hidden">
+                                    <th scope="row" align="right">Gift Card:</th>
+                                    <td align="left" class="gcAmount">-</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <!-- BEGIN payment info -->
+                            <div class="paymentInfo ">
+
+                                <h3>Payment Information</h3>
+
+                                <div>
+                                    Visa: ***-2657 (xinleiyang)
+                                    <input type="hidden" value="0h_PU_CUS_f5cce35a-68f4-40a6-aa9f-b24e407dc0b6"
+                                           id="paymentOption-1">
+
+                                    <input type="hidden" id="orderId" value="106-2642644-1469861"></div>
+                            </div>
+                            <!-- END payment info -->
+
+                            <div class="giftCardEntry">
+
+                                <h4>
+                                    Gift Cards
+										<span class="contextualTip">
+											(
+											<a href="https://fresh.amazon.com/Category?cat=giftcards"
+                                               class="gcLearnMore">Learn more</a>
+											)
+										</span>
+                                </h4>
+
+                                <strong>Your gift card balance will not be applied to this order.</strong>
+
+                            </div>
+
+                            <!-- BEGIN payment info -->
+                            <div class="promoEntry ">
+                                <h4>Promotion Code</h4>
+                                <span class="newPromoPlaceHolder"></span>
+
+                                <p class="instructions">
+                                    If you have a promotion code to redeem, please
+                                    <a href="https://fresh.amazon.com/contactUs">contact customer service</a>
+                                    .
+                                </p>
+
+                            </div>
+                            <!-- END payment info -->
+
+                            <div class="banner">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td class="total">&nbsp;</td>
+                                        <td class="placeOrder"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="contextualTip">
+                                * Your taxes are based on applicable state and local rates. We'll pay any additional RTA
+                                tax due on your order.
+                            </div>
+                            <div class="messaging" style="width:90%">
+                                <div class="confirmation">
+                                    <h2 style="color: #fff;">Have you explored Amazon.com Now?</h2>
+                                    <p>
+                                        Check out
+                                        <strong><a href="https://fresh.amazon.com/Search?comNow=1&amp;resultsPerPage=30">Amazon.com
+                                                Now</a></strong>
+                                        for some of the
+                                        same selection you'll find on Amazon.com--all available for same- or next-day
+                                        delivery along with your groceries.
+                                    </p>
+                                    <p>
+                                        <strong><a href="https://fresh.amazon.com/Search?comNow=1&amp;resultsPerPage=30">Shop
+                                                Amazon.com Now »</a></strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="items">
+
+                        <!-- BEGIN list of items -->
+                        <div class="cartBody">
+
+                            <div class="addRemoveItems">
+
+                                <form method="post" action="editOrder">
+                                    <input type="hidden" name="externalOrderId" value="106-2642644-1469861">
+                                    <input type="submit" class="smallEditButton" value="Add or remove items"></form>
+
+                            </div>
+
+                            <table border="0" cellpadding="3" cellspacing="1">
+                                <thead>
+                                <tr>
+                                    <th class="itemTitle">
+                                        items
+                                        <span class="cartCount">(10)</span>
+                                    </th>
+                                    <th class="qty">qty</th>
+                                    <th>&nbsp;</th>
+                                    <th class="price">price</th>
+                                </tr>
+                                </thead>
+                                <!-- <tbody class="item">
+                                -->
+
+
+                                <tbody class="item" ng-repeat="i in order.items">
+
+                                <tr>
+
+                                    <td class="itemTitle">
+
+                                        <a href="/product/id/{{i._id}}"
+                                           target="_top">{{i.name}}</a>
+
+                                        <div class="messaging">
+
+                                            <p style="font-size:11px; color:#333; padding:0; margin:0;">
+                                                Sold by
+                                                <strong>AmazonFresh</strong>
+                                                . Shipped by AmazonFresh.
+                                            </p>
+
+                                        </div>
+
+                                    </td>
+                                    <td class="qty">{{i.count}}</td>
+
+                                    <td>&nbsp;</td>
+
+                                    <td class="price">${{i.price}}</td>
+                                </tr>
+                                </tbody>
+
+                                <tfoot>
+                                <tr>
+                                    <th scope="row" colspan="3">Subtotal:</th>
+                                    <td align="right">${{order.total}}</td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- END list of items -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- close optional disable page div -->
+</div>
+
+<%- include('head/footer') %>
+</body>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+        //alert(String(window.location.href).split("=")[1]);
+
+        var itemID = String(window.location.href).split("=")[1];
+        //http.post("",{data:itemID}).then(function(res){});
+        $scope.items = [{
+            "itemInfo": "Organic Strawberries, 1 lb",
+            "qty": 5,
+            "price": 2
+        },
+            {
+                "itemInfo": "Organic Strawberries, 1 lb",
+                "qty": 2,
+                "price": 2
+            }];
+        var a;
+        var c = 0;
+        var b = $scope.items;
+
+        for (a = 0; a < b.length; a++) {
+            c += parseFloat(b[a].qty) * parseFloat(b[a].price);
+        }
+        ;
+        $scope.subtotal = c;
+    });
+</script>
+</html>

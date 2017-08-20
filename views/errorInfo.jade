@@ -1,0 +1,9 @@
+if err
+    h1 Operation failed
+    p code: #{err.code}
+    p msg: #{err.msg}
+    p redirect to index...
+    script.
+        setTimeout(function () {
+            window.location = '/';
+        }, 3000);

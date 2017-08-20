@@ -1,0 +1,110 @@
+<div class="cartSection" id="cartSection">
+
+    <!-- cartItem begin-->
+    <div id="shoppingCartItem1" class="item  " ng-repeat="product in cart.cartList" ng-cloak>
+        <div class="mainContent  ">
+            <!--<div class="changeQuantityBox">-->
+            <!--<div class="quantity">-->
+            <!--<div class="quantityValue">4</div>-->
+            <!--</div>-->
+
+            <!--<div class="buttons">-->
+
+            <!--<div class="plusButton">-->
+
+            <!--<form action="ShoppingCartView" method="post" target="shopping-cart"-->
+            <!--onsubmit="submitOnlyOnce(this);">-->
+
+            <!--<input type="hidden" name="action" value="setQuantity"/>-->
+            <!--<input type="hidden" name="asin" value="B019ZOS0TO"/>-->
+            <!--<input type="hidden" name="referer" value="Gateway"/>-->
+            <!--<input type="hidden" name="refId" value="185-9036278-1578433"/>-->
+            <!--<input type="hidden" name="showExistingOrder" value="true"/>-->
+            <!--<input type="hidden" name="view" value="preview"/>-->
+            <!--<input type="hidden" name="quantity" value="5"/>-->
+
+            <!--<input type="submit" value="" title="increase quantity"/>-->
+
+            <!--</form>-->
+            <!--</div>-->
+
+            <!--<div class="minusButton">-->
+
+            <!--<form action="ShoppingCartView" method="post" target="shopping-cart"-->
+            <!--onsubmit="submitOnlyOnce(this);">-->
+
+            <!--<input type="hidden" name="action" value="setQuantity"/>-->
+            <!--<input type="hidden" name="asin" value="B019ZOS0TO"/>-->
+            <!--<input type="hidden" name="referer" value="Gateway"/>-->
+            <!--<input type="hidden" name="refId" value="185-9036278-1578433"/>-->
+            <!--<input type="hidden" name="showExistingOrder" value="true"/>-->
+            <!--<input type="hidden" name="view" value="preview"/>-->
+            <!--<input type="hidden" name="quantity" value="3"/>-->
+
+            <!--<input type="submit" value="" title="decrease quantity"/>-->
+
+            <!--</form>-->
+            <!--</div>-->
+
+            <!--</div>-->
+
+            <!--</div>-->
+
+            <div class="imageBox">
+                <a href="https://fresh.amazon.com/product?asin=B019ZOS0TO&referer=Gateway" target="_top">
+                    <img src="{{product.image}}"
+                         height="50" title="Farmers Market Organic Weekly Greens Bundle"/>
+                </a>
+            </div>
+
+            <div class="detailsBox">
+                <div class=itemTitle>
+                    <a href="/product/id/{{product.productID}}" target="_top"
+                       title="Farmers Market Organic Weekly Greens Bundle">{{product.name}}</a>
+                </div>
+
+                <div class="priceBox">
+
+                    <span class="value">${{product.price}}</span>
+
+                </div>
+
+            </div>
+
+            <div class="removeButtonBox">
+
+                <div class="removeButton">
+
+                    <form onsubmit="submitOnlyOnce(this);">
+
+                        <input type="hidden" name="action" value="setQuantity"/>
+                        <input type="hidden" name="asin" value="B019ZOS0TO"/>
+                        <input type="hidden" name="referer" value="Gateway"/>
+                        <input type="hidden" name="refId" value="185-9036278-1578433"/>
+                        <input type="hidden" name="showExistingOrder" value="true"/>
+                        <input type="hidden" name="view" value="preview"/>
+                        <input type="hidden" name="quantity" value="0"/>
+
+                        <input type="image" value="submit" ng-click="removeItem(product)"
+                               src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/cart-refresh-remove._V147314953_.png"
+                               alt="x" title="remove item from cart"/>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="extraContent">
+
+            <!-- Available by Wednesday -->
+
+            <div class="availabilityMessage  ">Available by Wednesday</div>
+
+        </div>
+    </div>
+    <!-- cartItem end-->
+    <!-- cartItem begin-->
+
+    <!-- cartItem end-->
+</div>

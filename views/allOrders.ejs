@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('head/allOrders') %>
+    <%- include('head/angularTemplate') %>
+    <script>
+        function toDo($scope, $http) {
+            apiPost('/api/res/order/query', {customerID: req.session.passport.user._id}, 'orders', $scope, $http);
+        }
+    </script>
+</head>
+<body ng-app="whateverApp" ng-controller="whateverController">
+<div id="alphaLayer">
+    <div>
+        <!-- BEGIN header -->
+
+        <%- include('head/header') %>
+        <!-- END header -->
+        <div id=pageWrapper>
+
+            <%- include('head/shopBar') %>
+            <div id="pageContent">
+                <!-- BEGIN breadcrumb -->
+                <div id="breadcrumb">
+                    <h1>
+							<span>
+								<a href="/">AmazonFresh</a>
+							</span>
+                        &nbsp;/&nbsp;
+							<span>
+								<a href="/signup?change=true">Your Account</a>
+							</span>
+                        &nbsp;/&nbsp;
+                        <span class="current">Your Orders</span>
+                    </h1>
+                </div>
+                <!-- END breadcrumb -->
+                <script language="javascript" type="text/javascript">
+                    jQuery(document).ready(function () {
+                        showNewExperience();
+                    })
+                    function showNewExperience() {
+                        if (jQuery("#lb-ondemand").children().length == 0) {
+                            jQuery.get("newShoppingExperience", function (data) {
+                                if (jQuery.trim(data).length > 0) {
+                                    var target = "target";
+                                    if (data.indexOf(target) == -1) {
+                                        showOnDemandLightboxWithContent(data);
+                                        jQuery("#lb-cancel").hide();
+                                        jQuery("#lightbox").css("width", 650);
+                                        jQuery("#lightbox").css("border-radius", 10);
+                                        jQuery("#editMultipleButton").click(function () {
+                                            jQuery.get("chooseExperience?legacy=EditOrder", function (data) {
+                                                location.href = "AllOrders";
+                                            });
+                                        });
+                                        jQuery("#completeOrder").click(function () {
+                                            jQuery.get("chooseExperience?legacy=CompleteOrder", function (data) {
+                                                hideLightbox();
+                                            });
+                                        });
+                                        jQuery("#legacyLink").click(function () {
+                                            jQuery.get("chooseExperience?legacy=ShopAcrossRegion", function (data) {
+                                                location.href = "splashDelivery";
+                                            });
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    function transitToOrderDetail() {
+                        jQuery.get("chooseExperience?legacy=EditOrder", function (data) {
+                            jQuery("#orderDetailForm").submit();
+                        });
+                    }
+                    function setChosenExperienceAndGoToAmazon(ref) {
+                        var url = 'chooseExperience?legacy=ShopOnAmazon';
+                        jQuery.get(url, function (data) {
+                            location.href = ref;
+                        });
+                    }
+                </script>
+                <!-- BEGIN open orders -->
+                <div id="ordersSection" class="myAccountWidget">
+                    <h3>Your Orders</h3>
+                    <p style="clear:both;"></p>
+                    <div id="orderStatusInfo">
+                        <p>
+                            <strong>We're working on making your experience better. Some of your orders may temporarily
+                                not show up here.</strong>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <table class="resultSet" id="yourOrders" cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <td colspan="8">
+                                    <!-- BEGIN searchSort -->
+                                    <div id="searchSort">
+                                        <!-- BEGIN number of results -->
+                                        <div class="numberOfResults numberOfOrders">
+                                            Orders placed in
+                                            <form method="post" action="AllOrders">
+                                                <select id="filterYear" name="filterYear" class="dropDown"
+                                                        onchange="this.form.submit()">
+                                                    <option value="">last 90 days</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2010">2010</option>
+                                                    <option value="2009">2009</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                        <!-- END number of results -->
+                                    </div>
+                                    <!-- END searchSort -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Order No.</th>
+                                <th scope="col">Order Date</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Expected Delivery Time</th>
+                                <th scope="col">Delivery Time</th>
+                                <th scope="col">Total Amount</th>
+                                <th scope="col">Operation</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            <tr class="listRowOdd" ng-repeat="o in orders">
+                                <td>{{o.orderID}}</td>
+                                <td>{{o.date}}</td>
+                                <td>{{o.destinationLocation.address}}</td>
+                                <td>{{o.expectedDeliveryTime}}</td>
+                                <td>{{o.deliveryTime || '--'}}</td>
+                                <td>${{o.total}}</td>
+                                <td>
+                                    <a href="/orderDetails?orderID={{o.orderID}}">
+                                        <input type="button" class="smallButton" value="Edit"/>
+                                    </a>
+
+                                </td>
+                            </tr>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END open orders -->
+                <script>
+                    jQuery(function ($) {
+                        var $alpha = $("body > div");
+                        var $t; // set in onclick, used in other callbacks
+
+
+                        var applyTip = function (event) {
+                            var tipAmount = $("input#tipAmount").val();
+                            var tipNotes = $("#tipNotes").val();
+                            $.post("ApplyTip",
+                                    {
+                                        "tipAmount": tipAmount,
+                                        "tipNotes": tipNotes,
+                                        "externalOrderId": $t.attr('data-externalOrderId')
+                                    },
+                                    function (ajax) {
+                                        var response = $.trim(ajax);
+                                        if ("true" === response) {
+                                            tipAmount = parseFloat(tipAmount).toFixed(2);
+                                            closePopover();
+                                            $t.parent().append($("#tipUpdated").html());
+                                            // update trigger's data attributes, in case popover is triggered again before page refresh
+                                            $t.attr({
+                                                'data-tipAmount': tipAmount,
+                                                'data-tipNotes': tipNotes
+                                            });
+                                        } else {
+                                            // service-provided error message
+                                            alert(response);
+                                        }
+                                    });
+                        };
+                        $("#applyTip").live('click', applyTip);
+
+
+                        var closePopover = function (event) {
+                            if (null != event) {
+                                event.preventDefault();
+                            }
+                            jQuery("#tipPopover").remove();
+                            $alpha.removeClass("disablePage");
+                        };
+                        $("#tipPopover .closeWindow a, a#closePopover, div.disablePage").live('click', closePopover);
+
+
+                        var showPopover = function ($dialog) {
+                            $alpha.addClass("disablePage");
+                            var $win = $(window);
+                            $("body").append($("#tipPopupWrapper").html());
+                            $("#tipPopover div.popoverBody").append($dialog.html());
+                            var $inputTipAmount = $("input#tipAmount");
+                            var tipAmount = $t.attr("data-tipAmount");
+                            $inputTipAmount.attr("defaultValue", tipAmount);
+                            if ($.inArray(tipAmount, ['', 0, '0', '0.00'])) {
+                                $('#tipPopover div.suggestedAmount').show();
+                            } else {
+                                $inputTipAmount.val(tipAmount);
+                            }
+                            $("span#tipAmount").html(tipAmount);
+                            $("#tipNotes").html($t.attr("data-tipNotes"));
+                        };
+
+
+                        $("table input.tipping").click(function () {
+                            closePopover();
+                            $t = $(this);
+                            $t.next("div").remove(); // clear success messages
+                            var dialogId = ("true" == $t.attr("data-edit")) ? "#editTip" : "#viewTip";
+                            var $dialog = $(dialogId);
+                            showPopover($dialog);
+                            // Center the popover after creation (defined in global-js.jsp)
+                            centerPopover();
+                            return false; //otherwise click propagates up to div.disablePage, above
+                        });
+                    });
+                </script>
+                <script type="text/html" id="editTip">
+                    <div>
+                        <h4>Edit your tip for this order</h4>
+                        <div style="clear:both">Tipping is optional. Although our drivers will not accept cash tips,
+                            they do appreciate anything you care to add here.
+                        </div>
+                        <div>
+                            <label>Current tip amount: $<input id="tipAmount"/></label>
+                        </div>
+                        <div class="suggestedAmount">Suggested amount: .</div>
+                        <textarea id="tipNotes"></textarea>
+                        <div>
+                            <input type="submit" id="applyTip" class="smallButton" value="Update Tip"/>
+                            or
+                            <a href="#" id="closePopover">leave it the same</a>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/html" id="viewTip">
+                    <div>
+                        <h4>Your tip for this order</h4>
+                        <div style="clear:both">Tip amount: $<span id="tipAmount"></span></div>
+                        <div>Note: <span id="tipNotes"></span></div>
+                    </div>
+                </script>
+                <script type="text/html" id="tipPopupWrapper">
+                    <div id="tipPopover" class="centeredPopover">
+                        <div class="popoverBackground">
+                            <div class="header">
+                                <div class="left"></div>
+                                <div class="middle"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="body">
+                                <div class="left"></div>
+                                <div class="middle"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="footer">
+                                <div class="left"></div>
+                                <div class="middle"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="popoverBody">
+                            <div class="closeWindow">
+                                <a href="#" id="closePopover" style="color:#069">
+                                    <img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/btn-qtyRemove.gif"
+                                         alt="X"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/html" id="tipUpdated">
+                    <div class="positiveFeedback">
+                        <span class="icon"></span>
+                        Tip updated
+                    </div>
+                </script>
+            </div>
+        </div>
+    </div>
+    <!-- close optional disable page div -->
+</div>
+
+<%- include('head/footer') %>
+</body>
+</html>

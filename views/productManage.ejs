@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include ./head/index %>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="左右结构项目，属于大人员的社交工具">
+    <meta name="keywords" content="左右结构项目 社交 占座 ">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>左右结构项目！</title>
+    <%- include('head/angularTemplate') %>
+    <script>
+        function toDo($scope, $http) {
+
+            var toModifyProduct = {};
+            var toDeleteId;
+
+            apiPost('/api/res/product/query', {farmerID: req.session.passport.user.userID}, 'products', $scope, $http);
+
+            $scope.toDeleteProduct = function (selectProduct) {
+                toDeleteId = selectProduct._id;
+                /* for(var attr in selectProduct ){
+                 //alert(selectProduct[attr]);
+                 toModifyProduct[attr]=selectProduct[attr];
+                 }
+                 $scope.toMProduct =toModifyProduct; */
+            }
+
+            $scope.deleteProduct = function () {
+                apiDelete('/api/res/product/id/' + toDeleteId, 'products', $scope, $http, function () {
+                    location.reload();
+                });
+
+            }
+            $scope.modifyProduct = function (selectProduct) {
+                for (var attr in selectProduct) {
+                    //alert(selectProduct[attr]);
+                    toModifyProduct[attr] = selectProduct[attr];
+                }
+                $scope.toMProduct = toModifyProduct;
+            }
+            $scope.cancelSaveModifyProduct = function () {
+            }
+            $scope.saveToModifyProduct = function () {
+                apiPost('/api/res/product', $scope.toMProduct, 'whatever', $scope, $http, function () {
+                    location.reload();
+                });
+                //productList.push(productobj);
+                //$scope.toModifyProduct = selectProduct;
+                //alert($scope.toModifyProduct.ProductID);
+            }
+            $scope.addProduct = function () {
+                //alert("out");
+                var productobj = {
+                    //"ProductID":$scope.pro.ProductID,"FarmerID":$scope.pro.FarmerID,
+                    "name": $scope.pro.name,
+                    "price": $scope.pro.price,
+                    "description": $scope.pro.description,
+                    //"Review":$scope.pro.Review,
+                    //"Rating":$scope.pro.Rating,
+                }
+
+                //productList.push(productobj);
+                //alert(productList.length);
+                alert("push local finished");
+                $scope.pro = {};//empty the modal value
+                apiPost('/api/res/product', productobj, 'whatever', $scope, $http, function () {
+                    location.reload();
+                });
+
+            }
+        }
+    </script>
+
+		<script src="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/js/jquery.min.js"></script>
+		<script src="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $(".meun-item").click(function () {
+                $(".meun-item").removeClass("meun-item-active");
+                $(this).addClass("meun-item-active");
+                var itmeObj = $(".meun-item").find("img");
+                itmeObj.each(function () {
+                    var items = $(this).attr("src");
+                    items = items.replace("_grey.png", ".png");
+                    items = items.replace(".png", "_grey.png")
+                    $(this).attr("src", items);
+                });
+                var attrObj = $(this).find("img").attr("src");
+                ;
+                attrObj = attrObj.replace("_grey.png", ".png");
+                $(this).find("img").attr("src", attrObj);
+            });
+            $("#topAD").click(function () {
+                $("#topA").toggleClass(" glyphicon-triangle-right");
+                $("#topA").toggleClass(" glyphicon-triangle-bottom");
+            });
+            $("#topBD").click(function () {
+                $("#topB").toggleClass(" glyphicon-triangle-right");
+                $("#topB").toggleClass(" glyphicon-triangle-bottom");
+            });
+            $("#topCD").click(function () {
+                $("#topC").toggleClass(" glyphicon-triangle-right");
+                $("#topC").toggleClass(" glyphicon-triangle-bottom");
+            });
+            $(".toggle-btn").click(function () {
+                $("#leftMeun").toggleClass("show");
+                $("#rightContent").toggleClass("pd0px");
+            })
+        })
+    </script>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css"
+          href="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/css/common.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/css/slide.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/css/flat-ui.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/css/jquery.nouislider.css">
+</head>
+
+<body ng-app="whateverApp" ng-controller="whateverController">
+
+<%- include ./head/header %>
+<div id="wrap" style="margin-top:46px!important;">
+    <!-- 左侧菜单栏目块 -->
+
+
+    <!-- 右侧具体内容栏目 -->
+
+    <div id="rightContent" style="padding:0!important">
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- 资源管理模块 -->
+
+
+            <!--product管理模块-->
+            <div role="tabpanel" class="tab-pane active" id="product">
+                <div class="check-div form-inline">
+                    <div class="col-xs-1">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addProduct">addProduct
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="data-div">
+                    <div class="row tableHeader">
+                        <!-- <div class="col-xs-1 ">ProductID</div> -->
+                        <!--<div class="col-xs-1">FarmerID</div>-->
+                        <div class="col-xs-2">Name</div>
+                        <div class="col-xs-2">Price</div>
+                        <div class="col-xs-2">Description</div>
+                        <!-- <div class="col-xs-1">Review</div> -->
+                        <!-- <div class="col-xs-1">Rating</div>	 -->
+                    </div>
+                    <div class="tablebody">
+                        <div class="row" ng-repeat="p in products">
+                            <!-- <div class="col-xs-1 ">{{p.ProductID}}</div> -->
+                            <!--<div class="col-xs-1">{{p.farmerID}}</div>-->
+                            <div class="col-xs-2">{{p.name}}</div>
+                            <div class="col-xs-2">{{p.price}}</div>
+                            <div class="col-xs-2">{{p.description}}</div>
+                            <!-- <div class="col-xs-1">{{p.Review}}</div> -->
+                            <!-- <div class="col-xs-1">{{p.Rating}}</div>	 -->
+                            <div class="col-xs-3">
+                                <button class="btn btn-success btn-xs" data-toggle="modal"
+                                        data-target="#reviseProduct" ng-click="modifyProduct(p)">modify
+                                </button>
+                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                        data-target="#deleteProduct" ng-click="toDeleteProduct(p)">delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            total 20 pages
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加product窗口-->
+                <div class="modal fade" id="addProduct" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">addProduct</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <!-- <div class="form-group ">
+                                                <label for="sName" class="col-xs-3 control-label"  >ProductID</label>
+                                                <div class="col-xs-8 ">
+                                                    <input type="" class="form-control input-sm duiqi"
+                                                        id="sName" placeholder=""
+                                                        ng-model="pro.ProductID" ng-init="pro.ProductID = ''">
+                                                </div>
+                                            </div> -->
+                                        <!-- <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">FarmerID</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                    id="sLink" placeholder=""
+                                                    ng-model="pro.FarmerID" ng-init="pro.FarmerID = ''">
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">Name</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       id="sOrd" placeholder=""
+                                                       ng-model="pro.name" ng-init="pro.name = ''">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Price</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       id="sKnot" placeholder=""
+                                                       ng-model="pro.price" ng-init="pro.price = ''">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Description</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       id="sDes" placeholder=""
+                                                       ng-model="pro.description" ng-init="pro.description = ''">
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Review</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                id="sRev" placeholder=""
+                                                ng-model="pro.Review" ng-init="pro.Review = ''">
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Rating</label>
+                                            <div class="col-xs-8">
+
+                                                <select class=" form-control select-duiqi"
+                                                        ng-model="pro.Rating" ng-init="pro.Rating = ''"
+                                                        ng-options="value.id as value.label for value in myProductRatingOpts">
+                                                    <option>--</option>
+                                                </select>
+
+                                            </div>
+                                        </div> -->
+
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">cancel</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal"
+                                        ng-click="addProduct()">save
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!--弹出修改product窗口-->
+                <div class="modal fade" id="reviseProduct" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">reviseProduct</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" ng-model="toMProduct._id" value="{{toMProduct._id}}">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">productID</label>
+                                            <div class="col-xs-8 ">
+                                                <p ng-model="toMProduct._id">{{toMProduct._id}}</p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group ">
+                                                <label for="sName" class="col-xs-3 control-label"  >ProductID</label>
+                                                <div class="col-xs-8 ">
+                                                    <input type="" class="form-control input-sm duiqi"
+                                                        id="idModProProductId" placeholder=""
+                                                        ng-model="toMProduct.ProductID">
+                                                </div>
+                                            </div> -->
+                                        <!-- <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">FarmerID</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                    id="idModProFarmerId" placeholder=""
+                                                    ng-model="toMProduct.FarmerID">
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">Name</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       id="idModProName" placeholder=""
+                                                       ng-model="toMProduct.name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Price</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       id="idModProPrice" placeholder=""
+                                                       ng-model="toMProduct.price">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Description</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       id="idModProDescription" placeholder=""
+                                                       ng-model="toMProduct.description">
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Review</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                id="idModProReview" placeholder=""
+                                                ng-model="toMProduct.Review" >
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">Rating</label>
+                                            <div class="col-xs-8">
+
+                                                <select class=" form-control select-duiqi"
+                                                        id="idModProRating"
+                                                        ng-model="toMProduct.Rating"
+                                                        ng-options="value.id as value.label for value in myProductRatingOpts">
+                                                    <option>--</option>
+                                                </select>
+
+                                            </div>
+                                        </div> -->
+
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal"
+                                        ng-click="cancelSaveModifyProduct()">cancel
+                                </button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal"
+                                        ng-click="saveToModifyProduct()">save
+                                </button>
+
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!--弹出删除product警告窗口-->
+                <div class="modal fade" id="deleteProduct" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">Warning</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">Sure to delete product?</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn  btn-xs btn-danger" data-dismiss="modal"
+                                        ng-click="deleteProduct()">Yes
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </div>
+            <!-- end -->
+
+
+        </div>
+    </div>
+
+</div>
+
+<script src="http://www.17sucai.com/preview/2/2015-12-28/bootstrap-moban/js/jquery.nouislider.js"></script>
+
+<!-- this page specific inline scripts -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <%- include('head/shoppingCartView') %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+    <script src="/js/common.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('sCart', function ($scope, $http) {
+
+            //alert("returned cartlist");
+
+            //alert($scope.id);
+            $scope.cart = JSON.parse('<%- JSON.stringify(cart) %>');
+            log('cart = ', $scope.cart);
+            $scope.removeItem = function (item) {
+                log('item = ', item);
+                $http.post('/shoppingCartView/remove', {item: item}).then(function (res) {
+                    //window.location="/?r=123";
+                    location.reload();
+                });
+            }
+        });
+    </script>
+</head>
+
+<body id="refreshCartBody" ng-app="myApp" ng-controller="sCart">
+<div id="refreshCart">
+
+    <div id="viewCartAddress" class="needExtraSpacing">
+        <div>
+            Deliver to
+            <span id="fulladdress">xinleiyang-SAN JOSE</span>
+        </div>
+
+        <div id="linkForChange">
+            (
+            <a href="#">change delivery address</a>
+            )
+        </div>
+        <div id="addressChangeBlock"></div>
+
+    </div>
+
+    <div id="earliestDeliveryMessage">
+        Earliest availability for all items in your cart is:
+        <strong>Wednesday, April 20th</strong>
+    </div>
+
+    <div class="inlineCartHeader " align="center">
+
+        <form action="/PreviewOrder" method="post" target="_top" onsubmit="submitOnlyOnce(this)">
+            <input type="hidden" name="referer" value="Gateway"/>
+            <input ng-cloak ng-if="!!!cart.cartList.length" class="proceedToCheckout" type="image" align="absmiddle" value="submit" alt="Proceed to Checkout"
+                   title='Minimum order size $50 to check out'
+                   src='https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/btn-proceedtocheckout2-inactive._V146077456_.png'
+                   disabled="disabled"/>
+            <input ng-cloak  ng-if="cart.cartList.length" class="proceedToCheckout" type="image" align="absmiddle" value="submit" alt="Proceed to Checkout"
+                   title="Proceed to Checkout"
+                   src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/btn-proceedtocheckout2._V146077459_.png"/>
+
+        </form>
+
+    </div>
+
+    <div id="totalsLine" class="cartElement showCoupons" ng-if="cart.total">
+        <div class="cartSubtotal">Subtotal ${{cart.total}}</div>
+
+        <div class="cartQuantity">({{cartList.length}} items)</div>
+
+    </div>
+    <div class="clear"></div>
+
+    <%- include('cartSection') %>
+
+</div>
+
+<!-- <div class="amg-adstripe, belowCartAmg" id="DA_below_cart"></div> -->
+<script>
+    (function (d, e) {
+        e = d.createElement('script');
+        e.src = '//www.amazon.com/aan/2009-09-09/ad/amazonexternal.us/GetAanAd?pt=Fresh_US_CART&pt2=SF&pid=SF&slot=Below_Cart&prid=' + (new Date).getTime();
+        e.async = !0;
+        e.type = 'text/javascript';
+        d.getElementsByTagName('head')[0].appendChild(e);
+    })(document);
+</script>
+</body>
+</html>

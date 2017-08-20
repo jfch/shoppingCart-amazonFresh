@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp" ng-controller="index">
+	<head>
+	<%- include('head/index') %>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="/js/common.js"></script>
+		<script>
+
+			var app = angular.module('myApp', []);
+			app.controller('index', function ($scope, $http) {
+				//alert();
+//				var pageNum = locals.pageNum || 1;
+				var pageNum = JSON.parse("<%= JSON.stringify(pageNum) %>");
+				log('pageNum = ', pageNum);
+				apiRequest('/api/res/product/bestseller/' + pageNum, 'productsInfo', $scope, $http);
+
+				$scope.addToCartAvailable = function (item) {
+					addToCart(item, $http);
+				};
+
+			});
+		</script>
+	
+	</head>
+	<body id="default">
+	<!-- <embed width="750" height="464" src="/buildDNA.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash"> -->
+		<div id="alphaLayer">
+			<!-- BEGIN header -->
+			<%- include('head/header') %>
+			<!-- END header -->
+			<div id="pageWrapper" class="hasCart">
+				<div id="shoppingCart">
+					<script type="text/javascript">
+									function resizeCartIframe(height) {
+									jQuery("#shopping-cart").attr("height", (height + 25) + "px");
+									}
+					</script>
+					<!-- change shoppingCartView/signInCart-->
+					<iframe id="shopping-cart" name="shopping-cart" title="Sign In"
+					src="/shoppingCartView" frameborder="0" scrolling="no" style="width:288px;"></iframe>
+				</div>
+				<%- include('head/shopBar') %>
+				<div id="pageContent">
+					<div class="marketplace-sf unrecognized">
+						<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+						-->
+						<div id="cat_page">
+							<!--Start Cat Page-->
+							<div id="breadcrumb">
+								<p>
+									<a href="/Category?cat=ShopGrocery">Grocery</a>
+									&rsaquo; Local Farmers Market Delivery
+								</p>
+							</div>
+							<div id="left_nav">
+								<!--Start Left Nav-->
+								<div class="advertWidget"></div>
+								<!--Advert Widget-->
+								<br>
+								<ul id="FRESH_VEGGIES" class="link_groups">
+									<a href="https://fresh.amazon.com/Search?browseNode=6506977011&specialty=9332136011&ref_=Fr_Gr_Farm_Nv1_produce" class="main_nav level1">Local Produce</a>
+									<li>
+										<a href="https://fresh.amazon.com/Search?browseNode=6507073011&specialty=9332136011&ref_=Fr_Gr_Farm_Nv2_" class="main_nav level2">Cabbage</a>
+									</li>
+									<li>
+										<a href="https://fresh.amazon.com/Search?browseNode=6507079011&specialty=9332136011&ref_=Fr_Gr_Farm_Nv3_herbs" class="main_nav level2">Fresh Herbs</a>
+									</li>
+									<li>
+										<a href="https://fresh.amazon.com/Search?browseNode=6507099011&specialty=9332136011&ref_=Fr_Gr_Farm_Nv4_lfygreens" class="main_nav level2">Leafy Greens</a>
+									</li>
+									<li>
+										<a href=" https://fresh.amazon.com/Search?browseNode=6507153011&specialty=9332136011&ref_=Fr_Gr_Farm_Nv5_rootveg" class="main_nav level2">Root Vegetables</a>
+									</li>
+									<li>
+										<a href="https://fresh.amazon.com/Search?browseNode=6507166011&specialty=9332136011&ref_=Fr_Gr_Farm_Nv6_squash" class="main_nav level2">Squash</a>
+									</li>
+								</ul>
+								<br/>
+								<ul id="FRESH_VEGGIES" class="link_groups">
+									<a href="https://fresh.amazon.com/Category?cat=farmersmarket&ref_=Fr_Gr_Farm_Nv8_bundles" class="main_nav level1">Produce Bundles</a>
+									<a href="https://fresh.amazon.com/Search?browseNode=3441527011,2255615011&specialty=9332136011&ref_=Fr_Gr_Farm_Nv9_JamChutney" class="main_nav level1">Jams & Chutneys</a>
+									<a href="https://fresh.amazon.com/Category?cat=farmbox_sf&ref_=Fr_Gr_Farm_Nv10_farmbox" class="main_nav level1">FarmBoxSF</a>
+								</ul>
+								<br/>
+								<!-- <span class="nav_header">Related Categories</span>
+								<ul id="RELATED">
+									<li>
+											<a href="https://fresh.amazon.com/Category?cat=fruits&appendmp=true&ref_=Fr_Gr_Loc_Nv15_AllFr" class="main_nav">All Fresh Fruit</a>
+									</li>
+									<li>
+											<a href="https://fresh.amazon.com/Category?cat=vegetables&appendmp=true&ref_=Fr_Gr_Loc_Nv16_AllVeg" class="main_nav">All Fresh Vegetables</a>
+									</li>
+								</ul>
+								-->
+							</div>
+							<!--End Left Nav-->
+							<div id="content" style="width:76%!important">
+								<!--Start Page Content-->
+								<!--Start Curated Content-->
+								<div id="curated"style="width:100%!important">
+									<div class="curated-content"style="width:100%!important">
+										<!--Start Page Heading-->
+										<div class="section_header">
+											<span>Local Farmers Market Delivery</span>
+										</div>
+										<div class="section_subheader">
+											<span>
+												Shop
+												<!--<a href="https://fresh.amazon.com/Search?input=&sort=bestselling&browseNode=16318981&allergen=&specialty=9332136011&ref_=gr_pr_local_local_ff">Fresh Fruits</a>
+												,-->
+												<a href="https://fresh.amazon.com/Search?browseNode=6506977011&specialty=9332136011&ref_=Fr_Gr_Farm_MS1_produce">produce</a>
+												and more sourced directly from local farmers markets in your area
+											</span>
+										</div>
+										<br>
+										<!--End Page Heading-->
+										<!--ADJUSTED CAROUSEL TO BANNER-->
+										<div class="category-carousel" style="width:100%!important;">
+											<div class="carousel-widget" id="rotatingSliderWidget"style="width:100%!important;">
+												<img style="width:98%!important;background:red"src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/merch/2016/Categories/Pages/LocalFarmersMarket/Q1/LocalFarmersMarket_NewBanner_East._V300210784_.jpg">
+											</div>
+											<!--End Rotating Widget-->
+										</div>
+										<div style="clear:left;"></div>
+										<!--CAT TILES-->
+										<!--<div class="section_header">
+											<span class="subdued">Browse</span>
+											<span>Shop Local Farmers Market Selections</span>
+										</div>
+										-->
+										<div style="clear:left;"></div>
+										<div id="header-divider">
+											<div id="header-divider-text" style="width:350px;">Shop Local Farmers Market Selections</div>
+										</div>
+										<div style="clear:left;"></div>
+										<div style="clear:left;"></div>
+									</div>
+								</div>
+								<!-- <p style="font-size:16px; color:#999; margin:30px 0px 10px 0px; ">Shop All Local Produce</p>
+								-->
+								<div class="searchWidget"  id="veggie_widget">
+									<!--Put Search results here-->
+									<input type="hidden" name="header" value="Shop Search Results" />
+									<input type="hidden" name="query" value="browseNode=13638794011" />
+									<div class="searchItems" id="searchAndBrowse">
+										<div id="searchSort">
+											<div class="numberOfResults">
+												1
+												-
+												30
+												of
+												64
+											</div>
+											<!--  sort by -->
+											<div class="sortBy">
+												<form method="get" action="Search">
+													<label for="fld-sortBy">Sort by</label>
+													<input type="hidden" name="resultsPerPage" value="30">
+													<input type="hidden" name="browseNode" value="13638794011">
+													<select name="sort" onchange="this.form.submit()" id="fld-sortBy">
+														<option value="relevance">Relevance</option>
+														<option selected="true" value="bestselling">Bestselling</option>
+														<option value="price_low_to_high">Price: Low to High</option>
+														<option value="price_high_to_low">Price: High to Low</option>
+													</select>
+												</form>
+											</div>
+											<!--  end sort by -->
+											<!-- BEGIN pagination -->
+											<div class="pagination">
+												<span class="disabled">&nbsp;Prev</span>
+												&nbsp;1
+												<a href="https://fresh.amazon.com/Search?input=&amp;sort=bestselling&amp;browseNode=13638794011&amp;allergen=&amp;resultsPerPage=30&amp;pageNumber=2">&nbsp;2</a>
+												<a href="https://fresh.amazon.com/Search?input=&amp;sort=bestselling&amp;browseNode=13638794011&amp;allergen=&amp;resultsPerPage=30&amp;pageNumber=3">&nbsp;3</a>
+												<a href="https://fresh.amazon.com/Search?input=&amp;sort=bestselling&amp;browseNode=13638794011&amp;allergen=&amp;resultsPerPage=30&amp;pageNumber=2">&nbsp;Next&nbsp;</a>
+											</div>
+											<!-- END pagination -->
+										<br style="clear: left;"></div>
+										<div class="resultSet dense">
+											<div class="smallProduct" ng-cloak ng-repeat="product in productsInfo.products">
+												<div class="itemInnerBorder">
+													<div class="ovl">
+														<div class="alreadyInYourCartSpacer"></div>
+														<div class="alreadyInYourCart-B019FRUOH2"></div>
+													</div>
+													<div class="secondaryActions">
+														<div class="secondaryActions">
+															<div id="saveToListB019FRUOH2" class="saveToListAction">
+																<form class="form_info">
+																	<input type="hidden" name="asin" value="B019FRUOH2">
+																	<a href="#">
+																		<div class="addToListImage"></div>
+																	</a>
+																</form>
+															</div>
+														</div>
+													</div>
+													<div class="item">
+														<div class="secondaryActions">
+															<!-- Z-index modified to keep it under the add-to-list message -->
+															<div class="badgeOvl">
+															<img src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/merch/2015/CatPages/CatPage/FarmersMarket/FarmersMarket_badge._V311599607_.png" class="merchantBadge" alt="Merchant Badge"></div>
+														</div>
+														<div id="B019FRUOH2" class="itemPicture B019FRUOH2-asin">
+															<div class="ovl">
+																<a href="/product/id/{{product.productID}}">
+																	<!-- Big Image -->
+																<img ng-src="{{product.image}}" id="img_B019FRUOH2" class="itemDetailImage" alt="Product Image"></a>
+															</div>
+														</div>
+														<div class="itemDetails">
+															<div class="price">
+																<span class="value">
+																	${{product.price}}
+																	<span class="unitPrice"></span>
+																</span>
+															</div>
+															<h4 class="title longTitle">
+															<a href="#">{{product.name}}</a>
+															<input class="asinTitle" type="hidden" name="asinTitle" value="Farmers Market Organic Seasonal Vegetable Bundle"></h4>
+														</div>
+														<!-- Available by Friday -->
+														<div class="availabilityMessage ">Available by Friday</div>
+														<input type="hidden" name="addToCartAsin" value="B019FRUOH2">
+														<div class="addToCartQuantityWrapper">
+															<div class="quantityButtonWrapper">
+																<div class="quantityButtonInner">
+																	<span class="quantityButtonPrompt">1</span>
+																<img class="quantityButtonArrows" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/search/select_arrows._V345508742_.png"></div>
+																<div class="quantityPopoverWrapper" style="display: none;">
+																	<ul>
+																		<li class="quantityDropDownItem selected">
+																			<a id="quantityDropDownLink1-B019FRUOH2" class="quantityDropDownLink1">1</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink2-B019FRUOH2" class="quantityDropDownLink2">2</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink3-B019FRUOH2" class="quantityDropDownLink3">3</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink4-B019FRUOH2" class="quantityDropDownLink4">4</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink5-B019FRUOH2" class="quantityDropDownLink5">5</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink6-B019FRUOH2" class="quantityDropDownLink6">6</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink7-B019FRUOH2" class="quantityDropDownLink7">7</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink8-B019FRUOH2" class="quantityDropDownLink8">8</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink9-B019FRUOH2" class="quantityDropDownLink9">9</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink10-B019FRUOH2" class="quantityDropDownLink10">10</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink11-B019FRUOH2" class="quantityDropDownLink11">11</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink12-B019FRUOH2" class="quantityDropDownLink12">12</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink13-B019FRUOH2" class="quantityDropDownLink13">13</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink14-B019FRUOH2" class="quantityDropDownLink14">14</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink15-B019FRUOH2" class="quantityDropDownLink15">15</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink16-B019FRUOH2" class="quantityDropDownLink16">16</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink17-B019FRUOH2" class="quantityDropDownLink17">17</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink18-B019FRUOH2" class="quantityDropDownLink18">18</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink19-B019FRUOH2" class="quantityDropDownLink19">19</a>
+																		</li>
+																		<li class="quantityDropDownItem">
+																			<a id="quantityDropDownLink20-B019FRUOH2" class="quantityDropDownLink20">20</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+														<form method="post" class="addToCartForm" action="/ShoppingCartView" target="shopping-cart">
+															<input type="hidden" name="action" value="addItem">
+															<input type="hidden" name="asin" value="B019FRUOH2">
+															<input type="hidden" name="refId" value="185-9036278-1578433">
+															<input type="hidden" name="restriction" value="">
+															<input type="hidden" name="addCartRefer" value="">
+															<input type="hidden" name="showAddToExistingOrderMsg" value="">
+															<input type="hidden" name="merchantId" value="ANOSIAN1G8EZ7">
+															<input class="addToCartQuantity" name="quantity" type="hidden" value="1">
+															<input type="hidden" name="qid" value="0">
+															<input type="hidden" name="rank" value="1">
+															<input type="hidden" name="sr" value="1-1">
+															<button class="basicButton primaryButton addToCartButton" type="button" value="submit" ng-click=" addToCartAvailable(product);">Add to Cart</button>
+														</form>
+													</div>
+												</div>
+											</div>
+											
+											<div id="itemBorderCoverHo" class="itemBorderCover"></div>
+											<div id="itemBorderCoverVe" class="itemBorderCover"></div>
+											<div style="clear: left"></div>
+										</div>
+										<div class="pagination">
+											<span class="disabled">&nbsp;Previous</span>
+											&nbsp;1
+											<a href="https://fresh.amazon.com/Search?input=&amp;pageNumber=2&amp;sort=bestselling&amp;browseNode=13638794011&amp;allergen=&amp;resultsPerPage=30">&nbsp;2</a>
+											<a href="https://fresh.amazon.com/Search?input=&amp;pageNumber=3&amp;sort=bestselling&amp;browseNode=13638794011&amp;allergen=&amp;resultsPerPage=30">&nbsp;3</a>
+											<a href="https://fresh.amazon.com/Search?input=&amp;pageNumber=2&amp;sort=bestselling&amp;browseNode=13638794011&amp;allergen=&amp;resultsPerPage=30">&nbsp;Next&nbsp;</a>
+										</div>
+										<div class="amg-adstripe, searchAmg" id="DA_search_btf"></div>
+									</div>
+								</div>
+								<!--End Hybrid Search Results >
+							</div>
+							<!--End Curated-->
+							<!--End Page Content-->
+							<div style="clear:left;"></div>
+						</div>
+						<!--End Cat page-->
+					</div>
+				</div>
+			</div>
+		</div>
+	<%- include('head/footer') %></body>
+</html>

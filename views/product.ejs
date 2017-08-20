@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  ng-app="myApp" ng-controller="UploaderController" >
+	<head>
+		<%- include('head/product')%>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="/demo/css/application.css">
+		<script type="text/javascript" src="/demo/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/lib/jquery.raty.min.js"></script>
+	<script src="/js/common.js"></script>
+	<script >
+		var app = angular.module('myApp', []);
+		
+
+            app.controller('UploaderController', function($scope, $http, fileReader){
+				apiRequest('/api/res/product/id/<%=req.params.resID%>', 'product', $scope, $http);
+				$scope.addToCartAvailable = function (item) {
+					addToCart(item, $http);
+				};
+            	$scope.images=[];
+            	$scope.content=[];
+            	/////////rating begin
+			            	$scope.start=0;
+			    $(function() {
+			      $.fn.raty.defaults.path = '/lib/img';
+			        
+			    
+			    $('#function-demo1').raty({
+			      number: 5,//多少个星星设置
+			    score: 0,//初始值是设置
+			    targetType: 'number',//类型选择，number是数字值，hint，是设置的数组值
+			        path      : 'demo/img',
+			        cancelOff : 'cancel-off-big.png',
+			        cancelOn  : 'cancel-on-big.png',
+			        size      : 48,
+			        starHalf  : 'star-half-big.png',
+			        starOff   : 'star-off-big.png',
+			        starOn    : 'star-on-big.png',
+			        target    : '#function-hint1',
+			        cancel    : false,
+			        targetKeep: true,
+			        precision : false,//是否包含小数
+			        click: function(score, evt) {
+			          //alert('ID: ' + $(this).attr('id') + "\nscore: " + score + "\nevent: " + evt.type);
+			          $scope.star=score;
+			          alert( $scope.star);
+			        }
+			      });    
+			    });
+            	//////////rating end
+            	$scope.fd = new FormData();
+            	//upload
+            	$scope.uploadFile = function(files) {
+    				
+    				//Take the first selected file
+    				$scope.fd.append("file", files[0]);
+    					for(var attr in $scope.fd){
+                                  		alert(attr+":"+$scope.fd[attr]);
+                        }
+
+				    // $http.post(uploadUrl, fd, {
+				    //     withCredentials: true,
+				    //     headers: {'Content-Type': undefined },
+				    //     transformRequest: angular.identity
+				    // }).success(  ).error(  );
+
+				};
+            	$scope.upload = function(){
+					    $http({
+					        method: 'POST', 
+					        url: '/remote/url',
+					        headers: {'Content-Type': undefined },
+					        data: $scope.content,
+					    }).success(function(response) {
+					        // Uploading complete
+					        console.log('Request finished', response);
+					    });
+				}
+            	//alert();
+
+            	$scope.postReview=function(){
+
+            		//alert(	"$scope.images=[];存有image base64");
+            		alert("call upload");
+            	}
+                $scope.getFile = function () {
+                	
+                    fileReader.readAsDataUrl($scope.file, $scope)
+                                  .then(function(result) {
+                                  	//alert($scope.file);
+                                  	
+                                  	for(var attr in $scope.file){
+                                  		alert(attr+":"+$scope.file[attr]);
+                                  	}
+                                  	  var arr =$scope.images;
+                                      $scope.imageSrc = result;
+                                      var res =result;
+                                      if(res.indexOf('video')!=-1){
+                                      	res="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/customer-reviews/RYP_video_upload_sprite-v1._V313451524_.png"
+                                      }
+                                      arr.push({image:res});
+                                      //alert(arr[0].image);
+                                     // $scope.images=arr;
+                                     // $scope.images.push({image:result});
+                                      //alert();
+                                  });
+                };
+            })
+		angular.module('myApp')
+.directive('fileModel', ['$parse', function ($parse) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs, ngModel) {
+      var model = $parse(attrs.fileModel);
+      var modelSetter = model.assign;
+      element.bind('change', function(event){
+        scope.$apply(function(){
+          modelSetter(scope, element[0].files[0]);
+        });
+        //附件预览
+           scope.file = (event.srcElement || event.target).files[0];
+        scope.getFile();
+      });
+    }
+  };
+}]);
+angular.module('myApp').factory('fileReader', ["$q", "$log", function($q, $log){
+  var onLoad = function(reader, deferred, scope) {
+    return function () {
+      scope.$apply(function () {
+        deferred.resolve(reader.result);
+      });
+    };
+  };
+  var onError = function (reader, deferred, scope) {
+    return function () {
+      scope.$apply(function () {
+        deferred.reject(reader.result);
+      });
+    };
+  };
+  var getReader = function(deferred, scope) {
+    var reader = new FileReader();
+    reader.onload = onLoad(reader, deferred, scope);
+    reader.onerror = onError(reader, deferred, scope);
+    return reader;
+  };
+  var readAsDataURL = function (file, scope) {
+    var deferred = $q.defer();
+    var reader = getReader(deferred, scope);		 
+    reader.readAsDataURL(file);
+    return deferred.promise;
+  };
+  return {
+    readAsDataUrl: readAsDataURL  
+  };
+}])
+
+	</script>
+
+		<link rel="stylesheet" href="https://images-na.ssl-images-amazon.com/images/G/01/AUIClients/ReviewYourPurchases-382c614a635416d5e53af0665818bc2d97ca1e9a._V2_.css#AUIClients/ReviewYourPurchases.secure.min" />
+		<link rel="stylesheet" href="https://images-na.ssl-images-amazon.com/images/G/01/AUIClients/CustomerReviewsImageKit-805bae40efe8127adbfd2b9acbc7ae89d6ea7f30._V2_.css#AUIClients/CustomerReviewsImageKit.secure.min" />
+		<link rel="stylesheet" href="https://images-na.ssl-images-amazon.com/images/G/01/AUIClients/AmazonUI-def1dfe3edcac538e27845c3cfc11fa83c842d7e._V2_.css#AUIClients/AmazonUI.rendering_engine-not-trident.secure.min" />
+		<link rel="stylesheet" type="text/css" href="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/redirect-overlay/redirect-overlay-nav-mx-https-20150828._CB311575010_.css"></head>
+		<body id="searchAndBrowse">
+			<div id="alphaLayer" style="z-index:9999">
+				<!-- BEGIN header -->
+				<%- include('head/header')%>
+				<!-- END header -->
+				<div id="pageWrapper" class="hasCart">
+					<div id="shoppingCart">
+						<script type="text/javascript">
+																		function resizeCartIframe(height) {
+																		jQuery("#shopping-cart").attr("height", (height + 25) + "px");
+																		}
+						</script>
+						<iframe id="shopping-cart" name="shopping-cart" title="Shopping Cart" src="/ShoppingCartView" frameborder="0" scrolling="no" style="width:288px;"></iframe>
+					</div>
+					<%- include('head/shopBar') %>
+					<div id="pageContent">
+						<!-- BEGIN breadcrumb -->
+						<div id="breadcrumb">
+							&lsaquo;
+							<a href="https://fresh.amazon.com//previewOrder">Return to previous page</a>
+						</div>
+						<!-- END breadcrumb -->
+						<div id="detailPageImages">
+							<div class="productImage" id="mainImgWrapper">
+								<img src="{{product.image}}" id="mainImg" alt="Product Image" />
+								<div id="airy-container"></div>
+								<link rel="stylesheet" href="https://images-na.ssl-images-amazon.com/images/G/01/vap/video/airy2/prod/2.0.823.0/css/beacon._TTW_.css">
+								<script src="https://images-na.ssl-images-amazon.com/images/G/01/vap/video/airy2/prod/2.0.823.0/js/airy.skin._TTW_.js"></script>
+							</div>
+							<div id="imageCaption" class="infoUnderMainImg">Roll over image to zoom in</div>
+							<div id="seeAllImages" class="infoUnderMainImg">
+								<a href="#">See all 2 product images</a>
+							</div>
+							<!--<div id="thumbnailsWrapper">-->
+								<!--<span class="detailPageThumbnail">-->
+									<!--<img src="https://images-na.ssl-images-amazon.com/images/I/51akpSSTbaL.01._SR40,40_.jpg" border="0" class="thumbnail" alt="Product Image" />-->
+									<!--<span class="thumbnailCaption">&nbsp;</span>-->
+									<!--&lt;!&ndash; Hide the input tags so IE does not add extra space in the layout for no good reason &ndash;&gt;-->
+									<!--<span style="display:none;">-->
+										<!--<input type="hidden" value="https://images-na.ssl-images-amazon.com/images/I/51akpSSTbaL.01._SR300,300_.jpg" name="detailImgUrl" />-->
+										<!--<input type="hidden" value="https://images-na.ssl-images-amazon.com/images/I/71xh2xTgmyL.jpg" name="hiResImgUrl" />-->
+										<!--<input type="hidden" value="" name="mediaId" />-->
+									<!--</span>-->
+								<!--</span>-->
+								<!--<span class="detailPageThumbnail">-->
+									<!--<img src="https://images-na.ssl-images-amazon.com/images/I/51yXE2RRLEL.01._SR40,40_.jpg" border="0" class="thumbnail" alt="Product Image" />-->
+									<!--<span class="thumbnailCaption">&nbsp;</span>-->
+									<!--&lt;!&ndash; Hide the input tags so IE does not add extra space in the layout for no good reason &ndash;&gt;-->
+									<!--<span style="display:none;">-->
+										<!--<input type="hidden" value="https://images-na.ssl-images-amazon.com/images/I/51yXE2RRLEL.01._SR300,300_.jpg" name="detailImgUrl" />-->
+										<!--<input type="hidden" value="https://images-na.ssl-images-amazon.com/images/I/71YNi9Pu41L.jpg" name="hiResImgUrl" />-->
+										<!--<input type="hidden" value="" name="mediaId" />-->
+									<!--</span>-->
+								<!--</span>-->
+							<!--</div>-->
+						</div>
+						<!--[if IE]>
+						<style>
+																			.centerslate span {
+																			display: inline-block;
+																			}
+						</style>
+						<![endif]-->
+						<!-- BEGIN buying -->
+						<div class="buying"  ng-cloak>
+							<h1 ng-cloak>{{product.name}}</h1>
+							<div class="byline">
+								Other products by
+								<a href="https://fresh.amazon.com/Search?brand=Farmers+Market">{{product.farmer.userName}}</a>
+							</div>
+							<div class="moreDetails">
+								<!--<a href="#productDetails">more about this product</a>
+								-->
+							</div>
+							<div class="item">
+								<div class="itemPrice">
+									<div class="price">
+										<span class="value">${{product.price}}</span>
+										<span class="unitPrice">(${{product.price}}/Count)</span>
+									</div>
+								</div>
+								<div id="B019ZOS0TO" class="itemActions">
+									<input type="hidden" name="addToCartAsin" value="B019ZOS0TO" />
+									<div class="addToCartQuantityWrapper">
+										<div class="quantityButtonWrapper">
+											<div class="quantityButtonInner">
+												<span class="quantityButtonPrompt">1</span>
+											<img class="quantityButtonArrows" src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/ui/search/select_arrows._V345508742_.png"></div>
+											<div class="quantityPopoverWrapper">
+												<ul>
+													<li class="quantityDropDownItem selected">
+														<a id="quantityDropDownLink1-B019ZOS0TO" class="quantityDropDownLink1">1</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink2-B019ZOS0TO" class="quantityDropDownLink2">2</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink3-B019ZOS0TO" class="quantityDropDownLink3">3</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink4-B019ZOS0TO" class="quantityDropDownLink4">4</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink5-B019ZOS0TO" class="quantityDropDownLink5">5</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink6-B019ZOS0TO" class="quantityDropDownLink6">6</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink7-B019ZOS0TO" class="quantityDropDownLink7">7</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink8-B019ZOS0TO" class="quantityDropDownLink8">8</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink9-B019ZOS0TO" class="quantityDropDownLink9">9</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink10-B019ZOS0TO" class="quantityDropDownLink10">10</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink11-B019ZOS0TO" class="quantityDropDownLink11">11</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink12-B019ZOS0TO" class="quantityDropDownLink12">12</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink13-B019ZOS0TO" class="quantityDropDownLink13">13</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink14-B019ZOS0TO" class="quantityDropDownLink14">14</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink15-B019ZOS0TO" class="quantityDropDownLink15">15</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink16-B019ZOS0TO" class="quantityDropDownLink16">16</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink17-B019ZOS0TO" class="quantityDropDownLink17">17</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink18-B019ZOS0TO" class="quantityDropDownLink18">18</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink19-B019ZOS0TO" class="quantityDropDownLink19">19</a>
+													</li>
+													<li class="quantityDropDownItem">
+														<a id="quantityDropDownLink20-B019ZOS0TO" class="quantityDropDownLink20">20</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<form method="post" class="addToCartForm" action="/ShoppingCartView" target="shopping-cart">
+										<input type="hidden" name="action" value="addItem" />
+										<input type="hidden" name="asin" value="B019ZOS0TO" />
+										<input type="hidden" name="refId" value="185-9036278-1578433" />
+										<input type="hidden" name="restriction" value="" />
+										<input type="hidden" name="addCartRefer" value="" />
+										<input type="hidden" name="showAddToExistingOrderMsg" value="" />
+										<input type="hidden" name="merchantId" value="ANOSIAN1G8EZ7" />
+										<input class="addToCartQuantity" name="quantity" type="hidden" value="1"/>
+										<input type="hidden" name="qid" value="" />
+										<input type="hidden" name="rank" value="0" />
+										<input type="hidden" name="sr" value="" />
+										<button class="basicButton primaryButton addToCartButton" type="button" value="submit" ng-click="addToCartAvailable(product);">Add to Cart</button>
+									</form>
+									<!-- BEGIN Case Pack messaging -->
+									<!-- END Case Pack messaging -->
+									<div class="secondaryActions">
+										<div id="saveToListB019ZOS0TO" class="saveToListAction">
+											<form class="form_info">
+												<input type="hidden" name="asin" value="B019ZOS0TO" />
+												<a href="#">Add to Shopping List</a>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="messaging">
+									<p>
+										Sold by <strong><a href="Search?input=Fresh+Nation+SF&">Fresh Nation SF</a></strong>
+										. Shipped by <strong>AmazonFresh</strong>
+										.
+									</p>
+								</div>
+							</div>
+							<!-- Available by Wednesday -->
+							<div class="availabilityMessage  ">Available by Wednesday</div>
+						</div>
+						<br clear="left" />
+						<hr />
+						<div class="detailPageWidget">
+							<h2>Product Features</h2>
+							<ul style="list-style-type: disc;">
+								<li>
+									Certified organic leafy greens selected by our personal food shoppers.
+								</li>
+								<li>
+									5 bunches of organic greens per bundle; including 3-5 different varieties.
+								</li>
+								<li>
+									This bundle most likely includes kale and chard as well as other seasonal selections.
+								</li>
+								<li>Certified organic produce sourced from local farms.</li>
+								<li>Selections vary according to the season and availability.</li>
+							</ul>
+						</div>
+						<div id="productDescription" class="detailPageWidget">
+							<h2>Product Description</h2>
+							<p>
+								A selection of certified organic leafy greens, picked at the peak of freshness and delivered to your door to provide the most nutritional bang for your buck. Five locally grown bunches of fresh, certified organic greens (3-5 different varieties included in each bundle) packed with essential nutrients and oh-so-delicious to eat. Locally available varieties include rainbow, red and yellow chard; red Russian, green, purple and black kale; arugula; bok choy; collards and spinach. Eat healthy, and simultaneously support local farmers and the environment - shop organic, from your local farmers market! All organic leafy greens are sourced directly from certified organic local farms and farmers markets.
+							</p>
+							<div class="clear"></div>
+						</div>
+						<div class="detailPageWidget">
+							<h2>Product Details</h2>
+							<ul>
+								<li>
+									<strong>ASIN:</strong>
+									B019ZOS0TO
+								</li>
+							</ul>
+						</div>
+						<div class="detailPageWidget">
+							<h2>Ingredients</h2>
+							<p>Fresh, certified organic, locally grown produce.</p>
+						</div>
+						<div class="disclaimerText">
+							<strong>Freshness Guarantee:</strong>
+							AmazonFresh guarantees every product will be delivered to your home well within the manufacturer's recommended <i>use by</i>
+							, <i>sell by</i>
+							,
+							<i>best by</i>
+							, or
+							<i>expiration</i>
+							date.
+						</div>
+						<div class="disclaimerText">
+							<strong>Disclaimer:</strong>
+							While we work to ensure that product information is correct, on occasion manufacturers may alter their ingredient lists. Actual product packaging and materials may contain more and/or different information than that shown on our Web site. We recommend that you do not solely rely on the information presented and that you always read labels, warnings, and directions before using or consuming a product. For additional information about a product, please contact the manufacturer. Content on this site is for reference purposes and is not intended to substitute for advice given by a physician, pharmacist, or other licensed health-care professional. You should not use this information as self-diagnosis or for treating a health problem or disease. Contact your health-care provider immediately if you suspect that you have a medical problem. Information and statements regarding dietary supplements have not been evaluated by the Food and Drug Administration and are not intended to diagnose, treat, cure, or prevent any disease or health condition. AmazonFresh assumes no liability for inaccuracies or misstatements about products.
+						</div>
+					</td>
+				</div>
+			</div>
+		</div>
+
+			<!-- begin -->
+			<div id="revMHLContainer" class="a-column a-span8" style="width:77%">
+		<h2 class="a-spacing-small">Customer Reviews</h2>
+		<div id="revMHLContainerChild" class="a-section">
+			<div id="summaryContainer" class="a-row a-spacing-medium">
+				<div id="revSum" class="a-section">
+
+					<div class="a-row a-spacing-small">
+
+						<div id="summaryStars" class="a-row">
+							<a class="a-link-normal a-text-normal product-reviews-link" title="4.6 out of 5 stars" href="http://www.amazon.com/adidas-Performance-Climacore-Short-Sleeve/product-reviews/B00QVAMLBY/ref=cm_cr_dp_qt_see_all_top?ie=UTF8&amp;showViewpoints=1&amp;sortBy=helpful"> <i class="a-icon a-icon-star-medium a-star-medium-4-5"><span class="a-icon-alt">4.6 out of 5 stars</span></i> 
+								44
+							</a>
+						</div>
+						<div id="avgRating" class="a-row a-spacing-small a-color-secondary">
+							<span class="a-declarative" data-action="a-popover" data-a-popover="{&quot;content&quot;:&quot;Amazon calculates a product’s star ratings using a machine learned model instead of a raw data average. The machine learned model takes into account factors including: the age of a review, helpfulness votes by customers and whether the reviews are from verified purchases.&quot;}">
+								<a href="javascript:void(0)" class="a-popover-trigger a-declarative">
+									<span>4.6 out of 5 stars</span> <i class="a-icon a-icon-popover"></i>
+								</a>
+								<!-- for popover_trigger -->
+							</span>
+							<!-- for declarative_action -->
+						</div>
+
+					</div>
+
+					
+
+				</div>
+			</div>
+			<div class="a-row">
+				<div id="revMH" class="a-column a-span11">
+
+					<h3 class="a-spacing-small">Top Customer Reviews</h3>
+					<div id="revMHRL" class="a-section">
+
+						<div id="rev-dpReviewsMostHelpfulAUI-R3M73Q8IKTX4BB" class="a-section celwidget">
+							<div class="a-row a-spacing-micro">
+								<div class="a-icon-row a-spacing-none">
+									<a class="a-link-normal a-text-normal a-color-base" title="5.0 out of 5 stars" href="http://www.amazon.com/review/R3M73Q8IKTX4BB/ref=cm_cr_dp_title?ie=UTF8&amp;ASIN=B00QVAMLBY&amp;channel=detail-glance&amp;nodeID=3375251&amp;store=apparel">
+										<i class="a-icon a-icon-star a-star-5"><span class="a-icon-alt">5.0 out of 5 stars</span></i> 
+									</a>
+									<span class="a-letter-space"></span>
+									<a class="a-link-normal a-text-normal a-color-base" href="http://www.amazon.com/review/R3M73Q8IKTX4BB/ref=cm_cr_dp_title?ie=UTF8&amp;ASIN=B00QVAMLBY&amp;channel=detail-glance&amp;nodeID=3375251&amp;store=apparel">
+										<span class="a-size-base a-text-bold">Great shirt to stay cool during runs. Fits great too!</span>
+									</a>
+								</div>
+								<span class="a-color-secondary">
+
+									<span class="a-size-normal">
+										<span class="a-color-secondary">By</span>
+										<a href="/gp/pdp/profile/A1NO92RGFN3LEA/ref=cm_cr_dp_pdp" class="noTextDecoration">Uncle Tido</a>
+									</span>
+									<span class="a-color-secondary">on December 4, 2015</span>
+								</span>
+							</div>
+							<div id="revData-dpReviewsMostHelpfulAUI-R3M73Q8IKTX4BB" class="a-row a-spacing-small">
+								<span class="a-size-mini a-color-secondary">
+									Size: Small
+									<i class="a-icon a-icon-text-separator"></i>
+								</span>
+								<span class="a-size-mini a-color-secondary">
+									Color: Lucky Blue S15 / Lucky Blue S15
+									<i class="a-icon a-icon-text-separator"></i>
+								</span>
+								<span class="a-size-mini a-color-state a-text-bold">Verified Purchase</span>
+
+								
+
+								<div class="a-section">
+									I'll have to say that I've never owned a shirt with this feel before. I've owned other shirts with 100% polyester but this one just feels different. It's not one of those stretchy shirts but it is thin and still does a great job showing your physique. I do like the breathable mesh on the bottom back which I do feel a draft come through during my runs. I'm 5'7" and the Small fit great.
+								</div>
+
+							</div>
+							<link rel="stylesheet" href="http://z-ecx.images-amazon.com/images/G/01/AUIClients/ReviewsLightbox-f8642c2ff3c686297eeeaf2faf790bf1ce5ce9c2._V2_.css#AUIClients/ReviewsLightbox.min">
+							<script>
+  (window.AmazonUIPageJS ? AmazonUIPageJS : P).load.js('http://z-ecx.images-amazon.com/images/G/01/AUIClients/ReviewsLightbox-c5420b05a84735ab7eb0b7d15990905cf5ae193f._V2_.js#AUIClients/ReviewsLightbox.min');
+</script>
+
+							<div id="R3M73Q8IKTX4BB_imageSection_88823C7C-0BE4-11E6-BBF1-3962BD1C2533" style="margin:5px;">
+								<div style="overflow-x: hidden; overflow-y: hidden;">
+									<img class="review-image-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/51lRpNrWCKL._SL256_.jpg" large-image-url="https://images-na.ssl-images-amazon.com/images/I/51lRpNrWCKL._SL256_.jpg" style="background-position:center;
+                                         background-repeat: no-repeat;
+                                         overflow: hidden;background-size: cover;
+                                         display:inline-block;
+                                         margin-right: 1px;
+                                         margin-bottom: 4px;
+                                         cursor: pointer;
+                                         width:auto;height:88px;">
+									<img class="review-image-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/71QSOKe7KRL._SL256_.jpg" large-image-url="https://images-na.ssl-images-amazon.com/images/I/71QSOKe7KRL._SL256_.jpg" style="background-position:center;
+                                         background-repeat: no-repeat;
+                                         overflow: hidden;background-size: cover;
+                                         display:inline-block;
+                                         margin-right: 1px;
+                                         margin-bottom: 4px;
+                                         cursor: pointer;
+                                         width:auto;height:88px;">
+									<img class="review-image-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/71lDRxCYL7L._SL256_.jpg" large-image-url="https://images-na.ssl-images-amazon.com/images/I/71lDRxCYL7L._SL256_.jpg" style="background-position:center;
+                                         background-repeat: no-repeat;
+                                         overflow: hidden;background-size: cover;
+                                         display:inline-block;
+                                         margin-right: 1px;
+                                         margin-bottom: 4px;
+                                         cursor: pointer;
+                                         width:auto;height:88px;"></div>
+
+								<div style="display:none;">
+									<span class="a-declarative" data-action="a-modal" data-a-modal="{&quot;inlineContent&quot;:&quot;\n<div class=\&quot;reviewsLightbox reviewLightboxPopoverContainer\&quot; id=\&quot;R3M73Q8IKTX4BB_gallerySection_88823C7C-0BE4-11E6-BBF1-3962BD1C2533\&quot; style =\&quot;overflow:hidden;position:relative;\&quot;>\n</div>
+									\n&quot;}">
+									<a href="javascript:void(0)" class="a-popover-trigger a-declarative">
+										<i class="a-icon a-icon-popover"></i>
+									</a>
+								</span>
+							</div>
+						</div>
+
+						<script>
+  P.when("jQuery").execute(function(jQuery) {
+      P.when("reviewsLightbox-js").execute(function() {
+      
+       
+       var reviewImageGallery = new ReviewGallery("R3M73Q8IKTX4BB_gallerySection_88823C7C-0BE4-11E6-BBF1-3962BD1C2533", "DESKTOP");
+       reviewImageGallery.initializeForReview("R3M73Q8IKTX4BB");
+                        
+        var widgetDom = jQuery("#R3M73Q8IKTX4BB_imageSection_88823C7C-0BE4-11E6-BBF1-3962BD1C2533");
+        var thumbnails = widgetDom.find(".review-image-thumbnail"); 
+            thumbnails.each( function(index) {
+                jQuery(this).bind("click", function() {
+                    var popover = widgetDom.find(".a-popover-trigger");
+                    popover.click();
+                    P.when("reviewsLightbox-ready-R3M73Q8IKTX4BB_gallerySection_88823C7C-0BE4-11E6-BBF1-3962BD1C2533").execute(function() {
+                       reviewImageGallery.render();
+                       reviewImageGallery.showImageAtIndex(index);
+                    });
+                });
+            });
+      });
+  });
+</script>
+
+						<a class="a-link-normal comment-link commentStripe" title="0" href="http://www.amazon.com/review/R3M73Q8IKTX4BB/ref=cm_cr_dp_cmt?ie=UTF8&amp;ASIN=B00O8FQH6E&amp;channel=detail-glance&amp;nodeID=3375251&amp;store=apparel#wasThisHelpful">Comment</a>
+						<i class="a-icon a-icon-text-separator commentStripe"></i>
+
+						<a id="R3M73Q8IKTX4BB.2115.Helpful.Reviews"></a>
+						<span id="cr-vote-R3M73Q8IKTX4BB" class="votingStripe">
+							<span class="a-size-base a-color-secondary cr-vote-buttons">
+								11 people found this helpful. Was this review helpful to you?
+								<span class="a-letter-space"></span>
+								<span class="a-declarative" data-action="cr-vote" data-cr-vote="{&quot;rootComponentId&quot;:&quot;#cr-vote-R3M73Q8IKTX4BB&quot;,&quot;reviewId&quot;:&quot;R3M73Q8IKTX4BB&quot;}" style="display: inline">
+									<span class="a-button a-button-beside-text a-button-small yesButton votingButtonReviews" id="a-autoid-18">
+										<span class="a-button-inner">
+											<a href="http://www.amazon.com/gp/voting/cast/Reviews/2115/R3M73Q8IKTX4BB/Helpful/1/ref=cm_cr_dp_voteyn_yes?ie=UTF8&amp;target=aHR0cDovL3d3dy5hbWF6b24uY29tL2dwL3Byb2R1Y3QvQjAwUVZBTUxCWS9yZWY9Y21fY3JfZHB2b3RlcmRyP2llPVVURjgmcmVmUklEPTFUVERQN0ZUMFcxWlJWRVYzRjJO&amp;token=B289F969F5016BD18B1513D0364AFEAC02DCA7E3&amp;voteAnchorName=R3M73Q8IKTX4BB.2115.Helpful.Reviews&amp;voteSessionID=180-7910503-1287601" title="Yes" class="a-button-text a-text-center" role="button" id="a-autoid-18-announce">Yes</a>
+										</span>
+									</span>
+									<span class="a-button a-button-beside-text a-button-small noButton votingButtonReviews" id="a-autoid-19">
+										<span class="a-button-inner">
+											<a href="http://www.amazon.com/gp/voting/cast/Reviews/2115/R3M73Q8IKTX4BB/Helpful/-1/ref=cm_cr_dp_voteyn_no?ie=UTF8&amp;target=aHR0cDovL3d3dy5hbWF6b24uY29tL2dwL3Byb2R1Y3QvQjAwUVZBTUxCWS9yZWY9Y21fY3JfZHB2b3RlcmRyP2llPVVURjgmcmVmUklEPTFUVERQN0ZUMFcxWlJWRVYzRjJO&amp;token=787C184FEA408C1C94A35618D171067C73A82E8E&amp;voteAnchorName=R3M73Q8IKTX4BB.2115.Helpful.Reviews&amp;voteSessionID=180-7910503-1287601" title="No" class="a-button-text a-text-center" role="button" id="a-autoid-19-announce">No</a>
+										</span>
+									</span>
+								</span>
+							</span>
+							<span class="a-hidden cr-vote-feedback">Sending feedback...</span>
+							<div class="a-box a-alert-inline a-alert-inline-success a-hidden cr-vote-success">
+								<div class="a-box-inner a-alert-container">
+									<i class="a-icon a-icon-alert"></i>
+									<div class="a-alert-content">Thank you for your feedback.</div>
+								</div>
+							</div>
+							<div class="a-box a-alert-inline a-alert-inline-error a-hidden cr-vote-error">
+								<div class="a-box-inner a-alert-container">
+									<i class="a-icon a-icon-alert"></i>
+									<div class="a-alert-content">Sorry, we failed to record your vote. Please try again</div>
+								</div>
+							</div>
+							<span class="a-letter-space"></span>
+							<span class="a-color-base cr-vote-inapp">
+								<a href="http://www.amazon.com/gp/voting/cast/Reviews/2115/R3M73Q8IKTX4BB/Inappropriate/1/ref=cm_cr_dp_abuse_voteyn?ie=UTF8&amp;target=aHR0cDovL3d3dy5hbWF6b24uY29tL2dwL3Byb2R1Y3QvQjAwUVZBTUxCWS9yZWY9Y21fY3JfZHBfYWJ1c2Vfdm90ZXJkcj9pZT1VVEY4JnJlZlJJRD0xVFREUDdGVDBXMVpSVkVWM0YyTg&amp;token=5880105A58AF2548EB654E1FD6482E44D295D3C8&amp;voteAnchorName=R3M73Q8IKTX4BB.2115.Inappropriate.Reviews&amp;voteSessionID=180-7910503-1287601" onclick="var w = window.open(this.href+'&amp;type=popup','reportAbuse','height=380,width=580');w.focus();return false;">Report abuse</a>
+							</span>
+						</span>
+
+						<div id="ocStripe-dpReviewsMostHelpfulAUI-R3M73Q8IKTX4BB" class="a-row a-spacing-small officialCommentStripe">
+							<script type="text/javascript">
+    
+            if (typeof window.cr_popup_registered === 'undefined') {
+                window.cr_popup_registered = true;
+                P.when('A').register('cr_popup', function(A) {
+                    var popWin = function(url,name,options) {
+                        var ContextWindow = window.open(url,name,options);
+                        ContextWindow.focus();
+                        return false;
+                    }
+
+                    function popup(event) {
+                        var data = event.data;
+                        var toolbar = data.toolbar;
+                        if (typeof toolbar === 'undefined') {
+                            toolbar = 0;
+                        }
+                        var jqEvent = event.$event;
+                        var url = event.$target.closest('a').attr('href');
+                        popWin(url,data.title,'width=' + data.width + ',height=' + data.height + ',resizable=1,scrollbars=1,toolbar=' + toolbar + ',status=1');
+                        jqEvent.preventDefault();
+                    }
+                    A.declarative('cr-popup', ['click'], popup);
+                });
+            }
+         
+</script>
+						</div>
+					</div>
+
+					<div id="rev-dpReviewsMostHelpfulAUI-R2EENCQZYYUO9S" class="a-section celwidget">
+						<div class="a-row a-spacing-micro">
+							<div class="a-icon-row a-spacing-none">
+								<a class="a-link-normal a-text-normal a-color-base" title="4.0 out of 5 stars" href="http://www.amazon.com/review/R2EENCQZYYUO9S/ref=cm_cr_dp_title?ie=UTF8&amp;ASIN=B00QVAMLBY&amp;channel=detail-glance&amp;nodeID=3375251&amp;store=apparel">
+									<i class="a-icon a-icon-star a-star-4">
+										<span class="a-icon-alt">4.0 out of 5 stars</span>
+									</i>
+								</a>
+								<span class="a-letter-space"></span>
+								<a class="a-link-normal a-text-normal a-color-base" href="http://www.amazon.com/review/R2EENCQZYYUO9S/ref=cm_cr_dp_title?ie=UTF8&amp;ASIN=B00QVAMLBY&amp;channel=detail-glance&amp;nodeID=3375251&amp;store=apparel">
+									<span class="a-size-base a-text-bold">looks great and a great price</span>
+								</a>
+							</div>
+							<span class="a-color-secondary">
+
+								<span class="a-size-normal">
+									<span class="a-color-secondary">By</span>
+									<a href="/gp/pdp/profile/A2RYCHHODU03U9/ref=cm_cr_dp_pdp" class="noTextDecoration">Shrinkinguy</a>
+								</span>
+								<span class="a-color-secondary">on January 8, 2016</span>
+							</span>
+						</div>
+						<div id="revData-dpReviewsMostHelpfulAUI-R2EENCQZYYUO9S" class="a-row a-spacing-small">
+							<span class="a-size-mini a-color-secondary">
+								Size: Medium
+								<i class="a-icon a-icon-text-separator"></i>
+							</span>
+							<span class="a-size-mini a-color-secondary">
+								Color: Dark Grey Heather / Light Red
+								<i class="a-icon a-icon-text-separator"></i>
+							</span>
+							<span class="a-size-mini a-color-state a-text-bold">Verified Purchase</span>
+
+							<div class="a-section">
+								Well made, high quality, looks great and a great price.  I ordered a medium since I like my workout shirts slightly fitted (I am 6' 1", 220 lbs, 35" waist, athletic build), but this one is a bit smaller than others I've purchased.  Rather than exchange it, I guess I'll just live with the tighter fit.  The shirt looks black and dark red in the photo, but it's really grey and bright orange.  But it still looks great.
+							</div>
+
+						</div>
+
+						<a class="a-link-normal comment-link commentStripe" title="0" href="http://www.amazon.com/review/R2EENCQZYYUO9S/ref=cm_cr_dp_cmt?ie=UTF8&amp;ASIN=B00LFWDTEQ&amp;channel=detail-glance&amp;nodeID=3375251&amp;store=apparel#wasThisHelpful">Comment</a>
+						<i class="a-icon a-icon-text-separator commentStripe"></i>
+
+						<script type="text/javascript">
+  
+
+
+  
+P.when("A").execute(function(A) {
+   
+   function vote(event) {
+     var root = A.$(event.data.rootComponentId);
+     var target = event.$target;
+     root.find(".cr-vote-buttons").addClass("a-hidden");
+     root.find(".cr-vote-feedback").removeClass("a-hidden");
+       
+     A.get(target.attr("href") + "&type=json&_=" + (new Date()).getTime(),
+     {
+	   dataType: 'json',
+	   ajaxTimeout: 10000,
+	   success: function(data, textStatus){ 
+         success(data, root, target);
+       },
+	   error: function(XMLHttpRequest, textStatus, errorThrown){
+         error(root, target);
+       }
+	 });
+     event.$event.preventDefault();
+
+   }
+
+   function isNoButton(target) {       
+     return target.closest(".noButton").length > 0;
+   }
+
+   function success(data, root, target) {
+       if (data.redirect == 1) {
+	   window.location.href = target.attr("href");
+       } else if (data.error == 1) {
+	   error(root, target);
+       } else {
+	   root.find(".cr-vote-success").removeClass("a-hidden");	   
+	   root.find(".cr-vote-feedback").addClass("a-hidden");
+       }
+   }
+
+   function error(root, target) {
+       root.find(".cr-vote-error").removeClass("a-hidden");	   
+       root.find(".cr-vote-feedback").addClass("a-hidden");
+   }
+
+   A.declarative("cr-vote", ["click"], vote);
+});
+
+
+</script>
+
+						<a id="R2EENCQZYYUO9S.2115.Helpful.Reviews"></a>
+						<span id="cr-vote-R2EENCQZYYUO9S" class="votingStripe">
+							<span class="cr-vote-buttons">
+								Was this review helpful to you?
+								<span class="a-letter-space"></span>
+								<span class="a-declarative" data-action="cr-vote" data-cr-vote="{&quot;rootComponentId&quot;:&quot;#cr-vote-R2EENCQZYYUO9S&quot;,&quot;reviewId&quot;:&quot;R2EENCQZYYUO9S&quot;}" style="display: inline">
+									<span class="a-button a-button-beside-text a-button-small yesButton votingButtonReviews" id="a-autoid-20">
+										<span class="a-button-inner">
+											<a href="http://www.amazon.com/gp/voting/cast/Reviews/2115/R2EENCQZYYUO9S/Helpful/1/ref=cm_cr_dp_voteyn_yes?ie=UTF8&amp;target=aHR0cDovL3d3dy5hbWF6b24uY29tL2dwL3Byb2R1Y3QvQjAwUVZBTUxCWS9yZWY9Y21fY3JfZHB2b3RlcmRyP2llPVVURjgmcmVmUklEPTFUVERQN0ZUMFcxWlJWRVYzRjJO&amp;token=2F0FBB49B2871A1208EECCE3648E781D23147199&amp;voteAnchorName=R2EENCQZYYUO9S.2115.Helpful.Reviews&amp;voteSessionID=180-7910503-1287601" title="Yes" class="a-button-text a-text-center" role="button" id="a-autoid-20-announce">Yes</a>
+										</span>
+									</span>
+									<span class="a-button a-button-beside-text a-button-small noButton votingButtonReviews" id="a-autoid-21">
+										<span class="a-button-inner">
+											<a href="http://www.amazon.com/gp/voting/cast/Reviews/2115/R2EENCQZYYUO9S/Helpful/-1/ref=cm_cr_dp_voteyn_no?ie=UTF8&amp;target=aHR0cDovL3d3dy5hbWF6b24uY29tL2dwL3Byb2R1Y3QvQjAwUVZBTUxCWS9yZWY9Y21fY3JfZHB2b3RlcmRyP2llPVVURjgmcmVmUklEPTFUVERQN0ZUMFcxWlJWRVYzRjJO&amp;token=EB934E7EF39BB8423AECFADFC0343AFD16E808F4&amp;voteAnchorName=R2EENCQZYYUO9S.2115.Helpful.Reviews&amp;voteSessionID=180-7910503-1287601" title="No" class="a-button-text a-text-center" role="button" id="a-autoid-21-announce">No</a>
+										</span>
+									</span>
+								</span>
+							</span>
+							<span class="a-hidden cr-vote-feedback">Sending feedback...</span>
+							<div class="a-box a-alert-inline a-alert-inline-success a-hidden cr-vote-success">
+								<div class="a-box-inner a-alert-container">
+									<i class="a-icon a-icon-alert"></i>
+									<div class="a-alert-content">Thank you for your feedback.</div>
+								</div>
+							</div>
+							<div class="a-box a-alert-inline a-alert-inline-error a-hidden cr-vote-error">
+								<div class="a-box-inner a-alert-container">
+									<i class="a-icon a-icon-alert"></i>
+									<div class="a-alert-content">Sorry, we failed to record your vote. Please try again</div>
+								</div>
+							</div>
+							<span class="a-letter-space"></span>
+							<span class="a-color-base cr-vote-inapp">
+								<a href="http://www.amazon.com/gp/voting/cast/Reviews/2115/R2EENCQZYYUO9S/Inappropriate/1/ref=cm_cr_dp_abuse_voteyn?ie=UTF8&amp;target=aHR0cDovL3d3dy5hbWF6b24uY29tL2dwL3Byb2R1Y3QvQjAwUVZBTUxCWS9yZWY9Y21fY3JfZHBfYWJ1c2Vfdm90ZXJkcj9pZT1VVEY4JnJlZlJJRD0xVFREUDdGVDBXMVpSVkVWM0YyTg&amp;token=0A412E84B49E8D9A0CC8F2F9AD08E86D71669ADD&amp;voteAnchorName=R2EENCQZYYUO9S.2115.Inappropriate.Reviews&amp;voteSessionID=180-7910503-1287601" onclick="var w = window.open(this.href+'&amp;type=popup','reportAbuse','height=380,width=580');w.focus();return false;">Report abuse</a>
+							</span>
+						</span>
+
+					</div>
+
+					
+
+					
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	
+</div>
+			<!-- end -->
+				<div style="clear:both"></div>
+			<!-- write review -->
+		<div id="solicitPurchases" class="a-section solicitPurchases reviews" style="width:77%">
+			
+		<div id="reviewProductsViewport" class="a-section a-spacing-none mobileOverflow">
+			
+			<div id="reviewSection1" class="a-section a-spacing-none desktop overflow">
+				<div class="a-section a-spacing-none a-padding-none reviewCandidate content">
+					<div class="a-fixed-left-grid a-spacing-top-base">
+						<div class="a-fixed-left-grid-inner" style="padding-left:180px">
+							<div class="a-text-left a-spacing-none a-fixed-left-grid-col a-col-left" style="width:180px;margin-left:-180px;_margin-left:-90px;float:left;">
+								<div class="a-section a-spacing-none a-spacing-top-none a-padding-none">
+								<img width="140" height="140" border="0" title="Enterprise Software Platform: A Textbook for Software Engineering Students" alt="Enterprise Software Platform: A Textbook for Software Engineering Students" src="https://images-na.ssl-images-amazon.com/images/I/51psyxoXbEL._SS300_.jpg"></div>
+							</div>
+							<div class="a-text-left a-spacing-none a-spacing-top-mini a-fixed-left-grid-col a-col-right" style="padding-left:0%;*width:99.6%;float:left;">
+								<div class="a-section a-spacing-none a-spacing-top-extra-large a-text-center fr">
+									<span class="a-button a-spacing-top-base a-button-small a-button-width-normal notInterested hidden">
+										<span class="a-button-inner">
+											<input class="a-button-input" type="submit">
+											<span class="a-button-text" aria-hidden="true">&nbsp;&nbsp;Remove from list&nbsp;&nbsp;</span>
+										</span>
+									</span>
+									<div class="a-section a-spacing-top-micro remindMeLaterSection">
+										<span class="a-size-mini a-color-secondary clickable remindMeLater hidden">Remind me later</span>
+									</div>
+								</div>
+								<div class="a-section a-spacing-none a-spacing-top-large relative">
+									<div class="a-section a-spacing-none a-spacing-top-none a-padding-none">
+										<h3>Rating&Review</h3>
+									</div>
+									<div class="a-section a-spacing-base a-spacing-top-mini disableSelect fl">
+										<div class="a-section starsContainer fl">
+											<!-- rating -->
+										  <div class="demo">
+											    <div id="function-demo1" class="target-demo"></div>
+											    <div id="function-hint1" class="hint" style="display:none!important"></div>
+										  </div>
+										</div>
+									</div>
+									<div class="a-section a-spacing-base a-spacing-top-small a-padding-none a-text-left outerStarAlert fl starCommentSpacing hidden">
+										<div class="a-box a-alert-inline a-alert-inline-error starAlert a-spacing-none a-spacing-top-mini">
+											<div class="a-box-inner a-alert-container">
+												<i class="a-icon a-icon-alert"></i>
+												<div class="a-alert-content">
+													<span class="a-size-base starAlertText">Star Rating is required.</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="a-section a-spacing-base a-spacing-top-large starCommentSection fl starCommentSpacing">
+										<span class="a-size-base a-color-base starComment a-text-bold"></span>
+									</div>
+									<div class="a-section a-spacing-base a-spacing-top-large ratingsConfirmation fl" style="display: none;">
+										<div class="postedPublicly fl" style="margin-top:0px;" role="alert" aria-live="off" aria-hidden="false">
+											<div class="a-box a-alert-inline a-alert-inline-success a-spacing-none">
+												<div class="a-box-inner a-alert-container">
+													<i class="a-icon a-icon-alert"></i>
+													<div class="a-alert-content">
+														<span class="a-size-base postedPubliclyMessage">Posted publicly as</span>
+														<span class="a-size-base a-color-link authorName" tabindex="-1">Amazon Customer</span>
+													</div>
+												</div>
+											</div>
+											<span class="a-size-base a-color-secondary">&nbsp;|&nbsp;&nbsp;</span>
+										</div>
+										<span class="a-size-base a-color-link clearRating clickable" tabindex="-1">Clear</span>
+									</div>
+									
+									<div style="clear:both;"></div>
+								</div>
+								<div style="clear:both;"></div>
+								<div aria-live="polite" class="a-row a-expander-container a-expander-extend-container">
+									<div class="a-section a-spacing-none a-padding-none draftControl overflow hidden">
+										<div class="a-section a-spacing-none a-padding-none toggle section fl">
+											<a href="javascript:void(0)" data-action="a-expander-toggle" class="a-expander-header a-declarative a-expander-extend-header draftShowHide hidden a-size-base" data-a-expander-toggle="{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Show unfinished review&quot;, &quot;collapse_prompt&quot;:&quot;Hide unfinished review&quot;}">
+												<i class="a-icon a-icon-extender-expand"></i>
+												<span class="a-expander-prompt">Show unfinished review</span>
+											</a>
+											<a href="javascript:void(0)" data-action="a-expander-toggle" class="a-expander-header a-declarative a-expander-extend-header writeReview hidden a-size-base" data-a-expander-toggle="{&quot;allowLinkDefault&quot;:true, &quot;expand_prompt&quot;:&quot;Write a review&quot;, &quot;collapse_prompt&quot;:&quot;Write a review&quot;}">
+												<i class="a-icon a-icon-extender-expand"></i>
+												<span class="a-expander-prompt">Write a review</span>
+											</a>
+										</div>
+										<div class="a-section draftLastSaveDelete fr">
+											<span class="a-color-secondary draftLastSave a-size-base"></span>
+											<span class="a-color-secondary draftPipe hidden a-size-base">&nbsp;|&nbsp;</span>
+											<span class="a-color-link draftDelete clickable a-size-base">Delete</span>
+										</div>
+									</div>
+									<div aria-expanded="false" class="a-expander-content collapsibleContent overflow a-expander-extend-content" style="overflow: hidden; display: block;">
+										<div class="tipsSlider"></div>
+										<div class="a-section a-spacing-none a-spacing-top-none reviewInputFields overflow">
+											<span class="a-size-base a-color-secondary fieldLabel textLabel absolute hidden expandingTextSectionHeight a-padding-small" style="display: none;">Write your review here</span>
+											<div class="a-input-text-wrapper">
+												<textarea class="bigTextArea textField reviewText expandingTextSectionHeight" title="Write your review here" style="overflow: hidden; height: 150px;"></textarea>
+											</div>
+										</div>
+										<div class="a-section a-spacing-top-none collapsibleTitleAndValidationContent overflow " style="overflow: hidden; display: block!important;">
+												
+												<div class="a-section a-spacing-none a-spacing-top-base reviewInputFields overflow">
+												
+												<input type="text" maxlength="128" class="a-input-text titleField reviewTitle fillWidth" aria-label="Headline for your review" role="textbox" placeholder="Headline for your review">                        
+												</div>
+											
+												
+												<div class="a-fixed-right-grid a-spacing-top-mini">
+													<div class="a-fixed-right-grid-inner" style="padding-right:360px">
+														<div class="a-text-left a-spacing-none a-fixed-right-grid-col a-col-left" style="padding-right:0%;*width:99.6%;float:left;">
+															<div class="a-section a-spacing-mini a-padding-none imagePreview">
+																<div  ng-repeat="i in images" class="canvasThumbnail" style="width: 50px; height: 50px;">
+																	<div class="thumbnail" style="width:100%;height:100%;position:relative;overflow:hidden;border-radius:10%;">
+																	<img   src="{{i.image}}"></div>
+																	<div class="close-icon closeButton"></div>
+																</div>
+															</div>
+															<div class="a-section a-spacing-mini a-padding-none maxImageCountWarningSection aok-hidden">
+																<div class="a-box a-alert-inline a-alert-inline-error maxImageCountWarningAlert">
+																	<div class="a-box-inner a-alert-container">
+																		<i class="a-icon a-icon-alert"></i>
+																		<div class="a-alert-content">
+																			<span class="a-size-base maxImageCountWarningText">You may only upload up to 20 images per review.</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="a-section a-spacing-mini a-padding-none oneVideoPerReviewErrorSection aok-hidden">
+																<div class="a-box a-alert-inline a-alert-inline-error oneVideoPerReviewAlert">
+																	<div class="a-box-inner a-alert-container">
+																		<i class="a-icon a-icon-alert"></i>
+																		<div class="a-alert-content">
+																			<span class="a-size-base oneVideoPerReviewText">You may only upload one video per review.</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="a-section a-spacing-mini a-padding-none maxImageSizeErrorSection aok-hidden">
+																<div class="a-box a-alert-inline a-alert-inline-error maxFileSizeErrorAlert">
+																	<div class="a-box-inner a-alert-container">
+																		<i class="a-icon a-icon-alert"></i>
+																		<div class="a-alert-content">
+																			<span class="a-size-base maxImageSizeText">
+																				The following files exceed the image size limit of 100 MB:
+																				<span class="imagesOverLimit"></span>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="a-section a-spacing-mini a-padding-none maxVideoSizeErrorSection aok-hidden">
+																<div class="a-box a-alert-inline a-alert-inline-error maxFileSizeErrorAlert">
+																	<div class="a-box-inner a-alert-container">
+																		<i class="a-icon a-icon-alert"></i>
+																		<div class="a-alert-content">
+																			<span class="a-size-base maxVideoSizeText">
+																				The following file exceeds the video size limit of 1.5 GB:
+																				<span class="videoOverLimit"></span>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															
+														</div>
+														<div class="a-text-left a-spacing-none a-fixed-right-grid-col a-col-right" style="width:360px;margin-right:-360px;float:left;">
+															<div class="a-section a-spacing-none a-padding-none buttonSection fr">
+																<a class="a-text-beside-button a-align-center a-link-normal previewLink fl" href="javascript:void(0)" role="button">Preview</a>
+																<span class="a-button a-button-normal a-spacing-mini cameraButton fl">
+																	
+																	<span class="a-button-inner">
+																		<input  onchange="angular.element(this).scope().uploadFile(this.files)"file-model="myFile" class="a-button-input" type="file" value="submit">
+																		<span class="a-button-text a-text-center" aria-hidden="true">
+																			<div class="cameraIcon fl" style="margin-top:5px;margin-right:4px;"></div>
+																			<span class="add-photos-or-video">Add photos/video</span>
+																		</span>
+																	</span>
+																	<input class="filePicker imageKitFileFilePicker" type="file" accept="image/*, video/*" style="display:none" multiple=""></span>
+																	<span class="a-button a-button-normal a-spacing-none a-button-primary submitButton">
+																		<span class="a-button-inner">
+																			<input class="a-button-input" type="submit" value="submit" ng-click="postReview()">
+																			<span class="a-button-text a-text-center" aria-hidden="true">
+																				<span class="submitText" 
+																				>Submit1</span>
+																			</span>
+																		</span>
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="a-divider a-divider-break a-spacing-none a-spacing-top-small">
+							<h5></h5>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+
+			<!-- end -->
+		
+		<%- include('head/footer')%></body>
+	</html>

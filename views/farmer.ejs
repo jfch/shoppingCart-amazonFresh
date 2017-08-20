@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('head/angularTemplate') %>
+    <%- include('head/signup') %>
+</head>
+
+<body ng-app="whateverApp" ng-controller="whateverController">
+<script>
+    function toDo($scope, $http) {
+        $scope.register = function () {
+            log('register(), agree = ', $scope.agree);
+            if ($scope.agree) {
+                return apiPost('/api/res/user', {
+                    userID: req.session.passport.user.userID,
+                    type: 'farmer'
+                }, 'whatever', $scope, $http, function (data) {
+                    notify('register success');
+                    setTimeout(function () {
+                        location.replace('/signin');
+                    }, 2000);
+                });
+            } else {
+                $("#error").text("You must agree with the terms and conditions");
+            }
+        };
+    }
+</script>
+
+<div id="alphaLayer">
+    <div>
+
+        <!-- BEGIN header -->
+        <%- include('head/header') %>
+        <!-- END header -->
+        <div id=pageWrapper>
+            <div id="pageContent">
+                <div id="registration" class="contentArea">
+                    <h1>Be a farmer</h1>
+                    <p id="error" style="color: red;"> <%= locals.message %> </p>
+                    <form>
+                        <input type="hidden" value="true" name="createAccount">
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Terms of use</label>
+                            <div class="col-xs-9">
+                                <div style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+                                    <p>Lorem ipsum dolor sit amet, veniam numquam has te. No suas nonumes recusabo mea,
+                                        est ut graeci definitiones. His ne melius vituperata scriptorem, cum paulo
+                                        copiosae conclusionemque at. Facer inermis ius in, ad brute nominati referrentur
+                                        vis. Dicat erant sit ex. Phaedrum imperdiet scribentur vix no, ad latine
+                                        similique forensibus vel.</p>
+                                    <p>Dolore populo vivendum vis eu, mei quaestio liberavisse ex. Electram
+                                        necessitatibus ut vel, quo at probatus oportere, molestie conclusionemque pri
+                                        cu. Brute augue tincidunt vim id, ne munere fierent rationibus mei. Ut pro
+                                        volutpat praesent qualisque, an iisque scripta intellegebat eam.</p>
+                                    <p>Mea ea nonumy labores lobortis, duo quaestio antiopam inimicus et. Ea natum solet
+                                        iisque quo, prodesset mnesarchum ne vim. Sonet detraxit temporibus no has.
+                                        Omnium blandit in vim, mea at omnium oblique.</p>
+                                    <p>Eum ea quidam oportere imperdiet, facer oportere vituperatoribus eu vix, mea ei
+                                        iisque legendos hendrerit. Blandit comprehensam eu his, ad eros veniam ridens
+                                        eum. Id odio lobortis elaboraret pro. Vix te fabulas partiendo.</p>
+                                    <p>Natum oportere et qui, vis graeco tincidunt instructior an, autem elitr noster
+                                        per et. Mea eu mundi qualisque. Quo nemore nusquam vituperata et, mea ut
+                                        abhorreant deseruisse, cu nostrud postulant dissentias qui. Postea tincidunt vel
+                                        eu.</p>
+                                    <p>Ad eos alia inermis nominavi, eum nibh docendi definitionem no. Ius eu stet
+                                        mucius nonumes, no mea facilis philosophia necessitatibus. Te eam vidit iisque
+                                        legendos, vero meliore deserunt ius ea. An qui inimicus inciderint.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="agree" name="agree" value="agree"/> Agree with
+                                        the terms and
+                                        conditions
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <input type="submit" class="secondaryButton" name="signup" value="Continue"
+                                   ng-click="register();"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- close optional disable page div --> </div>
+<div id="refreshFooter">
+    <div id="column1" class="column">
+        <a href="https://fresh.amazon.com/help?ref_=nav_help" id="lnk-gbl-help">Help</a>
+        <a href="https://fresh.amazon.com/Conditions?ref_=nav_cond">Conditions of Use</a>
+        <a href="https://fresh.amazon.com/Privacy?ref_=nav_priv">Privacy Notice</a>
+    </div>
+    <div id="column2" class="column">
+        <a href="https://fresh.amazon.com//MembershipBenefits">About</a>
+        <a href="https://fresh.amazon.com/careers?ref_=nav_careers">Careers</a>
+    </div>
+    <div id="copyrightAndDisclaimer">
+        &copy; 2007-2016 AmazonFresh, LLC or its affiliates
+        &nbsp;
+        All items sold by and ship from AmazonFresh unless otherwise specified.
+    </div>
+</div>
+
+</body>
+</html>

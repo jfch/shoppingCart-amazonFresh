@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('head/signup') %>
+    <%- include('head/angularTemplate') %>
+    <script>
+        function toDo($scope, $http) {
+            $scope.id = JSON.parse('<%- JSON.stringify(id) %>');
+            if ($scope.id) {
+                apiRequest('/api/res/user/id/' + $scope.id, 'customer', $scope, $http, function () {
+                    $scope.customer.password='';
+                });
+                $scope.title = "Modify Customer Info";
+            } else {
+                $scope.customer = {};
+                $scope.title = "Create Customer";
+            }
+
+//            var url = (window.location + "").indexOf('change=true');
+//            $scope.title = " ";
+//            if (url == -1) {//cannot find
+//                $scope.title = "Create Customer";
+//            } else {
+//                $scope.title = "Modify Customer Info";
+//                //$scope.customer=customer;
+//                //  alert(customer.email);
+//            }
+
+//            $scope.submit = function () {
+//                if ($scope.id){
+//
+//                    apiPost('/api/user/signin', $scope.customer, 'customer', $scope, $http, function () {
+//                        notify('modify success');
+//                    });
+//                }else{
+//                    apiPost('/api/res/user', $scope.customer, 'customer', $scope, $http, function () {
+//                        notify('modify success');
+//                    });
+//                }
+//            }
+        }
+    </script>
+</head>
+
+<body id="welcome" class="" ng-app="whateverApp" ng-controller="whateverController">
+<div id="alphaLayer">
+    <div>
+
+        <!-- BEGIN header -->
+        <%- include('head/header') %>
+
+        <!-- END header -->
+        <div id=pageWrapper>
+            <div id="pageContent">
+                <div id="registration" class="contentArea">
+                    <h1>{{title}}</h1>
+                    <p style="color: red;"> <%= locals.message %> </p>
+                    <form name="registerUserForm" action="/signup" method="post">
+                        <input type="hidden" value="true" name="createAccount">
+                        <input type="hidden" ng-modle="customer.userID" name="userID" ng-if="{{customer.userID}}">
+                        <div>
+                            Email: <input type="email" name="email" ng-model="customer.email" value=""
+                                          placeholder="E-mail Address" title="E-mail Address" required/>
+                        </div>
+                        <div>
+                            Password: <input type="password" name="password" ng-model="customer.password"
+                                             placeholder="Password" title="Password" required/>
+                        </div>
+                        <div>
+                            Confirm:<input type="password" name="passwordCheck" ng-model="customer.passwordCheck"
+                                           placeholder="Verify Password" title="Verify Password" required/>
+                        </div>
+                        <div>
+                            SSN <input type="text" name="ssn" value="" placeholder="xxx-xx-xxxx" title="SSN"
+                                       ng-model="customer.ssn" pattern="^\d{3}[-]{1}\d{2}[-]{1}\d{4}$" required/>
+                        </div>
+                        <div>
+                            firstName <input type="text" name="firstName" value="" placeholder="firstName"
+                                             title="First Name" ng-model="customer.firstName"
+                                             pattern="^[A-Za-z]{1}[A-Za-z\s]{0,49}$" required/>
+                        </div>
+
+                        <div>
+                            lastName: <input type="text" name="lastName" value="" placeholder="lastName"
+                                             title="Last Name" ng-model="customer.lastName"
+                                             pattern="^[A-Za-z]{1}[A-Za-z\s]{0,49}$" required/>
+                        </div>
+
+                        <div>
+                            Street: <input type="text" name="address" value="" placeholder="Street" title="Address"
+                                           ng-model="customer.address" pattern="^[A-Za-z0-9]{1}[A-Za-z0-9\s]{0,49}$"
+                                           required/>
+                        </div>
+                        <div>
+                            City: <input type="text" name="city" value="" placeholder="City" title="City"
+                                         ng-model="customer.city" pattern="^[A-Za-z]{1}[A-Za-z\s]{0,49}$" required/>
+                        </div>
+                        <div>
+                            State: <input type="text" name="state" value="" placeholder="State" title="State"
+                                          ng-model="customer.state" pattern="^[A-Za-z]{2,50}$" required/>
+                        </div>
+
+                        <div>
+                            ZipCode: <input type="text" name="zipCode" value="" placeholder="xxxxx" title="Zip Code"
+                                            ng-model="customer.zipCode" pattern="^\d{5}$" required/>
+                        </div>
+                        <div>
+                            Phone Number:<input type="text" name="phoneNumber" value="" placeholder="(xxx)xxx-xxxx"
+                                                title="Phone Number" ng-model="customer.phoneNumber"
+                                                pattern="^\({1}\d{3}\){1}\d{3}[-]{1}\d{4}$" required/>
+                        </div>
+                        <div>
+                            CreditCard: <input type="text" name="creditCard" value="" placeholder="xxxxxxxxxxxxxx"
+                                               title="Card Number" ng-model="customer.creditCard" pattern="^\d{5,13}$"
+                                               ng-maxlength=50 required/>
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="registerUserForm.firstName.$error.pattern">
+                            <p style="color: red;"> first name only allow letters, space and max length 50 </p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="registerUserForm.lastName.$error.pattern">
+                            <p style="color: red;"> last name only allow letters, space and max length 50 </p>
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="registerUserForm.address.$error.pattern">
+                            <p style="color: red;"> address incorrect </p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="registerUserForm.city.$error.pattern">
+                            <p style="color: red;"> city name incorrect </p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="registerUserForm.state.$error.pattern">
+                            <p style="color: red;"> state name incorrect </p>
+                        </div>
+
+
+                        <div class="alert alert-danger" ng-show="registerUserForm.customerId.$error.pattern">
+                            <p style="color: red;"> Customer Id : SSN format </p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="registerUserForm.zipCode.$error.pattern">
+                            <p style="color: red;"> Zip Code format : 95155 </p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="registerUserForm.phoneNumber.$error.pattern">
+                            <p style="color: red;"> Phone Number format :(530)220-4320 </p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="registerUserForm.cardNumber.$error.pattern">
+                            <p style="color: red;"> Card Number : only digit and length: 5-13 </p>
+                        </div>
+
+                        <div>
+                            <input type="submit" class="secondaryButton" value="Submit"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- close optional disable page div --> </div>
+<div id="refreshFooter">
+    <div id="column1" class="column">
+        <a href="https://fresh.amazon.com/help?ref_=nav_help" id="lnk-gbl-help">Help</a>
+        <a href="https://fresh.amazon.com/Conditions?ref_=nav_cond">Conditions of Use</a>
+        <a href="https://fresh.amazon.com/Privacy?ref_=nav_priv">Privacy Notice</a>
+    </div>
+    <div id="column2" class="column">
+        <a href="https://fresh.amazon.com//MembershipBenefits">About</a>
+        <a href="https://fresh.amazon.com/careers?ref_=nav_careers">Careers</a>
+    </div>
+    <div id="copyrightAndDisclaimer">
+        &copy; 2007-2016 AmazonFresh, LLC or its affiliates
+        &nbsp;
+        All items sold by and ship from AmazonFresh unless otherwise specified.
+    </div>
+</div>
+</body>
+</html>
